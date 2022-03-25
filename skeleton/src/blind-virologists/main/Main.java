@@ -1,5 +1,14 @@
+package main;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("hello world");
+        //menu
+    }
+
+
+    //use-casek
+    private static void gameStarts(){
+
     }
 }
