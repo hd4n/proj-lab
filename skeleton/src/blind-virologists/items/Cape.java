@@ -1,4 +1,4 @@
 package items;
 
-public class Cape {
+public class Cape extends Equipment{
 }

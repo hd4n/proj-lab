@@ -1,4 +1,4 @@
 package map;
 
-public abstract class Field {
+public abstract class Field implements Visitable{
 }

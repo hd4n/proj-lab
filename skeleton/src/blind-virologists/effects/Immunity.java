@@ -1,4 +1,4 @@
 package effects;
 
-public class Immunity {
+public class Immunity extends Effect{
 }

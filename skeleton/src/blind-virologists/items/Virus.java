@@ -1,4 +1,4 @@
 package items;
 
-public class Virus {
+public class Virus extends Agent{
 }

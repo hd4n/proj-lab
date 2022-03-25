@@ -1,4 +1,4 @@
 package citizens;
 
-public class Virologist {
+public class Virologist extends Citizen{
 }

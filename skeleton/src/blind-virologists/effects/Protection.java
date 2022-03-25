@@ -1,4 +1,4 @@
 package effects;
 
-public class Protection {
+public class Protection extends Effect{
 }

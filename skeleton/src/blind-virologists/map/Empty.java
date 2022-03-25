@@ -1,4 +1,4 @@
 package map;
 
-public class Empty {
+public class Empty extends Field{
 }

@@ -1,4 +1,4 @@
 package effects;
 
-public class Dance {
+public class Dance extends Effect{
 }

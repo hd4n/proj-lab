@@ -1,4 +1,4 @@
 package items;
 
-public class Vaccine {
+public class Vaccine extends Agent{
 }

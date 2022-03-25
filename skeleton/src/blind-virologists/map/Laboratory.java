@@ -1,4 +1,4 @@
 package map;
 
-public class Laboratory {
+public class Laboratory extends Field {
 }

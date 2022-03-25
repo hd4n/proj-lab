@@ -1,4 +1,4 @@
 package map;
 
-public class Warehouse {
+public class Warehouse extends  Field{
 }

@@ -1,4 +1,4 @@
 package items;
 
-public class Aminoacid {
+public class Aminoacid extends Material{
 }

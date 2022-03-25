@@ -1,4 +1,4 @@
 package items;
 
-public class Bag {
+public class Bag extends Equipment{
 }

@@ -1,4 +1,4 @@
 package effects;
 
-public class IncreaseBag {
+public class IncreaseBag extends Effect{
 }

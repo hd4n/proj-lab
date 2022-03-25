@@ -1,4 +1,4 @@
 package effects;
 
-public class Stun {
+public class Stun extends Effect{
 }

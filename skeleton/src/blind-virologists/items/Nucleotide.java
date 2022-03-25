@@ -1,4 +1,4 @@
 package items;
 
-public class Nucleotide {
+public class Nucleotide extends Material{
 }

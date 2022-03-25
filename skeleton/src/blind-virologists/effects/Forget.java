@@ -1,4 +1,4 @@
 package effects;
 
-public class Forget {
+public class Forget extends Effect{
 }

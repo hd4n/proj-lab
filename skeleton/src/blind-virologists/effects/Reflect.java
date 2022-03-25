@@ -1,4 +1,4 @@
 package effects;
 
-public class Reflect {
+public class Reflect extends Effect{
 }

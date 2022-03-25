@@ -1,4 +1,4 @@
 package map;
 
-public class Shelter {
+public class Shelter extends Field{
 }
