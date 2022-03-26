@@ -33,14 +33,16 @@ public class Warehouse extends  Field{
      * @return material visszaadja a mezőn lévő anyagot
      */
     public Material getMaterial() {
+        System.out.println("Warehouse mező: getter függvénye meghívódott");
         return material;
     }
 
     /**
-     * A warehouse mező gettere
+     * A warehouse mező settere
      * @param material a warehouseban lévő anyagot állítja be
      */
     public void setMaterial(Material material) {
+        System.out.println("Warehouse mező: setter függvénye meghívódott");
         this.material = material;
     }
 
@@ -49,6 +51,7 @@ public class Warehouse extends  Field{
      * @return collected a felvett anyagot adja vissza
      */
     public Material collectMaterial(){
+        System.out.println("Warehouse mező: anyag felvétele");
         Material collected=this.material;
         setMaterial(null);
         return collected;
@@ -60,6 +63,6 @@ public class Warehouse extends  Field{
      */
     @Override
     public void accept(Visitor v) {
-        //v.visit(this);
+        v.visit(this);
     }
 }

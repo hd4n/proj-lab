@@ -33,14 +33,16 @@ public class Laboratory extends Field {
      * @return code visszaadja a mezőn lévő kódot
      */
     public Code getCode() {
+        System.out.println("Laboratory mező: getter függvénye meghívódott");
         return code;
     }
 
     /**
-     * Az laboratory mező gettere
+     * Az laboratory mező settere
      * @param code a laboratoryn lévő kódot állítja be
      */
     public void setCode(Code code) {
+        System.out.println("Laboratory mező: setter függvénye meghívódott");
         this.code = code;
     }
 
@@ -48,6 +50,7 @@ public class Laboratory extends Field {
      * Az laboratory mezőn lévő kódot adja vissza a
      */
     public Code readCode() {
+        System.out.println("Laboratory: kód leolvasása");
         return getCode();
     }
 
@@ -57,6 +60,6 @@ public class Laboratory extends Field {
      */
     @Override
     public void accept(Visitor v) {
-        //v.visit(this);
+        v.visit(this);
     }
 }

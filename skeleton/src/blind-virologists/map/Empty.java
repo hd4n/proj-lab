@@ -35,6 +35,7 @@ public class Empty extends Field{
      * @return a mezőn lévő felszerlést adja vissza
      */
     public Equipment getEquipment() {
+        System.out.println("Empty mező: getter függvénye meghívódott");
         return equipment;
     }
 
@@ -43,6 +44,7 @@ public class Empty extends Field{
      * @param equipment beállítja az üres mezőn lévő felszerelést
      */
     public void setEquipment(Equipment equipment) {
+        System.out.println("Empty mező: setter függvénye meghívódott");
         this.equipment = equipment;
     }
 
@@ -51,6 +53,7 @@ public class Empty extends Field{
      * @return a felvett felszerelést adja vissza
      */
     public Equipment pickUpEquipment(){
+        System.out.println("Empty mező: Equipment felvétele");
         Equipment collected = equipment;
         setEquipment(null);
         return collected;
@@ -62,6 +65,6 @@ public class Empty extends Field{
      */
     @Override
     public void accept(Visitor v) {
-        //v.visit(this);
+        v.visit(this);
     }
 }
