@@ -26,7 +26,7 @@ public class Shelter extends Field{
     /**
      * A mezon allo virologushoz hozzaadja az ittlevo equipmentet
      */
-    public Equipment pickupEquipment(){
+    public Equipment pickUpEquipment(){
         System.out.println("Shelter: Equipment felvetele");
         System.out.println("Shelter: Van Equipment a shelterben? (igen/nem)");
         Scanner sc=new Scanner(System.in);
