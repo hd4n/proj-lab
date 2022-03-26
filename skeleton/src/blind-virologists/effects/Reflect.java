@@ -16,6 +16,7 @@ public class Reflect extends Effect{
      */
     public Reflect(){
         System.out.println("Reflect: letrehoz egy Reflect effektet");
+        //Duration = 10;
     }
 
     /**
@@ -24,6 +25,22 @@ public class Reflect extends Effect{
      */
     public Reflect(int duration){
         System.out.println("Reflect: letrehoz egy Reflect effektet es beallitja az idejet");
+        //Duration = duration;
+    }
+
+    /**
+     * Beallitja a Duration-t
+     * @param duration hosszú ideig hat az effect
+     */
+    public void setDuration(int duration){
+        //Duration = duration;
+    }
+
+    /**
+     * Visszaadja a Duration-t
+     */
+    public void getDuration(){
+        //Duration = duration;
     }
 
     /**

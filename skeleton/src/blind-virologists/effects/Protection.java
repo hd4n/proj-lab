@@ -15,6 +15,7 @@ public class Protection extends Effect{
      */
     public Protection(){
         System.out.println("Protection: letrehoz egy Protection effektet");
+        //Duration = 10;
     }
 
     /**
@@ -23,6 +24,22 @@ public class Protection extends Effect{
      */
     public Protection(int duration){
         System.out.println("Protection: letrehoz egy Protection effektet es beallitja az idejet");
+        //Duration = duration;
+    }
+
+    /**
+     * Beallitja a Duration-t
+     * @param duration hosszú ideig hat az effect
+     */
+    public void setDuration(int duration){
+        //Duration = duration;
+    }
+
+    /**
+     * Visszaadja a Duration-t
+     */
+    public void getDuration(){
+        //Duration = duration;
     }
 
     /**
@@ -32,5 +49,6 @@ public class Protection extends Effect{
     @Override
     public void applyEffect(Citizen affectedCitizen){
         System.out.println("Protection: atallitja a resistance tagvaltozot 82.3-ra");
+        //affectedCitizen.setResistance(82.3);
     }
 }

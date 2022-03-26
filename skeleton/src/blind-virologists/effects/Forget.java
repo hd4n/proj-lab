@@ -15,6 +15,7 @@ public class Forget extends Effect{
      */
     public Forget(){
         System.out.println("Forget: letrehoz egy Forget effektet");
+        //Duration = 10;
     }
 
     /**
@@ -23,6 +24,22 @@ public class Forget extends Effect{
      */
     public Forget(int duration){
         System.out.println("Forget: letrehoz egy Forget effektet es beallitja az idejet");
+        //Duration = duration;
+    }
+
+    /**
+     * Beallitja a Duration-t
+     * @param duration hosszú ideig hat az effect
+     */
+    public void setDuration(int duration){
+        //Duration = duration;
+    }
+
+    /**
+     * Visszaadja a Duration-t
+     */
+    public void getDuration(){
+        //Duration = duration;
     }
 
     /**

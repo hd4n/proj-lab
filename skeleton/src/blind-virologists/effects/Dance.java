@@ -1,8 +1,6 @@
 package effects;
 
 import citizens.Citizen;
-import map.Empty;
-import map.Field;
 
 /**
  * A kontrollalhatatlan tancot okozo virus effektjet megvalosito osztaly.
@@ -17,6 +15,7 @@ public class Dance extends Effect{
      */
     public Dance(){
         System.out.println("Dance: letrehoz egy Dance effektet");
+        //Duration = 10;
     }
 
     /**
@@ -25,6 +24,22 @@ public class Dance extends Effect{
      */
     public Dance(int duration){
         System.out.println("Dance: letrehoz egy Dance effektet es beallitja az idejet");
+        //Duration = duration;
+    }
+
+    /**
+     * Beallitja a Duration-t
+     * @param duration hosszú ideig hat az effect
+     */
+    public void setDuration(int duration){
+        //Duration = duration;
+    }
+
+    /**
+     * Visszaadja a Duration-t
+     */
+    public void getDuration(){
+        //Duration = duration;
     }
 
     /**

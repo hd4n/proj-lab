@@ -26,6 +26,21 @@ public abstract class Effect {
     }
 
     /**
+     * Beallitja a Duration-t
+     * @param duration hosszú ideig hat az effect
+     */
+    public void setDuration(int duration){
+        //Duration = duration;
+    }
+
+    /**
+     * Visszaadja a Duration-t
+     */
+    public void getDuration(){
+        //Duration = duration;
+    }
+
+    /**
      * A parameterkent kapott Citizen tulajdonsagait modositja, mindig a korok vegen hivodnak meg.
      * @param affectedCitizen Ennek a tulajdonsagait modositja.
      */

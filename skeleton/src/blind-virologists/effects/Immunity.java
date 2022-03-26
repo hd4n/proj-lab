@@ -16,6 +16,7 @@ public class Immunity extends Effect{
      */
     public Immunity(){
         System.out.println("Immunity: letrehoz egy Immunity effektet");
+        //Duration = 10;
     }
 
     /**
@@ -24,6 +25,22 @@ public class Immunity extends Effect{
      */
     public Immunity(int duration){
         System.out.println("Immunity: letrehoz egy Immunity effektet es beallitja az idejet");
+        //Duration = duration;
+    }
+
+    /**
+     * Beallitja a Duration-t
+     * @param duration hosszú ideig hat az effect
+     */
+    public void setDuration(int duration){
+        //Duration = duration;
+    }
+
+    /**
+     * Visszaadja a Duration-t
+     */
+    public void getDuration(){
+        //Duration = duration;
     }
 
     /**
@@ -33,5 +50,6 @@ public class Immunity extends Effect{
     @Override
     public void applyEffect(Citizen affectedCitizen){
         System.out.println("Immunity: atallitja a resistance tagvaltozot 100-ra");
+        //affectedCitizen.setResistance(100);
     }
 }

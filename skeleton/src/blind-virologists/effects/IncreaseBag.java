@@ -15,6 +15,7 @@ public class IncreaseBag extends Effect{
      */
     public IncreaseBag(){
         System.out.println("IncreaseBag: letrehoz egy IncreaseBag effektet");
+        //Duration = 10;
     }
 
     /**
@@ -23,6 +24,22 @@ public class IncreaseBag extends Effect{
      */
     public IncreaseBag(int duration){
         System.out.println("IncreaseBag: letrehoz egy IncreaseBag effektet es beallitja az idejet");
+        //Duration = duration;
+    }
+
+    /**
+     * Beallitja a Duration-t
+     * @param duration hosszú ideig hat az effect
+     */
+    public void setDuration(int duration){
+        //Duration = duration;
+    }
+
+    /**
+     * Visszaadja a Duration-t
+     */
+    public void getDuration(){
+        //Duration = duration;
     }
 
     /**
@@ -32,5 +49,6 @@ public class IncreaseBag extends Effect{
     @Override
     public void applyEffect(Citizen affectedCitizen){
         System.out.println("IncreaseBag: noveli a maximalisan felveheto anyagmennyiseget");
+        //affectedCitizen.setMaxItem(20);
     }
 }
