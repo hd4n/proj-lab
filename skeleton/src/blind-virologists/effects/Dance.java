@@ -24,7 +24,6 @@ public class Dance extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Dance(int duration){
-        //Duration = duration;
         System.out.println("Dance: letrehoz egy Dance effektet es beallitja az idejet");
     }
 
@@ -32,14 +31,8 @@ public class Dance extends Effect{
      * Megvaltoztatja a jatekos altal korabban beallitott lepest egy veletlenszeru szomszedos mezore.
      * @param affectedCitizen lepeset allitja at.
      */
-    public void ApplyEffect(Citizen affectedCitizen){
-        System.out.println("Dance: aktualis myField player attributum torlese");
-        //affectedCitizen.myField.SetPlayer(null);
-        System.out.println("Dance: myField beallitasa az uj random szomszedos mezore");
-        //affectedCitizen.myField.GetNeighbours()
-        //Field[] neigbours = new Field();
-
-        //Ide valami ramdomizacio kell
-        //affectedCitizen.myField.SetPlayer();
+    @Override
+    public void applyEffect(Citizen affectedCitizen) {
+        System.out.println("Dance: egy random szomszedos mezore lepteti");
     }
 }

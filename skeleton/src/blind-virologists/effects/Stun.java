@@ -22,7 +22,6 @@ public class Stun extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Stun(int duration){
-        //Duration = duration;
         System.out.println("Stun: letrehoz egy Stun effektet es beallitja az idejet");
     }
 
@@ -30,8 +29,8 @@ public class Stun extends Effect{
      * Az adott Citizen stunned parameteret igazra allitja.
      * @param affectedCitizen stunned parameteret alitja at.
      */
-    public void ApplyEffect(Citizen affectedCitizen){
+    @Override
+    public void applyEffect(Citizen affectedCitizen){
         System.out.println("Stun: igazra allitja a stunned parametert");
-        //affectedCitizen.SetStun(true);
     }
 }
