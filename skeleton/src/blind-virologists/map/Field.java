@@ -51,7 +51,7 @@ public abstract class Field implements Visitable {
         System.out.println("Field: Van mar citizen a mezon? (igen/nem)");
         Scanner sc = new Scanner(System.in);
         String res = sc.next();
-        if (res.toLowerCase().equals("igen")) {
+        if (res.equalsIgnoreCase("igen")) {
             return new Virologist();
         } else {
             return null;

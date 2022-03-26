@@ -3,6 +3,9 @@ package map;
 import citizens.Virologist;
 import citizens.Visitor;
 import items.Cape;
+import items.Equipment;
+
+import java.util.Scanner;
 
 /**
  * Az ovohelyet megvalosito osztaly
@@ -23,9 +26,16 @@ public class Shelter extends Field{
     /**
      * A mezon allo virologushoz hozzaadja az ittlevo equipmentet
      */
-    public void pickupEquipment(){
+    public Equipment pickupEquipment(){
         System.out.println("Shelter: Equipment felvetele");
-        Virologist currentVir=new Virologist();
-        //currentVir.addEquipment(new Cape());
+        System.out.println("Shelter: Van Equipment a shelterben? (igen/nem)");
+        Scanner sc=new Scanner(System.in);
+        String res=sc.next();
+        if(res.equalsIgnoreCase("igen")){
+            System.out.println("Shelter: Equipment eltavolitva");
+            return new Cape();
+        } else{
+            return null;
+        }
     }
 }
