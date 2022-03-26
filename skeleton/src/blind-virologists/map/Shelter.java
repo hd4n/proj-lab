@@ -13,29 +13,34 @@ import java.util.Scanner;
  * @author Hajos Daniel
  * @since 2022-03-26
  */
-public class Shelter extends Field{
+public class Shelter extends Field {
     /**
      * Elfogadja a Visitort
+     *
      * @param v az elfogadando Visitor
      */
     @Override
     public void accept(Visitor v) {
-        //v.visit(this);
+        v.visit(this);
     }
 
     /**
      * A mezon allo virologushoz hozzaadja az ittlevo equipmentet
      */
-    public Equipment pickUpEquipment(){
+    public Equipment pickUpEquipment() {
         System.out.println("Shelter: Equipment felvetele");
         System.out.println("Shelter: Van Equipment a shelterben? (igen/nem)");
-        Scanner sc=new Scanner(System.in);
-        String res=sc.next();
-        if(res.equalsIgnoreCase("igen")){
+        Scanner sc = new Scanner(System.in);
+        String res = sc.next();
+        if (res.equalsIgnoreCase("igen")) {
             System.out.println("Shelter: Equipment eltavolitva");
             return new Cape();
-        } else{
+        } else {
             return null;
         }
+    }
+
+    public void setEquipment(Equipment e) {
+        System.out.println("Shelter: Equipment eltarolva");
     }
 }

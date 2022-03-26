@@ -57,4 +57,8 @@ public abstract class Field implements Visitable {
             return null;
         }
     }
+
+    public void setCitizen(Citizen c) {
+        System.out.println("Field: Citizen beallitva");
+    }
 }

@@ -17,4 +17,12 @@ public class Code {
         System.out.println("Code: Visszaadja az új ágenst.");
         return v;
     }
+    public int getNucleoCost(){
+        System.out.println("Code: Visszaadja a szükséges nukleoidot az ágens elkészítéséhez.");
+        return 0;
+    }
+    public int getAminoCost(){
+        System.out.println("Code: Visszaadja a szükséges aminoacidot az ágens elkészítéséhez.");
+        return 0;
+    }
 }
