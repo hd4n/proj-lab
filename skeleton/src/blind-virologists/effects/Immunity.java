@@ -23,7 +23,6 @@ public class Immunity extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Immunity(int duration){
-        //Duration = duration;
         System.out.println("Immunity: letrehoz egy Immunity effektet es beallitja az idejet");
     }
 
@@ -31,8 +30,8 @@ public class Immunity extends Effect{
      * A Citizen resistance tagvaltozojat 100-ra allitja.
      * @param affectedCitizen resistance tagvaltozojat allitja at.
      */
-    public void ApplyEffect(Citizen affectedCitizen){
+    @Override
+    public void applyEffect(Citizen affectedCitizen){
         System.out.println("Immunity: atallitja a resistance tagvaltozot 100-ra");
-        //affectedCitizen.SetResistance(100);
     }
 }

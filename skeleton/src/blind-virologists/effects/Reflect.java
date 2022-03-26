@@ -23,7 +23,6 @@ public class Reflect extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Reflect(int duration){
-        //Duration = duration;
         System.out.println("Reflect: letrehoz egy Reflect effektet es beallitja az idejet");
     }
 
@@ -31,9 +30,8 @@ public class Reflect extends Effect{
      * Ennek hatasara a virologusra egy olyan effect kerul aminek hatasara visszaforditja a ra kent agenseket.
      * @param affectedCitizen kerul a hatas ala.
      */
-    public void ApplyEffect(Citizen affectedCitizen){
+    @Override
+    public void applyEffect(Citizen affectedCitizen){
         System.out.println("Reflect: visszafordito efekt hatas kerul ra");
-
-        //visszaforditas
     }
 }

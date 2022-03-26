@@ -15,7 +15,7 @@ public abstract class Effect {
      * Minden korben meghivodik, eggyel csokkenti a Duration tagvaltozot.
      * @return Ha letelik a hatásido, igazat ad vissza.
      */
-    public boolean Update(){
+    public boolean update(){
         System.out.println("Effect: egyel csokkenti a Duration tagvaltozot");
 
         //Duration--;
@@ -29,7 +29,7 @@ public abstract class Effect {
      * A parameterkent kapott Citizen tulajdonsagait modositja, mindig a korok vegen hivodnak meg.
      * @param affectedCitizen Ennek a tulajdonsagait modositja.
      */
-    public void ApplyEffect(Citizen affectedCitizen){
+    public void applyEffect(Citizen affectedCitizen){
         System.out.println("Update: modositja a Citizen tulajdonsagait");
     }
 }

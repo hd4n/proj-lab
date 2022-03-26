@@ -22,7 +22,6 @@ public class IncreaseBag extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public IncreaseBag(int duration){
-        //Duration = duration;
         System.out.println("IncreaseBag: letrehoz egy IncreaseBag effektet es beallitja az idejet");
     }
 
@@ -30,8 +29,8 @@ public class IncreaseBag extends Effect{
      * A maximum felveheto anyagok szamat noveli.
      * @param affectedCitizen maximalis anyagmennyiseget noveli.
      */
-    public void ApplyEffect(Citizen affectedCitizen){
+    @Override
+    public void applyEffect(Citizen affectedCitizen){
         System.out.println("IncreaseBag: noveli a maximalisan felveheto anyagmennyiseget");
-        //affectedCitizen.SetMaxItem(20);
     }
 }
