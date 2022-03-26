@@ -18,6 +18,15 @@ public class Forget extends Effect{
     }
 
     /**
+     * A Forget osztaly konstruktora
+     * @param duration ilyen hosszan tart az effekt
+     */
+    public Forget(int duration){
+        //Duration = duration;
+        System.out.println("Forget: letrehoz egy Forget effektet es beallitja az idejet");
+    }
+
+    /**
      * Kitorli a virologus osszes ismert genetikai kodjat.
      * @param affectedCitizen felejti el a kodokat.
      */

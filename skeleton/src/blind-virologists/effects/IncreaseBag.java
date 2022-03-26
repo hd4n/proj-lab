@@ -18,6 +18,15 @@ public class IncreaseBag extends Effect{
     }
 
     /**
+     * A IncreaseBag osztaly konstruktora
+     * @param duration ilyen hosszan tart az effekt
+     */
+    public IncreaseBag(int duration){
+        //Duration = duration;
+        System.out.println("IncreaseBag: letrehoz egy IncreaseBag effektet es beallitja az idejet");
+    }
+
+    /**
      * A maximum felveheto anyagok szamat noveli.
      * @param affectedCitizen maximalis anyagmennyiseget noveli.
      */

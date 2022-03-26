@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Egy Citizen leszarmazott,
+ * A virologus a jatekos vagy AI altal iranyitott
+ *
+ * @author Barta Daniel
+ * @since 2022-03-26
+ */
 public class Virologist extends Citizen {
     /**
      * Visitor pattern resze, ha a myField laboratory
@@ -42,7 +49,7 @@ public class Virologist extends Citizen {
     @Override
     public void visit(Empty empty) {
         System.out.println("Virologist: meghivja az Empty pickUpEquipment fuggvenyet");
-        //empty.pickUpEquipment
+        Equipment equipment = empty.pickUpEquipment();
         System.out.println("Virologist: A pickUpEquipment-bol visszakapott felszereleseket elteszi a virologus ha van nala hely");
     }
 
@@ -53,11 +60,16 @@ public class Virologist extends Citizen {
      */
     @Override
     public void visit(Shelter shelter) {
+        System.out.println("Virologist: meghivja az Shelter pickUpEquipment fuggvenyet");
+        Equipment equipment = shelter.pickUpEquipment();
+        System.out.println("Virologist: A pickUpEquipment-bol visszakapott felszereleseket elteszi a virologus ha van nala hely");
+    }
+
+    public void equip() {
         System.out.println("Felvenni kivant felszereles tipusa?");
         Scanner scanner = new Scanner(System.in);
         String newEquipment = scanner.next();
 
-        System.out.println("Virologist: meghivja az Shelter Equip fuggvenyet a kivalasztott Equipment-el " + newEquipment);
         Equipment equipment;
         if (newEquipment.toLowerCase().equals("cape")) {
             equipment = new Cape();
@@ -66,9 +78,9 @@ public class Virologist extends Citizen {
         } else {//vagy ha bag-et irt vagy valami mast
             equipment = new Bag();
         }
-        //empty.pickUpEquipment(equipment)
-        System.out.println("Virologist: A pickUpEquipment-bol visszakapott felszereleseket elteszi a virologus ha van nala hely");
+        System.out.println("Virologist: Felveszi az aktiv felszerelesk koze a kivalasztottat");
     }
+
 
     /**
      * Letrehoz a virologus anyagkeszletebol egy uj agnest
