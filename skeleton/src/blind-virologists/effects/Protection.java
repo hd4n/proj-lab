@@ -18,6 +18,15 @@ public class Protection extends Effect{
     }
 
     /**
+     * A Protection osztaly konstruktora
+     * @param duration ilyen hosszan tart az effekt
+     */
+    public Protection(int duration){
+        //Duration = duration;
+        System.out.println("Protection: letrehoz egy Protection effektet es beallitja az idejet");
+    }
+
+    /**
      * A Citizen resistance tagvaltozojat 82.3-ra allitja.
      * @param affectedCitizen resistance tagvaltozojat allitja at.
      */

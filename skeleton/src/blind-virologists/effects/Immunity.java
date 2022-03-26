@@ -19,6 +19,15 @@ public class Immunity extends Effect{
     }
 
     /**
+     * A Immunity osztaly konstruktora
+     * @param duration ilyen hosszan tart az effekt
+     */
+    public Immunity(int duration){
+        //Duration = duration;
+        System.out.println("Immunity: letrehoz egy Immunity effektet es beallitja az idejet");
+    }
+
+    /**
      * A Citizen resistance tagvaltozojat 100-ra allitja.
      * @param affectedCitizen resistance tagvaltozojat allitja at.
      */

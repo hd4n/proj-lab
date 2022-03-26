@@ -20,6 +20,15 @@ public class Dance extends Effect{
     }
 
     /**
+     * A Dance osztaly konstruktora
+     * @param duration ilyen hosszan tart az effekt
+     */
+    public Dance(int duration){
+        //Duration = duration;
+        System.out.println("Dance: letrehoz egy Dance effektet es beallitja az idejet");
+    }
+
+    /**
      * Megvaltoztatja a jatekos altal korabban beallitott lepest egy veletlenszeru szomszedos mezore.
      * @param affectedCitizen lepeset allitja at.
      */
