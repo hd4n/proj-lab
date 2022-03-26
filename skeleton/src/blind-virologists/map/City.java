@@ -1,5 +1,6 @@
 package map;
 
+import citizens.Citizen;
 import citizens.Virologist;
 import items.Aminoacid;
 import items.Cape;
@@ -15,10 +16,6 @@ import java.util.Scanner;
  * @since 2022-03-26
  */
 public class City {
-
-    private ArrayList<Virologist> players = new ArrayList<>();
-    private ArrayList<Field> map = new ArrayList<>();
-
     /**
      * Letrehozza palya mezoit, a rajtuk talalhato targyakat es a jatekosokat
      */
@@ -39,33 +36,26 @@ public class City {
         System.out.println("City: Empty3 letrehozasa");
         Empty e3 = new Empty();
 
-        //v1.setMyField(e1);
-        //v2.setMyField(e2);
-        //v3.setMyField(e3);
+        v1.setCurrentField(e1);
+        v2.setCurrentField(e2);
+        v3.setCurrentField(e3);
+
+        e1.setCitizen(v1);
+        e2.setCitizen(v2);
+        e3.setCitizen(v3);
 
         System.out.println("City: Shelter letrehozasa");
         Shelter s = new Shelter();
-        //s.setEquipment(new Cape());
+        s.setEquipment(new Cape());
 
         System.out.println("City: Warehouse letrehozasa");
         Warehouse w = new Warehouse();
-        //w.setMaterial(new Aminoacid());
+        w.setMaterial(new Aminoacid());
 
         System.out.println("City: Laboratory letrehozasa");
         Laboratory l = new Laboratory();
-        //l.setCode(new Code());
+        l.setCode(new Code());
 
-        //???
-        map.add(e1);
-        map.add(e2);
-        map.add(e3);
-        map.add(s);
-        map.add(w);
-        map.add(l);
-
-        players.add(v1);
-        players.add(v2);
-        players.add(v3);
     }
 
     /**
@@ -95,10 +85,13 @@ public class City {
             return;
         }
 
+        //lista a teszteleshez
+        ArrayList<Citizen> players = new ArrayList<>();
+        players.add(new Virologist());
+
         System.out.println("City: Uj kor");
-        for (Virologist v : players) {
-            //v.update();
-            //v.move();
+        for (Citizen v : players) {
+            v.nextRound();
         }
     }
 }
