@@ -40,6 +40,10 @@ public class Shelter extends Field {
         }
     }
 
+    /**
+     * Beallitja a mezon levo Equipmentet
+     * @param e a beallitando Equipment
+     */
     public void setEquipment(Equipment e) {
         System.out.println("Shelter: Equipment eltarolva");
     }

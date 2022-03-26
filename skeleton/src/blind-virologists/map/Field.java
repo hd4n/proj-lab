@@ -58,6 +58,11 @@ public abstract class Field implements Visitable {
         }
     }
 
+    /**
+     * Beallitja a mezon levo Citizent
+     *
+     * @param c a beallitando Citizen
+     */
     public void setCitizen(Citizen c) {
         System.out.println("Field: Citizen beallitva");
     }
