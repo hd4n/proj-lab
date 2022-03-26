@@ -12,11 +12,9 @@ public class IncreaseBag extends Effect{
 
     /**
      * Az IncreaseBag osztaly konstruktora
-     * @param time ennyi ideig ervenyes a hatasa
      */
-    public IncreaseBag(int time){
-        //Duration = time;
-        System.out.println("IncreaseBag: letrehoz egy IncreaseBag effektet es beallitja az idejet");
+    public IncreaseBag(){
+        System.out.println("IncreaseBag: letrehoz egy IncreaseBag effektet");
     }
 
     /**

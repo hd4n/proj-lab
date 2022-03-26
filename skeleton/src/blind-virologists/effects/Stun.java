@@ -12,11 +12,9 @@ public class Stun extends Effect{
 
     /**
      * A Stun osztaly konstruktora
-     * @param time ennyi ideig ervenyes a hatasa
      */
-    public Stun(int time){
-        //Duration = time;
-        System.out.println("Stun: letrehoz egy Stun effektet es beallitja az idejet");
+    public Stun(){
+        System.out.println("Stun: letrehoz egy Stun effektet");
     }
 
     /**

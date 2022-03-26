@@ -12,11 +12,9 @@ public class Forget extends Effect{
 
     /**
      * A Forget osztaly konstruktora
-     * @param time ennyi ideig ervenyes a hatasa
      */
-    public Forget(int time){
-        //Duration = time;
-        System.out.println("Forget: letrehoz egy Forget effektet es beallitja az idejet");
+    public Forget(){
+        System.out.println("Forget: letrehoz egy Forget effektet");
     }
 
     /**

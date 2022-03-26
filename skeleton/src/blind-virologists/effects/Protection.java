@@ -12,11 +12,9 @@ public class Protection extends Effect{
 
     /**
      * A Protection osztaly konstruktora
-     * @param time ennyi ideig ervenyes a hatasa
      */
-    public Protection(int time){
-        //Duration = time;
-        System.out.println("Protection: letrehoz egy Protection effektet es beallitja az idejet");
+    public Protection(){
+        System.out.println("Protection: letrehoz egy Protection effektet");
     }
 
     /**
