@@ -22,7 +22,6 @@ public class Forget extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Forget(int duration){
-        //Duration = duration;
         System.out.println("Forget: letrehoz egy Forget effektet es beallitja az idejet");
     }
 
@@ -30,9 +29,8 @@ public class Forget extends Effect{
      * Kitorli a virologus osszes ismert genetikai kodjat.
      * @param affectedCitizen felejti el a kodokat.
      */
-    public void ApplyEffect(Citizen affectedCitizen){
+    @Override
+    public void applyEffect(Citizen affectedCitizen){
         System.out.println("Forget: kitorli az ismert genetikai kodokat");
-
-        //Ide jon a torles csak meg nincsen kesz
     }
 }

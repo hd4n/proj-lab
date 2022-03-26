@@ -22,7 +22,6 @@ public class Protection extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Protection(int duration){
-        //Duration = duration;
         System.out.println("Protection: letrehoz egy Protection effektet es beallitja az idejet");
     }
 
@@ -30,8 +29,8 @@ public class Protection extends Effect{
      * A Citizen resistance tagvaltozojat 82.3-ra allitja.
      * @param affectedCitizen resistance tagvaltozojat allitja at.
      */
-    public void ApplyEffect(Citizen affectedCitizen){
+    @Override
+    public void applyEffect(Citizen affectedCitizen){
         System.out.println("Protection: atallitja a resistance tagvaltozot 82.3-ra");
-        //affectedCitizen.SetResistance(82.3);
     }
 }
