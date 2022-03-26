@@ -12,14 +12,6 @@ import citizens.Citizen;
 public abstract class Effect {
 
     /**
-     * Az Effect osztaly konstruktora
-     */
-    public Effect(){
-        System.out.println("Effect: letrehoz egy Effectet es beallitja az idejet");
-        //Duration = 10;
-    }
-
-    /**
      * Minden korben meghivodik, eggyel csokkenti a Duration tagvaltozot.
      * @return Ha letelik a hatásido, igazat ad vissza.
      */
