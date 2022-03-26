@@ -9,13 +9,14 @@ import items.Material;
  * @author Kovacs Aron
  * @since 2022-03-26
  */
-public class Warehouse extends  Field{
+public class Warehouse extends Field {
 
     private Material material;
 
     /**
      * Az warehouse mezőt létrehozó konstruktor
-     *@param material a warehouseban lévő materialt adja meg
+     *
+     * @param material a warehouseban lévő materialt adja meg
      */
     public Warehouse(Material material) {
         this.material = material;
@@ -30,6 +31,7 @@ public class Warehouse extends  Field{
 
     /**
      * A warehouse mező gettere
+     *
      * @return material visszaadja a mezőn lévő anyagot
      */
     public Material getMaterial() {
@@ -39,6 +41,7 @@ public class Warehouse extends  Field{
 
     /**
      * A warehouse mező settere
+     *
      * @param material a warehouseban lévő anyagot állítja be
      */
     public void setMaterial(Material material) {
@@ -48,17 +51,19 @@ public class Warehouse extends  Field{
 
     /**
      * Az warehouse mezőn lévő material felvételét végző függvény
+     *
      * @return collected a felvett anyagot adja vissza
      */
-    public Material collectMaterial(){
+    public Material collectMaterial() {
         System.out.println("Warehouse mező: anyag felvétele");
-        Material collected=this.material;
+        Material collected = this.material;
         setMaterial(null);
         return collected;
     }
 
     /**
      * Az warehouse mezőre lépő visitor fogadását végző függvény
+     *
      * @param v a mezőre lépő visitor
      */
     @Override

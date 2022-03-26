@@ -10,13 +10,14 @@ import items.Equipment;
  * @author Kovacs Aron
  * @since 2022-03-26
  */
-public class Empty extends Field{
+public class Empty extends Field {
 
     private Equipment equipment;
 
     /**
      * Az üres mezőt létrehozó konstruktor
-     *@param equipment ha esetleg equipmenttel hoznánk létre üres mezőt
+     *
+     * @param equipment ha esetleg equipmenttel hoznánk létre üres mezőt
      */
 
     public Empty(Equipment equipment) {
@@ -27,11 +28,12 @@ public class Empty extends Field{
      * Az üres mezőt létrehozó paraméter nélküli konstruktor
      */
     public Empty() {
-        this.equipment=null;
+        this.equipment = null;
     }
 
     /**
      * Az üres mező gettere
+     *
      * @return a mezőn lévő felszerlést adja vissza
      */
     public Equipment getEquipment() {
@@ -41,6 +43,7 @@ public class Empty extends Field{
 
     /**
      * Az üres mező settere
+     *
      * @param equipment beállítja az üres mezőn lévő felszerelést
      */
     public void setEquipment(Equipment equipment) {
@@ -50,9 +53,10 @@ public class Empty extends Field{
 
     /**
      * Az üres mezőn lévő equipment felvételét végző függvény
+     *
      * @return a felvett felszerelést adja vissza
      */
-    public Equipment pickUpEquipment(){
+    public Equipment pickUpEquipment() {
         System.out.println("Empty mező: Equipment felvétele");
         Equipment collected = equipment;
         setEquipment(null);
@@ -61,6 +65,7 @@ public class Empty extends Field{
 
     /**
      * Az üres mezőre lépő visitor fogadását végző függvény
+     *
      * @param v a mezőre lépő visitor
      */
     @Override

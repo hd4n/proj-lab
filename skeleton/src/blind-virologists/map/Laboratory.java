@@ -15,7 +15,8 @@ public class Laboratory extends Field {
 
     /**
      * Az laboratory mezőt létrehozó konstruktor
-     *@param code a laboratoryban lévő kódot adja meg
+     *
+     * @param code a laboratoryban lévő kódot adja meg
      */
     public Laboratory(Code code) {
         this.code = code;
@@ -30,6 +31,7 @@ public class Laboratory extends Field {
 
     /**
      * Az laboratory mező gettere
+     *
      * @return code visszaadja a mezőn lévő kódot
      */
     public Code getCode() {
@@ -39,6 +41,7 @@ public class Laboratory extends Field {
 
     /**
      * Az laboratory mező settere
+     *
      * @param code a laboratoryn lévő kódot állítja be
      */
     public void setCode(Code code) {
@@ -56,6 +59,7 @@ public class Laboratory extends Field {
 
     /**
      * Az laboratory mezőre lépő visitor fogadását végző függvény
+     *
      * @param v a mezőre lépő visitor
      */
     @Override
