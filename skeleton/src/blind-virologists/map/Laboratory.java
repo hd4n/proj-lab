@@ -1,5 +1,6 @@
 package map;
 
+import citizens.Visitor;
 import items.Code;
 
 /**

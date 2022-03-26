@@ -1,6 +1,7 @@
 package map;
 
 import citizens.Virologist;
+import citizens.Visitor;
 import items.Equipment;
 
 /**
