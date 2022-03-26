@@ -1,9 +1,9 @@
 package main;
 
+import citizens.Virologist;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("hello world");
-        System.out.println("hello world");
 
         int caseNo=0;
 
@@ -90,98 +90,100 @@ public class Main {
     //use-casek
 
     private static void gameStarts(){
-
+        //HD
     }
 
     private static void nextRound(){
-
+        //HD
     }
 
     private static void virologistMoves(){
-
+        //HD
     }
 
     private static void virologistStepsOnEmpty(){
-
+        //HD
     }
 
     private static void virologistStepsOnShelter(){
-
+        //EP
     }
 
     private static void virologistStepsOnWarehouse(){
-
+        //EP
     }
 
     private static void virologistStepsOnLaboratory(){
-
+        //EP
     }
 
     private static void virologistPicksUpAnEquipment(){
-
+        //EP
     }
 
     private static void virologistDropsAnEquipment(){
-
+        //EP
     }
 
     private static void virologistEquipsACape(){
-
+        //FN
     }
 
     private static void virologistEquipsABag(){
-
+        //FN
     }
 
     private static void virologistEquipsGloves(){
-
+        //FN
     }
 
     private static void virologistUnequipsEquipment(){
-
+        //FN
     }
 
     private static void virologistStealsAnEquipment(){
-
+        //FN
     }
 
     private static void virologistPicksUpMaterial(){
-
+        //BD
     }
 
     private static void virologistCraftsAgentFromMaterial(){
-
+        Virologist virologist = new Virologist();
+        virologist.craft();
+        //BD
     }
 
     private static void virologistLearnsACode(){
-
+        //BD
     }
 
     private static void virologistTouchEachOther(){
-
+        //BD
     }
 
     private static void virologistUsesImmunityVaccine(){
-
+        //BD
     }
 
     private static void virologistUsesForgetVirus(){
-
+        //KA
     }
 
     private static void virologistUsesDanceVirus(){
-
+        //KA
     }
 
     private static void virologistUsesStunVirus(){
-
+        //KA
     }
 
     private static void virologistReflectsAgent(){
-
+        //KA
     }
 
     private static void gameEnds(){
-
+        //KA
     }
 }
