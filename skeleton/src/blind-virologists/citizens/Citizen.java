@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * A varosban lako player altal iranyitott karakter absztarkt osztalya
+ *
+ * @author Barta Daniel
+ * @since 2022-03-26
+ */
 public abstract class Citizen implements Visitor {
     /**
      * Kivalasztott mezore lep
@@ -102,9 +108,9 @@ public abstract class Citizen implements Visitor {
         System.out.println("Citizen: Meghivja a myField GetNeighbors() fuggvenyt");
         List<Field> neighbors = new ArrayList<>();
         //List<Field> neighbors = myField.getNeighbors()
-        System.out.println("Citizen: A szomszedos mezokbol kivalogatja azokat ahol nem all senki, (getPlayer()==null).");
+        System.out.println("Citizen: A szomszedos mezokbol kivalogatja azokat ahol nem all senki, (getCitizen()==null).");
         for (Field tile : neighbors) {
-            //Citizen player = tile.getPlayer()
+            //Citizen player = tile.getCitizen()
             Citizen player = null;
             if (player != null) {
                 System.out.println("Citizen: Az adott mezo a jatekos szamara elerheto, visszaadja.");
