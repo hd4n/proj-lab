@@ -40,8 +40,6 @@ public abstract class Field implements Visitable {
      */
     public void dropEquipment(Equipment e) {
         System.out.println("Field: Equipment eldobva");
-        Virologist currentVir = new Virologist();
-        //currentVir.removeEquipment(e);
     }
 
     /**
