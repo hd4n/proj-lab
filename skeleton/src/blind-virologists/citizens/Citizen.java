@@ -24,10 +24,10 @@ public abstract class Citizen implements Visitor {
         Scanner scanner = new Scanner(System.in);
         String nextTile = scanner.next();
         System.out.println("Citizen: Aktualis myField player atributumanak torlese.");
-        //myField.setPlayer(null);
+        myField.setCitizen(null);
         System.out.println("Citizen: A myField beallitasa az uj " + nextTile + " mezore.");
         System.out.println("Citizen: Az uj myField player attributumanak atirasa.");
-        //myField.setPlayer(this);
+        myField.setCitizen(this);
     }
 
     /**
@@ -87,13 +87,12 @@ public abstract class Citizen implements Visitor {
         System.out.println("Citizen: Meghivja az osszes effektjen az update fuggvenyt.");
 
         for (Effect item : effects) {
-            //boolean letelt = item.update;
-            boolean letelt = false;
+            boolean letelt = item.update();
             if (letelt) {
                 System.out.println("Citizen: az adott effektet kiveszi a listajabol mert az letelt.");
             } else {
                 System.out.println("Citizen: Meghivja az effekt appleEffect() fuggvenyet.");
-                //item.applyEffect(this);
+                item.applyEffect(this);
             }
         }
     }
@@ -106,17 +105,15 @@ public abstract class Citizen implements Visitor {
     public List<Field> getMoves() {
         Field myField = new Empty();
         System.out.println("Citizen: Meghivja a myField GetNeighbors() fuggvenyt");
-        List<Field> neighbors = new ArrayList<>();
-        //List<Field> neighbors = myField.getNeighbors()
+        List<Field> neighbors = myField.getNeighbors();
         System.out.println("Citizen: A szomszedos mezokbol kivalogatja azokat ahol nem all senki, (getCitizen()==null).");
         for (Field tile : neighbors) {
-            //Citizen player = tile.getCitizen()
-            Citizen player = null;
+            Citizen player = tile.getCitizen();
             if (player != null) {
                 System.out.println("Citizen: Az adott mezo a jatekos szamara elerheto, visszaadja.");
             } else {
                 System.out.println("Citizen: A adott mezo a jatekos szamara nem elerheto ezert nem adja vissza.");
-                //neighbors.remove(tile);
+                neighbors.remove(tile);
             }
         }
 

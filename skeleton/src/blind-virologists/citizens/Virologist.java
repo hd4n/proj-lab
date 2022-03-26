@@ -25,7 +25,7 @@ public class Virologist extends Citizen {
     @Override
     public void visit(Laboratory lab) {
         System.out.println("Virologist: Meghivja a Laboratory readCode fuggvenyet");
-        //Code code = lab.readCode();
+        Code code = lab.readCode();
         System.out.println("Virologist: A readCode-bol visszakapott kodot megkapja a virologus es megtanulja");
     }
 
@@ -37,7 +37,7 @@ public class Virologist extends Citizen {
     @Override
     public void visit(Warehouse warehouse) {
         System.out.println("Virologist: meghivja a Warehouse collectMaterial fuggvenyet");
-        //warehouse.collectMaterial
+        warehouse.collectMaterial();
         System.out.println("Virologist: A collectMaterial-bol visszakapott anyagokat elteszi a virologus");
     }
 
@@ -90,15 +90,15 @@ public class Virologist extends Citizen {
         List<Material> materials = new ArrayList<>();
 
         System.out.println("Virologist: Lekeri a kod anyag koltseget.");
-        //int aminocost = code.getAminoCost();
-        //int nucleocost = code.getNucleoCost();
+        int aminocost = code.getAminoCost();
+        int nucleocost = code.getNucleoCost();
 
         System.out.println("A virologus rendelkezik elegendo anyag keszelttel? (igen/nem)");
         Scanner scanner = new Scanner(System.in);
         String material = scanner.next();
         if (material.toLowerCase().equals("igen")) {
             System.out.println("Virologist: A virologus rendelkezik megfelelo Material keszlettel, letrejon az uj Agent amit eltarol. A felhasznalt anyagok eltunnek a virologustol.");
-            //Agent agent = code.getAgent()
+            Agent agent = code.getAgent();
         } else {
             System.out.println("Virologist: Nincs megfelelo anyagkeszlet");
         }
@@ -121,7 +121,7 @@ public class Virologist extends Citizen {
     public void useAgent() {
         System.out.println("Virologist: A felhasznalo kivalaszt egy tamadni kivant szomszedos virologust es egy agenst");
         Agent a = new Vaccine();
-        //a.use();
+        a.use();
         System.out.println("Virologist: Az agensbol visszakapott effektet rakeni a virologusra");
         Virologist enemy = new Virologist();
     }
@@ -196,7 +196,7 @@ public class Virologist extends Citizen {
     public void drop(Equipment equipment) {
         System.out.println("Virologsit: Meghivja az aktualis mezo dropEquipment fuggvenyet.");
         Field myField = new Empty();
-        //myField.dropEquipment(equipment);
+        myField.dropEquipment(equipment);
         System.out.println("Virologist: Torli az eltarolt felszerelesek kozul az eldobottat.");
     }
 
@@ -211,12 +211,16 @@ public class Virologist extends Citizen {
     /**
      * A virologus lopast indit egy masik virologus ellen
      */
-    public void Steal() {
+    public void steal() {
         System.out.println("Virologist (Thief): A felhasznaloval valasztat egy masik virologst akitol lophat");
         Virologist enemy = new Virologist();
         enemy.stealEquipment();
         enemy.stealMaterial();
         System.out.println("Virologist (Thief): Az ellopott anyagokat es felszereleseket elteszi magahoz.");
+    }
+
+    public void setCurrentField(Field field) {
+        System.out.printf("Virologist: myField beallitva");
     }
 
 }
