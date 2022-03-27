@@ -37,7 +37,7 @@ public class Empty extends Field {
      * @return a mezon levo felszerelest adja vissza
      */
     public Equipment getEquipment() {
-        System.out.println("Empty mezo: getter fuggvenye meghivodott");
+        System.out.println("Empty: getter fuggvenye meghivodott");
         return equipment;
     }
 
@@ -47,7 +47,7 @@ public class Empty extends Field {
      * @param equipment beallitja az ures mezon levo felszerelest
      */
     public void setEquipment(Equipment equipment) {
-        System.out.println("Empty mezo: setter fuggvenye meghivodott");
+        System.out.println("Empty: setter fuggvenye meghivodott");
         this.equipment = equipment;
     }
 
@@ -57,7 +57,7 @@ public class Empty extends Field {
      * @return a felvett felszerelest adja vissza
      */
     public Equipment pickUpEquipment() {
-        System.out.println("Empty mezo: Equipment felvetele");
+        System.out.println("Empty: Equipment felvetele");
         Equipment collected = equipment;
         setEquipment(null);
         return collected;

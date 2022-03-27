@@ -35,7 +35,7 @@ public class Laboratory extends Field {
      * @return code visszaadja a mezon levo kodot
      */
     public Code getCode() {
-        System.out.println("Laboratory mezo: getter fuggvenye meghivodott");
+        System.out.println("Laboratory: getter fuggvenye meghivodott");
         return code;
     }
 
@@ -45,7 +45,7 @@ public class Laboratory extends Field {
      * @param code a laboratoryn levo kodot allitja be
      */
     public void setCode(Code code) {
-        System.out.println("Laboratory mezo: setter fuggvenye meghivodott");
+        System.out.println("Laboratory: setter fuggvenye meghivodott");
         this.code = code;
     }
 
