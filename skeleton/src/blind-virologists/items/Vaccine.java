@@ -9,10 +9,10 @@ import effects.*;
  */
 public class Vaccine extends Agent{
     /**
-     * A fuggveny létrehozza egy immunity effect-et és visszaadja azt.
+     * A fuggveny letrehozza egy immunity effect-et és visszaadja azt.
      */
     public Effect use(){
-        System.out.println("Vaccine: Létrehoz egy immunitás effectet.");
+        System.out.println("Vaccine: Letrehoz egy immunitas effectet.");
         Immunity eImmunity = new Immunity();
         System.out.println("Vaccine: Visszaadja ezt az effectet.");
         return eImmunity;
