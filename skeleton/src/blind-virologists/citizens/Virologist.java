@@ -121,7 +121,11 @@ public class Virologist extends Citizen {
     public void useAgent() {
         Field myField = new Shelter();
         myField.getNeighbors();
-        myField.getCitizen();
+        Citizen citizen = myField.getCitizen();
+        if (citizen == null){
+            System.out.println("Virologist: nincs kire kenni");
+            return;
+        }
 
         System.out.println("Virologist: A felhasznalo kivalaszt egy tamadni kivant szomszedos virologust es egy agenst");
         Agent a;
@@ -222,7 +226,7 @@ public class Virologist extends Citizen {
      * Az aktiv felszerelesek kozul kivalaszt egyet a felhasznalo es azt atteszi a bag-be
      */
     public void unequip() {
-        System.out.println("Virologist: Kilistazza az aktiv felszereleseket, ezekbol a felhasznalo valazt");
+        System.out.println("Virologist: Kilistazza az aktiv felszereleseket, ezekbol a felhasznalo valaszt");
         System.out.println("Virologist: A kivalasztott felszereles lekerul az aktivak kozul");
     }
 
