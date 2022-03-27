@@ -9,20 +9,22 @@ package items;
  */
 public class Code {
     /**
-     * A fuggveny visszaadja a magában eltárolt ágens egy másolatát.
+     * A fuggveny visszaadja a magaban eltarolt agens egy masolatát.
      */
-    public Agent getAgent(){
+    public Agent getAgent() {
         Vaccine v = new Vaccine();
-        System.out.println("Code: Egy új ágens létrehozása, és az eltárolt ágens lemásolása.");
-        System.out.println("Code: Visszaadja az új ágenst.");
+        System.out.println("Code: Egy uj agens letrehozasa, es az eltarolt agens lemasolasa.");
+        System.out.println("Code: Visszaadja az uj agenst.");
         return v;
     }
-    public int getNucleoCost(){
-        System.out.println("Code: Visszaadja a szükséges nukleoidot az ágens elkészítéséhez.");
+
+    public int getNucleoCost() {
+        System.out.println("Code: Visszaadja a szukseges nukleoidot az agens elkeszitesehez.");
         return 0;
     }
-    public int getAminoCost(){
-        System.out.println("Code: Visszaadja a szükséges aminoacidot az ágens elkészítéséhez.");
+
+    public int getAminoCost() {
+        System.out.println("Code: Visszaadja a szukséges aminoacidot az agens elkeszitesehez.");
         return 0;
     }
 }

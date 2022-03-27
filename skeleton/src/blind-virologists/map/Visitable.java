@@ -11,6 +11,7 @@ import citizens.Visitor;
 public interface Visitable {
     /**
      * Elfogadja a parameterkent kapott Visitort
+     *
      * @param v az elfogadando Visitor
      */
     public void accept(Visitor v);

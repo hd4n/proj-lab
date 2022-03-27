@@ -8,30 +8,32 @@ import citizens.Citizen;
  * @author Eros Pal
  * @since 2022-03-26
  */
-public class Dance extends Effect{
+public class Dance extends Effect {
 
     /**
      * A Dance osztaly konstruktora
      */
-    public Dance(){
+    public Dance() {
         System.out.println("Dance: letrejon egy Dance effekt");
         //Duration = 10;
     }
 
     /**
      * A Dance osztaly konstruktora
+     *
      * @param duration ilyen hosszan tart az effekt
      */
-    public Dance(int duration){
+    public Dance(int duration) {
         System.out.println("Dance: letrejon egy Dance effekt es beallitja az idejet");
         //Duration = duration;
     }
 
     /**
      * Beallitja a Duration-t
+     *
      * @param duration hosszú ideig hat az effect
      */
-    public void setDuration(int duration){
+    public void setDuration(int duration) {
         //Duration = duration;
         System.out.println("Dance: beallitja a Durationt");
     }
@@ -39,13 +41,14 @@ public class Dance extends Effect{
     /**
      * Visszaadja a Duration-t
      */
-    public void getDuration(){
+    public void getDuration() {
         //Duration = duration;
         System.out.println("Dance: visszadja a Durationt");
     }
 
     /**
      * Megvaltoztatja a jatekos altal korabban beallitott lepest egy veletlenszeru szomszedos mezore.
+     *
      * @param affectedCitizen lepeset allitja at.
      */
     @Override

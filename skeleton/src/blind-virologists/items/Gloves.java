@@ -1,4 +1,5 @@
 package items;
+
 import effects.*;
 
 /**
@@ -6,14 +7,15 @@ import effects.*;
  *
  * @author Feher Norbert
  * @since 2022-03-26
- */public class Gloves extends Equipment{
+ */
+public class Gloves extends Equipment {
     /**
      * A fuggveny létrehoz egy Reflect effect-et és visszaadja azt.
      */
-    public Effect use(){
-        System.out.println("Gloves: Létrehoz egy reflect effectet.");
+    public Effect use() {
+        System.out.println("Gloves: Letrehoz egy reflect effectet.");
         Reflect eReflect = new Reflect();
-        System.out.println("Gloves: Visszaadja az elöbb létrehozott reflect effect-et.");
+        System.out.println("Gloves: Visszaadja az elobb letrehozott reflect effect-et.");
         return eReflect;
     }
 }

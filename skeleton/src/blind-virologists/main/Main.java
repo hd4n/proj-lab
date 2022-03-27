@@ -206,8 +206,9 @@ public class Main {
         System.out.println("-------------------------------");
         System.out.println("Use-case: virologistEquipsABag");
         Virologist v = new Virologist();
-        Bag b = new Bag();
-        v.addEffect(b.use());
+        v.equip();
+        //Bag b = new Bag();
+        //v.addEffect(b.use());
         System.out.println("-------------------------------");
     }
 
@@ -216,8 +217,9 @@ public class Main {
         System.out.println("-------------------------------");
         System.out.println("Use-case: virologistEquipsGloves");
         Virologist v = new Virologist();
-        Gloves g = new Gloves();
-        v.addEffect(g.use());
+        v.equip();
+        //Gloves g = new Gloves();
+        //v.addEffect(g.use());
         System.out.println("-------------------------------");
     }
 

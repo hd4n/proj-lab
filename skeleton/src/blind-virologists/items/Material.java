@@ -12,7 +12,5 @@ public abstract class Material {
      * Megnezi, hogy van-e elegendo anyag valamilyen agens elkeszitesehez,
      * a leszarmazottakban levo fuggvenyek felulirjak
      */
-    public void prepareForCraft() {
-        System.out.println("Material: prepareForCraft függvény(absztrakt)");
-    }
+    public abstract void prepareForCraft();
 }

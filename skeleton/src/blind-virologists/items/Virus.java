@@ -1,4 +1,5 @@
 package items;
+
 import effects.*;
 
 import java.util.Scanner;
@@ -9,11 +10,11 @@ import java.util.Scanner;
  * @author Feher Norbert
  * @since 2022-03-26
  */
-public class Virus extends Agent{
+public class Virus extends Agent {
     /**
      * A fuggveny letrehozza a megfelelo effect-et es visszaadja azt.
      */
-    public Effect use(){
+    public Effect use() {
         System.out.println("Virus: Milyen effectet hozzon letre.\n");
         Effect e = null;
         Scanner sc = new Scanner(System.in);
