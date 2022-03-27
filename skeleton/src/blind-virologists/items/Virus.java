@@ -14,7 +14,7 @@ public class Virus extends Agent{
      * A fuggveny letrehozza a megfelelo effect-et es visszaadja azt.
      */
     public Effect use(){
-        System.out.printf("Virus: Milyen effectet hozzon letre.\n");
+        System.out.println("Virus: Milyen effectet hozzon letre.\n");
         Effect e = null;
         Scanner sc = new Scanner(System.in);
         int caseNo;
@@ -38,7 +38,7 @@ public class Virus extends Agent{
             default:
                 System.exit(0);
         }
-        System.out.printf("Virus: Visszaadja ezt az effect-et.\n");
+        System.out.println("Virus: Visszaadja ezt az effect-et.\n");
         return e;
     }
 }
