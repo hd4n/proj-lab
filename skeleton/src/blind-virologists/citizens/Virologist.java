@@ -124,7 +124,18 @@ public class Virologist extends Citizen {
         myField.getCitizen();
 
         System.out.println("Virologist: A felhasznalo kivalaszt egy tamadni kivant szomszedos virologust es egy agenst");
-        Agent a = new Vaccine();
+        Agent a;
+
+        System.out.println("Virus legyen vagy vakcina? (virus/*)");
+        Scanner scanner = new Scanner(System.in);
+        String answ = scanner.next();
+
+        if (answ.toLowerCase().equals("virus")) {
+            a = new Virus();
+        } else {
+            a = new Vaccine();
+        }
+
         Virologist enemy = new Virologist();
         Effect effect = a.use();
         System.out.println("Virologist: Az agensbol visszakapott effektet rakeni a virologusra, az agens torlodik" );
