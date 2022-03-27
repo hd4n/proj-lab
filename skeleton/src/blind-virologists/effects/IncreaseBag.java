@@ -14,7 +14,7 @@ public class IncreaseBag extends Effect{
      * Az IncreaseBag osztaly konstruktora
      */
     public IncreaseBag(){
-        System.out.println("IncreaseBag: letrehoz egy IncreaseBag effektet");
+        System.out.println("IncreaseBag: letrejon egy IncreaseBag effekt");
         //Duration = 10;
     }
 
@@ -23,7 +23,7 @@ public class IncreaseBag extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public IncreaseBag(int duration){
-        System.out.println("IncreaseBag: letrehoz egy IncreaseBag effektet es beallitja az idejet");
+        System.out.println("IncreaseBag: letrejon egy IncreaseBag effekt es beallitja az idejet");
         //Duration = duration;
     }
 

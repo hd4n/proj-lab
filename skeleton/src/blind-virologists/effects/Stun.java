@@ -14,7 +14,7 @@ public class Stun extends Effect{
      * A Stun osztaly konstruktora
      */
     public Stun(){
-        System.out.println("Stun: letrehoz egy Stun effektet");
+        System.out.println("Stun: letrejon egy Stun effekt");
         //Duration = 10;
     }
 
@@ -23,7 +23,7 @@ public class Stun extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Stun(int duration){
-        System.out.println("Stun: letrehoz egy Stun effektet es beallitja az idejet");
+        System.out.println("Stun: letrejon egy Stun effekt es beallitja az idejet");
         //Duration = duration;
     }
 

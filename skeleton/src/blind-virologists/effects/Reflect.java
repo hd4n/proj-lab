@@ -15,7 +15,7 @@ public class Reflect extends Effect{
      * A Reflect osztaly konstruktora
      */
     public Reflect(){
-        System.out.println("Reflect: letrehoz egy Reflect effektet");
+        System.out.println("Reflect: letrejon egy Reflect effekt");
         //Duration = 10;
     }
 
@@ -24,7 +24,7 @@ public class Reflect extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Reflect(int duration){
-        System.out.println("Reflect: letrehoz egy Reflect effektet es beallitja az idejet");
+        System.out.println("Reflect: letrejon egy Reflect effekt es beallitja az idejet");
         //Duration = duration;
     }
 
