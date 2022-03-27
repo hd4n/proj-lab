@@ -290,20 +290,7 @@ public class Main {
         System.out.println("-------------------------------");
         System.out.println("Use-case: virologistUsesForgetVirus");
         Virologist virologist = new Virologist();
-        Virologist enemy = new Virologist();
-        Empty myField = new Empty();
-        Empty neighbor = new Empty();
-        Virus virus = new Virus();
         virologist.useAgent();
-        myField.getNeighbors();
-        if(neighbor.getCitizen()!= null)
-        {
-            virus.use();     //mindig forgetet hoz létre
-            //nincs removeagent
-            enemy.addEffect(new Forget());
-        } else{
-            System.out.println("nincs kire kenni");
-        }
         System.out.println("-------------------------------");
     }
 
@@ -312,20 +299,7 @@ public class Main {
         System.out.println("-------------------------------");
         System.out.println("Use-case: virologistUsesDanceVirus");
         Virologist virologist = new Virologist();
-        Virologist enemy = new Virologist();
-        Empty myField = new Empty();
-        Empty neighbor = new Empty();
-        Virus virus = new Virus();
         virologist.useAgent();
-        myField.getNeighbors();
-        if(neighbor.getCitizen()!= null)
-        {
-            virus.use();               //mindig forgetet hoz létre
-            //nincs removeagent
-            enemy.addEffect(new Dance());
-        } else{
-            System.out.println("nincs kire kenni");
-        }
         System.out.println("-------------------------------");
     }
 
@@ -334,20 +308,7 @@ public class Main {
         System.out.println("-------------------------------");
         System.out.println("Use-case: virologistUsesStunVirus");
         Virologist virologist = new Virologist();
-        Virologist enemy = new Virologist();
-        Empty myField = new Empty();
-        Empty neighbor = new Empty();
-        Virus virus = new Virus();
         virologist.useAgent();
-        myField.getNeighbors();
-        if(neighbor.getCitizen()!= null)
-        {
-            virus.use();               //mindig forgetet hoz létre
-            //nincs removeagent
-            enemy.addEffect(new Stun());
-        } else{
-            System.out.println("nincs kire kenni");
-        }
         System.out.println("-------------------------------");
     }
 
@@ -356,21 +317,7 @@ public class Main {
         System.out.println("-------------------------------");
         System.out.println("Use-case: virologistReflectsAgent");
         Virologist virologist = new Virologist();
-        Virologist enemy = new Virologist();
-        enemy.addEffect(new Reflect());
-        Empty myField = new Empty();
-        Empty neighbor = new Empty();
-        Virus virus = new Virus();
-        virologist.useAgent();           //ha reflekt immunis vissza kéne kenni
-        myField.getNeighbors();
-        if(neighbor.getCitizen()!= null)
-        {
-            virus.use();               //mindig forgetet hoz létre
-            //nincs removeagent
-            virologist.addEffect(new Forget());
-        } else{
-            System.out.println("nincs kire kenni");
-        }
+        virologist.useAgent();
         System.out.println("-------------------------------");
     }
 
