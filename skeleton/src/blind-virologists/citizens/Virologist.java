@@ -160,7 +160,7 @@ public class Virologist extends Citizen {
         Scanner scanner = new Scanner(System.in);
         String steal = scanner.next();
         if (steal.toLowerCase().equals("igen")) {
-            System.out.println("Virologist: Visszaadja az anyagkeszletet mert nincs magnal a virologus");
+            System.out.println("Virologist: Visszaadja az anyagkeszletet mert nincs maganal a virologus");
             return new ArrayList<Material>();
         } else {
             System.out.println("Virologist: Nem ad vissza semmit mert nincs stun effect rajta");
@@ -180,7 +180,7 @@ public class Virologist extends Citizen {
         Scanner scanner = new Scanner(System.in);
         String steal = scanner.next();
         if (steal.toLowerCase().equals("igen")) {
-            System.out.println("Virologist: Visszaadja az felszereleseit mert nincs magnal a virologus");
+            System.out.println("Virologist: Visszaadja az felszereleseit mert nincs maganal a virologus");
             return new ArrayList<Equipment>();
         } else {
             System.out.println("Virologist: Nem ad vissza semmit mert nincs stun effect rajta");
@@ -217,10 +217,6 @@ public class Virologist extends Citizen {
         enemy.stealEquipment();
         enemy.stealMaterial();
         System.out.println("Virologist (Thief): Az ellopott anyagokat es felszereleseket elteszi magahoz.");
-    }
-
-    public void setCurrentField(Field field) {
-        System.out.printf("Virologist: myField beallitva");
     }
 
 }

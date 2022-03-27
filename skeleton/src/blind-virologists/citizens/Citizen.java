@@ -3,6 +3,8 @@ package citizens;
 import effects.*;
 import map.Empty;
 import map.Field;
+import map.Laboratory;
+import map.Shelter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,7 +93,7 @@ public abstract class Citizen implements Visitor {
             if (letelt) {
                 System.out.println("Citizen: az adott effektet kiveszi a listajabol mert az letelt.");
             } else {
-                System.out.println("Citizen: Meghivja az effekt appleEffect() fuggvenyet.");
+                System.out.println("Citizen: Meghivja az effekt applyEffect() fuggvenyet.");
                 item.applyEffect(this);
             }
         }
@@ -106,6 +108,11 @@ public abstract class Citizen implements Visitor {
         Field myField = new Empty();
         System.out.println("Citizen: Meghivja a myField GetNeighbors() fuggvenyt");
         List<Field> neighbors = myField.getNeighbors();
+        neighbors = new ArrayList<>();
+        neighbors.add(new Laboratory());
+        Field shelter = new Shelter();
+        shelter.setCitizen(new Virologist());
+        neighbors.add(shelter);
         System.out.println("Citizen: A szomszedos mezokbol kivalogatja azokat ahol nem all senki, (getCitizen()==null).");
         for (Field tile : neighbors) {
             Citizen player = tile.getCitizen();
@@ -118,6 +125,10 @@ public abstract class Citizen implements Visitor {
         }
 
         return neighbors;
+    }
+
+    public void setCurrentField(Field field) {
+        System.out.println("Virologist: currentField beallitva");
     }
 
 }
