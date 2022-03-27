@@ -62,6 +62,7 @@ public class City {
      * Elinditja a jatekot
      */
     public void startGame() {
+        generateMap();
         System.out.println("City: Elindult a jatek");
         nextRound();
     }
@@ -80,7 +81,7 @@ public class City {
         System.out.println("City: Megtanulta valaki az osszes kodot? (igen/nem)");
         Scanner scanner = new Scanner(System.in);
         String res = scanner.next();
-        if (res.equals("i")) {
+        if (res.equalsIgnoreCase("igen")) {
             endGame();
             return;
         }
