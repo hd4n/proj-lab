@@ -5,7 +5,7 @@ import citizens.Visitor;
 import items.Equipment;
 
 /**
- * Az üres mezőt megvalosito osztaly.
+ * Az ures mezot megvalosito osztaly.
  *
  * @author Kovacs Aron
  * @since 2022-03-26
@@ -15,9 +15,9 @@ public class Empty extends Field {
     private Equipment equipment;
 
     /**
-     * Az üres mezőt létrehozó konstruktor
+     * Az ures mezot letrehozo konstruktor
      *
-     * @param equipment ha esetleg equipmenttel hoznánk létre üres mezőt
+     * @param equipment ha esetleg equipmenttel hoznank letre ures mezot
      */
 
     public Empty(Equipment equipment) {
@@ -25,48 +25,48 @@ public class Empty extends Field {
     }
 
     /**
-     * Az üres mezőt létrehozó paraméter nélküli konstruktor
+     * Az ures mezot letrehozo parameter nelkuli konstruktor
      */
     public Empty() {
         this.equipment = null;
     }
 
     /**
-     * Az üres mező gettere
+     * Az ures mezo gettere
      *
-     * @return a mezőn lévő felszerlést adja vissza
+     * @return a mezon levo felszerelest adja vissza
      */
     public Equipment getEquipment() {
-        System.out.println("Empty mező: getter függvénye meghívódott");
+        System.out.println("Empty mezo: getter fuggvenye meghivodott");
         return equipment;
     }
 
     /**
-     * Az üres mező settere
+     * Az ures mezo settere
      *
-     * @param equipment beállítja az üres mezőn lévő felszerelést
+     * @param equipment beallitja az ures mezon levo felszerelest
      */
     public void setEquipment(Equipment equipment) {
-        System.out.println("Empty mező: setter függvénye meghívódott");
+        System.out.println("Empty mezo: setter fuggvenye meghivodott");
         this.equipment = equipment;
     }
 
     /**
-     * Az üres mezőn lévő equipment felvételét végző függvény
+     * Az ures mezon levo equipment felvetelet vegzo fuggveny
      *
-     * @return a felvett felszerelést adja vissza
+     * @return a felvett felszerelest adja vissza
      */
     public Equipment pickUpEquipment() {
-        System.out.println("Empty mező: Equipment felvétele");
+        System.out.println("Empty mezo: Equipment felvetele");
         Equipment collected = equipment;
         setEquipment(null);
         return collected;
     }
 
     /**
-     * Az üres mezőre lépő visitor fogadását végző függvény
+     * Az ures mezore lepo visitor fogadasat vegzo fuggveny
      *
-     * @param v a mezőre lépő visitor
+     * @param v a mezore lepo visitor
      */
     @Override
     public void accept(Visitor v) {

@@ -4,7 +4,7 @@ import citizens.Visitor;
 import items.Material;
 
 /**
- * A warehouse mezőt megvalósító osztály.
+ * A warehouse mezot megvalositó osztaly.
  *
  * @author Kovacs Aron
  * @since 2022-03-26
@@ -14,57 +14,57 @@ public class Warehouse extends Field {
     private Material material;
 
     /**
-     * Az warehouse mezőt létrehozó konstruktor
+     * Az warehouse mezot letrehozo konstruktor
      *
-     * @param material a warehouseban lévő materialt adja meg
+     * @param material a warehouseban levo materialt adja meg
      */
     public Warehouse(Material material) {
         this.material = material;
     }
 
     /**
-     * Az warehouse mezőt létrehozó paraméter nélküli konstruktor
+     * Az warehouse mezot letrehozo parameter nelkuli konstruktor
      */
     public Warehouse() {
         this.material = null;
     }
 
     /**
-     * A warehouse mező gettere
+     * A warehouse mezo gettere
      *
-     * @return material visszaadja a mezőn lévő anyagot
+     * @return material visszaadja a mezon levo anyagot
      */
     public Material getMaterial() {
-        System.out.println("Warehouse mező: getter függvénye meghívódott");
+        System.out.println("Warehouse mezo: getter fuggvenye meghivodott");
         return material;
     }
 
     /**
-     * A warehouse mező settere
+     * A warehouse mezo settere
      *
-     * @param material a warehouseban lévő anyagot állítja be
+     * @param material a warehouseban levo anyagot allitja be
      */
     public void setMaterial(Material material) {
-        System.out.println("Warehouse mező: setter függvénye meghívódott");
+        System.out.println("Warehouse mezo: setter fuggvenye meghivodott");
         this.material = material;
     }
 
     /**
-     * Az warehouse mezőn lévő material felvételét végző függvény
+     * Az warehouse mezon levo material felvetelet vegzo fuggveny
      *
      * @return collected a felvett anyagot adja vissza
      */
     public Material collectMaterial() {
-        System.out.println("Warehouse mező: anyag felvétele");
+        System.out.println("Warehouse mezo: anyag felvetele");
         Material collected = this.material;
         setMaterial(null);
         return collected;
     }
 
     /**
-     * Az warehouse mezőre lépő visitor fogadását végző függvény
+     * Az warehouse mezore lepo visitor fogadasat vegzo fuggveny
      *
-     * @param v a mezőre lépő visitor
+     * @param v a mezore lepo visitor
      */
     @Override
     public void accept(Visitor v) {

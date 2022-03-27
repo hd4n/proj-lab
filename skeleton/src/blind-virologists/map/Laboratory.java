@@ -4,7 +4,7 @@ import citizens.Visitor;
 import items.Code;
 
 /**
- * A laboratory mezőt megvalositó osztály.
+ * A laboratory mezot megvalosito osztaly.
  *
  * @author Kovacs Aron
  * @since 2022-03-26
@@ -14,53 +14,53 @@ public class Laboratory extends Field {
     private Code code;
 
     /**
-     * Az laboratory mezőt létrehozó konstruktor
+     * Az laboratory mezot letrehozo konstruktor
      *
-     * @param code a laboratoryban lévő kódot adja meg
+     * @param code a laboratoryban levo kodot adja meg
      */
     public Laboratory(Code code) {
         this.code = code;
     }
 
     /**
-     * Az laboratory mezőt létrehozó paraméter nélküli konstruktor
+     * Az laboratory mezot letrehozo parameter nelkuli konstruktor
      */
     public Laboratory() {
         this.code = null;
     }
 
     /**
-     * Az laboratory mező gettere
+     * Az laboratory mezo gettere
      *
-     * @return code visszaadja a mezőn lévő kódot
+     * @return code visszaadja a mezon levo kodot
      */
     public Code getCode() {
-        System.out.println("Laboratory mező: getter függvénye meghívódott");
+        System.out.println("Laboratory mezo: getter fuggvenye meghivodott");
         return code;
     }
 
     /**
-     * Az laboratory mező settere
+     * Az laboratory mezo settere
      *
-     * @param code a laboratoryn lévő kódot állítja be
+     * @param code a laboratoryn levo kodot allitja be
      */
     public void setCode(Code code) {
-        System.out.println("Laboratory mező: setter függvénye meghívódott");
+        System.out.println("Laboratory mezo: setter fuggvenye meghivodott");
         this.code = code;
     }
 
     /**
-     * Az laboratory mezőn lévő kódot adja vissza a
+     * Az laboratory mezon levo kodot adja vissza a
      */
     public Code readCode() {
-        System.out.println("Laboratory: kód leolvasása");
+        System.out.println("Laboratory: kod leolvasasa");
         return getCode();
     }
 
     /**
-     * Az laboratory mezőre lépő visitor fogadását végző függvény
+     * Az laboratory mezore lepo visitor fogadasat vegzo fuggveny
      *
-     * @param v a mezőre lépő visitor
+     * @param v a mezore lepo visitor
      */
     @Override
     public void accept(Visitor v) {
