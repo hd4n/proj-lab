@@ -83,7 +83,7 @@ public class Virologist extends Citizen {
 
 
     /**
-     * Letrehoz a virologus anyagkeszletebol egy uj agnest
+     * Letrehoz a virologus anyagkeszletebol egy uj agenst
      */
     public void craft() {
         Code code = new Code();
@@ -116,30 +116,36 @@ public class Virologist extends Citizen {
     }
 
     /**
-     * A felhasznalo agnst ken egy masik virologusra
+     * A felhasznalo agenst ken egy masik virologusra
      */
     public void useAgent() {
+        Field myField = new Shelter();
+        myField.getNeighbors();
+        myField.getCitizen();
+
         System.out.println("Virologist: A felhasznalo kivalaszt egy tamadni kivant szomszedos virologust es egy agenst");
         Agent a = new Vaccine();
-        a.use();
-        System.out.println("Virologist: Az agensbol visszakapott effektet rakeni a virologusra");
         Virologist enemy = new Virologist();
+        Effect effect = a.use();
+        System.out.println("Virologist: Az agensbol visszakapott effektet rakeni a virologusra, az agens torlodik" );
+        enemy.addEffect(effect);
     }
 
     /**
      * @param effect kenni kivant effekt
      */
     public void addEffect(Effect effect) {
-        System.out.println("A virologuson van reflect immunitasa? (igen/nem)");
+        System.out.println("A virologuson van immunitas? (igen/nem)");
         Scanner scanner = new Scanner(System.in);
-        String reflect = scanner.next();
-        if (reflect.toLowerCase().equals("igen")) {
+        String answ = scanner.next();
+        if (answ.toLowerCase().equals("igen")) {
             System.out.println("Virologist: A virologustra nem ervenyes a kenes, mert immunis");
         } else {
             System.out.println("A virologuson van reflect kepessege? (igen/nem)");
-            reflect = scanner.next();
-            if (reflect.toLowerCase().equals("igen")) {
+            answ = scanner.next();
+            if (answ.toLowerCase().equals("igen")) {
                 System.out.println("Virologist: A virologustra nem ervenyes a kenes");
+                System.out.println("Virologist: Az effektet visszakeni a tamadora");
                 System.out.println("Virologist: A reflect effektet elvesziti");
             } else {
                 System.out.println("Virologist: A kenes sikeres volt a virologusnak uj effektel rendelkezik");
@@ -164,7 +170,7 @@ public class Virologist extends Citizen {
             System.out.println("Virologist: Visszaadja az anyagkeszletet mert nincs maganal a virologus");
             return new ArrayList<Material>();
         } else {
-            System.out.println("Virologist: Nem ad vissza semmit mert nincs stun effect rajta");
+            System.out.println("Virologist: Nem ad vissza anyag keszletet mert nincs stun effect rajta");
         }
         return null;
     }
@@ -184,7 +190,7 @@ public class Virologist extends Citizen {
             System.out.println("Virologist: Visszaadja az felszereleseit mert nincs maganal a virologus");
             return new ArrayList<Equipment>();
         } else {
-            System.out.println("Virologist: Nem ad vissza semmit mert nincs stun effect rajta");
+            System.out.println("Virologist: Nem ad vissza felszereleseket mert nincs stun effect rajta");
         }
         return null;
     }
