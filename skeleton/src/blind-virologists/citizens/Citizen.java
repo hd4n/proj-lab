@@ -114,13 +114,13 @@ public abstract class Citizen implements Visitor {
         shelter.setCitizen(new Virologist());
         neighbors.add(shelter);
         System.out.println("Citizen: A szomszedos mezokbol kivalogatja azokat ahol nem all senki, (getCitizen()==null).");
-        for (Field tile : neighbors) {
-            Citizen player = tile.getCitizen();
-            if (player != null) {
+        for (int i = 0; i < neighbors.size(); i++) {
+            Citizen player = neighbors.get(i).getCitizen();
+            if (player == null) {
                 System.out.println("Citizen: Az adott mezo a jatekos szamara elerheto, visszaadja.");
             } else {
                 System.out.println("Citizen: A adott mezo a jatekos szamara nem elerheto ezert nem adja vissza.");
-                neighbors.remove(tile);
+                neighbors.remove(neighbors.get(i));
             }
         }
 

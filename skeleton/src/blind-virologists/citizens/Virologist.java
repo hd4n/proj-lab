@@ -143,6 +143,7 @@ public class Virologist extends Citizen {
                 System.out.println("Virologist: A reflect effektet elvesziti");
             } else {
                 System.out.println("Virologist: A kenes sikeres volt a virologusnak uj effektel rendelkezik");
+                effect.applyEffect(this);
             }
         }
 
