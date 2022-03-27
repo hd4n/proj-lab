@@ -151,7 +151,7 @@ public class Main {
         System.out.println("-------------------------------");
     }
 
-    private static void virologistSteps(){
+    private static void virologistSteps() {
         //EP
         System.out.println("-------------------------------");
         System.out.println("Use-case: virologistStepsOnEmpty");
@@ -195,8 +195,9 @@ public class Main {
         System.out.println("-------------------------------");
         System.out.println("Use-case: virologistEquipsACape");
         Virologist v = new Virologist();
-        Cape c = new Cape();
-        v.addEffect(c.use());
+        v.equip();
+        //Cape c = new Cape();
+        //v.addEffect(c.use());
         System.out.println("-------------------------------");
     }
 

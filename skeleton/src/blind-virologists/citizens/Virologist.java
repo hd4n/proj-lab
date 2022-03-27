@@ -79,6 +79,8 @@ public class Virologist extends Citizen {
             equipment = new Bag();
         }
         System.out.println("Virologist: Felveszi az aktiv felszerelesk koze a kivalasztottat");
+        Effect effect = equipment.use();
+        effect.applyEffect(this);
     }
 
 
@@ -122,7 +124,7 @@ public class Virologist extends Citizen {
         Field myField = new Shelter();
         myField.getNeighbors();
         Citizen citizen = myField.getCitizen();
-        if (citizen == null){
+        if (citizen == null) {
             System.out.println("Virologist: nincs kire kenni");
             return;
         }
@@ -142,7 +144,7 @@ public class Virologist extends Citizen {
 
         Virologist enemy = new Virologist();
         Effect effect = a.use();
-        System.out.println("Virologist: Az agensbol visszakapott effektet rakeni a virologusra, az agens torlodik" );
+        System.out.println("Virologist: Az agensbol visszakapott effektet rakeni a virologusra, az agens torlodik");
         enemy.addEffect(effect);
     }
 
