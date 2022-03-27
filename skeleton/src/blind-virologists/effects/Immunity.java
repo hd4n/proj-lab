@@ -15,7 +15,7 @@ public class Immunity extends Effect{
      * Az Immunity osztaly konstruktora
      */
     public Immunity(){
-        System.out.println("Immunity: letrehoz egy Immunity effektet");
+        System.out.println("Immunity: letrejon egy Immunity effekt");
         //Duration = 10;
     }
 
@@ -24,7 +24,7 @@ public class Immunity extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Immunity(int duration){
-        System.out.println("Immunity: letrehoz egy Immunity effektet es beallitja az idejet");
+        System.out.println("Immunity: letrejon egy Immunity effekt es beallitja az idejet");
         //Duration = duration;
     }
 

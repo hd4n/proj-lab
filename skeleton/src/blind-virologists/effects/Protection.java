@@ -14,7 +14,7 @@ public class Protection extends Effect{
      * A Protection osztaly konstruktora
      */
     public Protection(){
-        System.out.println("Protection: letrehoz egy Protection effektet");
+        System.out.println("Protection: letrejon egy Protection effekt");
         //Duration = 10;
     }
 
@@ -23,7 +23,7 @@ public class Protection extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Protection(int duration){
-        System.out.println("Protection: letrehoz egy Protection effektet es beallitja az idejet");
+        System.out.println("Protection: letrejon egy Protection effekt es beallitja az idejet");
         //Duration = duration;
     }
 

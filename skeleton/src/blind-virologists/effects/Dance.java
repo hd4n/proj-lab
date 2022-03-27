@@ -14,7 +14,7 @@ public class Dance extends Effect{
      * A Dance osztaly konstruktora
      */
     public Dance(){
-        System.out.println("Dance: letrehoz egy Dance effektet");
+        System.out.println("Dance: letrejon egy Dance effekt");
         //Duration = 10;
     }
 
@@ -23,7 +23,7 @@ public class Dance extends Effect{
      * @param duration ilyen hosszan tart az effekt
      */
     public Dance(int duration){
-        System.out.println("Dance: letrehoz egy Dance effektet es beallitja az idejet");
+        System.out.println("Dance: letrejon egy Dance effekt es beallitja az idejet");
         //Duration = duration;
     }
 
