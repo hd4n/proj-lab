@@ -11,8 +11,8 @@ import effects.*;
      * A fuggveny létrehoz egy Reflect effect-et és visszaadja azt.
      */
     public Effect use(){
-        Reflect eReflect = new Reflect();
         System.out.println("Gloves: Létrehoz egy reflect effectet.");
+        Reflect eReflect = new Reflect();
         System.out.println("Gloves: Visszaadja az elöbb létrehozott reflect effect-et.");
         return eReflect;
     }

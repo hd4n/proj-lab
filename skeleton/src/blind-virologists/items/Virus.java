@@ -12,8 +12,8 @@ public class Virus extends Agent{
      * A fuggveny létrehozza a megfelelő effect-et és visszaadja azt.
      */
     public Effect use(){
-        Forget eForget = new Forget();
         System.out.printf("Virus: Létrehoz egy forget effect-et.");
+        Forget eForget = new Forget();
         System.out.printf("Virus: Visszaadja ezt az effect-et.");
         return eForget;
 

@@ -12,8 +12,8 @@ public class Bag extends Equipment{
      * A fuggveny létrehoz egy IncreaseBag effect-et és visszaadja azt.
      */
     public Effect use(){
-        IncreaseBag eIncreaseBag = new IncreaseBag();
         System.out.println("Bag: Létrehoz egy increasebag effect-et.");
+        IncreaseBag eIncreaseBag = new IncreaseBag();
         System.out.println("Bag: Visszaadja az elöbb létrehozott increasebag effect-et.");
         return eIncreaseBag;
     }

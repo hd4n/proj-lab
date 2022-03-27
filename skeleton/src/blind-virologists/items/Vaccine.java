@@ -12,8 +12,8 @@ public class Vaccine extends Agent{
      * A fuggveny létrehozza egy immunity effect-et és visszaadja azt.
      */
     public Effect use(){
-        Immunity eImmunity = new Immunity();
         System.out.println("Vaccine: Létrehoz egy immunitás effectet.");
+        Immunity eImmunity = new Immunity();
         System.out.println("Vaccine: Visszaadja ezt az effectet.");
         return eImmunity;
     }
