@@ -34,6 +34,7 @@ public class Immunity extends Effect{
      */
     public void setDuration(int duration){
         //Duration = duration;
+        System.out.println("Immunity: beallitja a Durationt");
     }
 
     /**
@@ -41,6 +42,7 @@ public class Immunity extends Effect{
      */
     public void getDuration(){
         //Duration = duration;
+        System.out.println("Immunity: visszadja a Durationt");
     }
 
     /**

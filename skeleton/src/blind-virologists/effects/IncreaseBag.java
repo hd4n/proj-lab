@@ -33,6 +33,7 @@ public class IncreaseBag extends Effect{
      */
     public void setDuration(int duration){
         //Duration = duration;
+        System.out.println("IncreaseBag: beallitja a Durationt");
     }
 
     /**
@@ -40,6 +41,7 @@ public class IncreaseBag extends Effect{
      */
     public void getDuration(){
         //Duration = duration;
+        System.out.println("IncreaseBag: visszaadja a Durationt");
     }
 
     /**

@@ -33,6 +33,7 @@ public class Dance extends Effect{
      */
     public void setDuration(int duration){
         //Duration = duration;
+        System.out.println("Dance: beallitja a Durationt");
     }
 
     /**
@@ -40,6 +41,7 @@ public class Dance extends Effect{
      */
     public void getDuration(){
         //Duration = duration;
+        System.out.println("Dance: visszadja a Durationt");
     }
 
     /**

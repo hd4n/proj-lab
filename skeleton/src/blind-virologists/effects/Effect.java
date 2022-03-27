@@ -31,6 +31,7 @@ public abstract class Effect {
      */
     public void setDuration(int duration){
         //Duration = duration;
+        System.out.println("Update: beallitja a Durationt");
     }
 
     /**
@@ -38,6 +39,7 @@ public abstract class Effect {
      */
     public void getDuration(){
         //Duration = duration;
+        System.out.println("Update: visszaadja a Durationt");
     }
 
     /**

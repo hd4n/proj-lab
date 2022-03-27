@@ -33,6 +33,7 @@ public class Stun extends Effect{
      */
     public void setDuration(int duration){
         //Duration = duration;
+        System.out.println("Stun: beallitja a Durationt");
     }
 
     /**
@@ -40,6 +41,7 @@ public class Stun extends Effect{
      */
     public void getDuration(){
         //Duration = duration;
+        System.out.println("Stun: visszaadja a Durationt");
     }
 
     /**
