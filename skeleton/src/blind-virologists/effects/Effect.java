@@ -44,7 +44,5 @@ public abstract class Effect {
      *
      * @param affectedCitizen Ennek a tulajdonsagait modositja.
      */
-    public void applyEffect(Citizen affectedCitizen) {
-        System.out.println("Update: modositja a Citizen tulajdonsagait");
-    }
+    public abstract void applyEffect(Citizen affectedCitizen);
 }
