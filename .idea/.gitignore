@@ -9,4 +9,6 @@
 
 /vcs.xml
 .DS_Store
-../skeleton/out
+#../skeleton/out
+#../prototype/out
+../out
