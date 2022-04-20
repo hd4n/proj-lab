@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("Vilagtalan virologusok vilaga - Skeleton");
+        System.out.println("Vilagtalan virologusok vilaga - Proto");
         System.out.println("Csapat: alma");
         System.out.println("-------------------------------");
 
