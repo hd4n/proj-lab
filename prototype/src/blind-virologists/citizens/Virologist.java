@@ -103,6 +103,10 @@ public class Virologist extends Citizen {
         if (equipment != null) {
             activeEquipments.add(equipment);
             equipments.remove(equipment);
+            Effect effect = equipment.use();
+            if (effect != null){
+                effects.add(effect);
+            }
         }
     }
 
@@ -123,6 +127,11 @@ public class Virologist extends Citizen {
         if (equipment != null) {
             equipments.add(equipment);
             activeEquipments.remove(equipment);
+            
+            Effect effect = equipment.use();
+            if (effect != null){
+                effects.remove(effect);
+            }
         }
     }
 
@@ -173,12 +182,20 @@ public class Virologist extends Citizen {
     public void craft(Code code) {
         neededAmino = code.getAminoCost();
         neededNucleo = code.getNucleoCost();
+        ArrayList<Material> used = new ArrayList<>();
         for (Material item : materials) {
-            item.prepareForCraft();     //a material csokkenti a ket int-et
+            int a = neededAmino + neededNucleo;
+            //item.prepareForCraft(this);     //a material csokkenti a ket int-et
+            if (a != (neededAmino+neededNucleo)){   //az adott materialt hasznaljuk
+                used.add(item);
+            }
         }
         if ((neededAmino + neededNucleo) == 0) {
             Agent agent = code.getAgent();
             agents.add(agent);
+            for (Material item: used) { //felhasznaltak torlese
+                materials.remove(item);
+            }
         }
     }
 
