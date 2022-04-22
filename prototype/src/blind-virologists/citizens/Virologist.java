@@ -100,15 +100,18 @@ public class Virologist extends Citizen {
      * @param equipment az aktiv felszereles
      */
     public void equip(Equipment equipment) {
-        if (equipment != null) {
-            activeEquipments.add(equipment);
-            equipments.remove(equipment);
-            Effect effect = equipment.use();
-            if (effect != null){
-                effects.add(effect);
+        if (activeEquipments.size() < 3) {
+            if (equipment != null) {
+                activeEquipments.add(equipment);
+                equipments.remove(equipment);
+                Effect effect = equipment.use(this);
+                if (effect != null) {
+                    effects.add(effect);
+                }
             }
         }
     }
+
 
     /**
      * A jatekos altal vezerlet bemenet hivja meg
@@ -127,9 +130,9 @@ public class Virologist extends Citizen {
         if (equipment != null) {
             equipments.add(equipment);
             activeEquipments.remove(equipment);
-            
-            Effect effect = equipment.use();
-            if (effect != null){
+
+            Effect effect = equipment.use(this);
+            if (effect != null) {
                 effects.remove(effect);
             }
         }
@@ -167,6 +170,10 @@ public class Virologist extends Citizen {
         }
     }
 
+    public void removeEquipment(Equipment equipment) {
+        activeEquipments.remove(equipment);
+    }
+
     /**
      * A jatekos altal vezerlet bemenet hivja meg
      */
@@ -185,15 +192,15 @@ public class Virologist extends Citizen {
         ArrayList<Material> used = new ArrayList<>();
         for (Material item : materials) {
             int a = neededAmino + neededNucleo;
-            //item.prepareForCraft(this);     //a material csokkenti a ket int-et
-            if (a != (neededAmino+neededNucleo)){   //az adott materialt hasznaljuk
+            item.prepareForCraft(this);     //a material csokkenti a ket int-et
+            if (a != (neededAmino + neededNucleo)) {   //az adott materialt hasznaljuk
                 used.add(item);
             }
         }
         if ((neededAmino + neededNucleo) == 0) {
             Agent agent = code.getAgent();
             agents.add(agent);
-            for (Material item: used) { //felhasznaltak torlese
+            for (Material item : used) { //felhasznaltak torlese
                 materials.remove(item);
             }
         }
@@ -213,16 +220,26 @@ public class Virologist extends Citizen {
      * @param target az aldozat
      * @param agent  az agnes amit felhasznal
      */
-    public void useAgnet(Citizen target, Agent agent) {
+    public void useAgent(Citizen target, Agent agent) {
         Effect effect = agent.use();
-        target.addEffect(effect);
-        ///.....
+        boolean attack = target.addEffect(effect);
+        if (!attack) {   //ha a targetnek volt reflect-je
+            this.addEffect(effect);
+        }
         agents.remove(agent);
     }
 
-    public void addMaterial(Material material){
-        if (material != null){
+    public void addMaterial(Material material) {
+        if (material != null) {
             materials.add(material);
+        }
+    }
+
+    public void addMaterial(ArrayList<Material> materialList) {
+        if (materialList != null) {
+            for (Material item : materialList) {
+                addMaterial(item);
+            }
         }
     }
 

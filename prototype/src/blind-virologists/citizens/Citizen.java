@@ -81,17 +81,20 @@ public abstract class Citizen implements Visitor {
 
     /**
      * @param effect kenni kivant effekt
+     * @return sikeres volt e a kenes, false ha visszakeni
      */
-    public void addEffect(Effect effect) {
+    public boolean addEffect(Effect effect) {
         int szam = new Random().nextInt(100);   //random szam az immunitas veletlenszerusegehez
-        if (this.resistance > szam) {
-            //immunis
-        } else {
+        if (reflect) {
+            return false;
+        }
+        if (this.resistance <= szam) {
             effects.add(effect);
         }
+        return true;
     }
 
-    public void interact(){
+    public void interact() {
         currentField.accept(this);
     }
 
