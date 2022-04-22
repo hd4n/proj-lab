@@ -17,7 +17,7 @@ import java.util.*;
 public abstract class Citizen implements Visitor {
     protected boolean stunned = false;
     protected ArrayList<Effect> effects = new ArrayList<>();
-    protected int resistance = 0;
+    protected double resistance = 0;
     protected Field direction;
     protected Field currentField;
     protected boolean reflect = false;
@@ -114,11 +114,11 @@ public abstract class Citizen implements Visitor {
         this.stunned = stunned;
     }
 
-    public int getResistance() {
+    public double getResistance() {
         return resistance;
     }
 
-    public void setResistance(int resistance) {
+    public void setResistance(double resistance) {
         this.resistance = resistance;
     }
 
