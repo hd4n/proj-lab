@@ -18,12 +18,14 @@ import java.util.Scanner;
 public class City {
     private ArrayList<Citizen> players;
     private ArrayList<Field> fields;
-    private int codes;
+    private int codeCount;
 
     /**
      * A City osztaly konstruktora
      */
     public City() {
+        players = new ArrayList<>();
+        fields = new ArrayList<>();
     }
 
     /**
@@ -75,15 +77,15 @@ public class City {
      *
      * @param codes a kodok max szama
      */
-    public void setCodes(int codes) {
-        this.codes = codes;
+    public void setCodeCount(int codes) {
+        this.codeCount = codes;
     }
 
     /**
      * Visszaadja a kodok maximalis szamat
      */
-    public int getCodes() {
-        return codes;
+    public int getCodeCount() {
+        return codeCount;
     }
 
     /**
@@ -211,11 +213,16 @@ public class City {
     public void nextRound() {
         for (Citizen v : players) {
             v.nextRound();
-            if (((Virologist)v).getCodes().size() == codes) {
+            if (((Virologist) v).getCodes().size() == codeCount) {
                 endGame();
             }
         }
     }
 
-
+    /**
+     * Noveli a jatekban talalhato kodok szamat
+     */
+    public void increaseCodeCount() {
+        codeCount++;
+    }
 }
