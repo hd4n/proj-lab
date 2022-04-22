@@ -1,20 +1,28 @@
 package map;
 
 import citizens.Citizen;
-import citizens.Virologist;
 import citizens.Visitor;
 import items.Equipment;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * A palya mezoit reprezentalo absztrakt osztaly
  *
  * @author Hajos Daniel
- * @since 2022-03-26
+ * @since 2022-04-21
  */
 public abstract class Field implements Visitable {
+
+    /**
+     * A mezon allo citizen
+     */
+    protected Citizen citizen;
+
+    /**
+     * Szomszedos mezok
+     */
+    protected ArrayList<Field> neighbors = new ArrayList<>();
 
     /**
      * Elfogadja a Visitort, az leszarmazottak implementaljak
@@ -29,8 +37,7 @@ public abstract class Field implements Visitable {
      * @return a szomszedos mezoket tartalmazo lista
      */
     public ArrayList<Field> getNeighbors() {
-        System.out.println("Field: szomszedos mezok visszaadasa");
-        return null;
+        return neighbors;
     }
 
     /**
@@ -39,7 +46,7 @@ public abstract class Field implements Visitable {
      * @param e az eldobott Equipment
      */
     public void dropEquipment(Equipment e) {
-        System.out.println("Field: Equipment eldobva");
+        //System.out.println("Equipment eldobva");
     }
 
     /**
@@ -48,14 +55,7 @@ public abstract class Field implements Visitable {
      * @return a mezon allo Citizen, vagy null
      */
     public Citizen getCitizen() {
-        System.out.println("Field: Van mar citizen a mezon? (igen/nem)");
-        Scanner sc = new Scanner(System.in);
-        String res = sc.next();
-        if (res.equalsIgnoreCase("igen")) {
-            return new Virologist();
-        } else {
-            return null;
-        }
+        return citizen;
     }
 
     /**
@@ -64,6 +64,15 @@ public abstract class Field implements Visitable {
      * @param c a beallitando Citizen
      */
     public void setCitizen(Citizen c) {
-        System.out.println("Field: Citizen beallitva");
+        citizen = c;
+    }
+
+    /**
+     * Felvesz egy szomszedos mezot
+     *
+     * @param f a szomszedos mezo
+     */
+    public void addNeighbor(Field f) {
+        neighbors.add(f);
     }
 }
