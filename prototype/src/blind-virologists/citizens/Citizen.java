@@ -17,11 +17,12 @@ import java.util.*;
 public abstract class Citizen implements Visitor {
     protected boolean stunned = false;
     protected ArrayList<Effect> effects = new ArrayList<>();
-    protected int resistance = 0;
+    protected double resistance = 0;
     protected Field direction;
     protected Field currentField;
     protected boolean reflect = false;
     protected int maxMaterial = 10;
+    protected int reflectCount = 0;
 
     public Citizen() {
     }
@@ -86,6 +87,8 @@ public abstract class Citizen implements Visitor {
     public boolean addEffect(Effect effect) {
         int szam = new Random().nextInt(100);   //random szam az immunitas veletlenszerusegehez
         if (reflect) {
+            reflect = false;
+            reflectCount++;
             return false;
         }
         if (this.resistance <= szam) {
@@ -114,11 +117,11 @@ public abstract class Citizen implements Visitor {
         this.stunned = stunned;
     }
 
-    public int getResistance() {
+    public double getResistance() {
         return resistance;
     }
 
-    public void setResistance(int resistance) {
+    public void setResistance(double resistance) {
         this.resistance = resistance;
     }
 
@@ -144,5 +147,13 @@ public abstract class Citizen implements Visitor {
 
     public void setMaxMaterial(int maxMaterial) {
         this.maxMaterial = maxMaterial;
+    }
+
+    public int getReflectCount() {
+        return reflectCount;
+    }
+
+    public void setReflectCount(int reflectCount) {
+        this.reflectCount = reflectCount;
     }
 }

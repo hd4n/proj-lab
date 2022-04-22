@@ -10,7 +10,7 @@ import citizens.Citizen;
  * @since 2022-04-22
  */
 public abstract class Effect {
-    protected double duration;
+    protected int duration;
 
     /**
      * Minden korben meghivodik, eggyel csokkenti a Duration tagvaltozot.
@@ -25,14 +25,14 @@ public abstract class Effect {
      * Beallitja a Duration-t.
      * @param duration hosszu ideig hat az effect.
      */
-    public void setDuration(double duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
     /**
      * Visszaadja a Duration-t
      */
-    public double getDuration() {
+    public int getDuration() {
         return duration;
     }
 
