@@ -23,7 +23,7 @@ public class City {
     public City() {
     }
 
-    public City(ArrayList<Citizen> players, ArrayList<Field> fields, ArrayList<Code> codes) {
+    public City(ArrayList<Citizen> players, ArrayList<Field> fields, int codes) {
         this.players = players;
         this.fields = fields;
     }
