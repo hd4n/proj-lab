@@ -211,7 +211,7 @@ public class City {
     public void nextRound() {
         for (Citizen v : players) {
             v.nextRound();
-            if (v.getCodes().size() == codes) {
+            if (((Virologist)v).getCodes().size() == codes) {
                 endGame();
             }
         }
