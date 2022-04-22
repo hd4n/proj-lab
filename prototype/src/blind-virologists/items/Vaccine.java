@@ -3,10 +3,10 @@ package items;
 import effects.*;
 
 /**
- * A kontrollalhatatlan tancot okozo virus effektjet megvalosito osztaly.
+ * A vakcinat megvalosito osztaly.
  *
- * @author Feher Norbert
- * @since 2022-03-26
+ * @author Kovacs Aron
+ * @since 2022-04-22
  */
 public class Vaccine extends Agent {
     /**

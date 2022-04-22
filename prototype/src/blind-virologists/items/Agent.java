@@ -3,30 +3,46 @@ package items;
 import effects.*;
 
 /**
- * A kontrollalhatatlan tancot okozo virus effektjet megvalosito osztaly.
+ * Az agenseket megvalosito osztaly.
  *
- * @author Feher Norbert
- * @since 2022-03-26
+ * @author Kovacs Aron
+ * @since 2022-04-22
  */
 public abstract class Agent {
     Effect effect;
 
+    /**
+     * Az agent parameter nelkuli konstruktora
+     */
     public Agent() {
     }
 
+    /**
+     * Az agent parameteres konstruktora
+     *
+     * @param effect az agens altal megvalositott effekt
+     */
     public Agent(Effect effect) {
         this.effect = effect;
     }
 
     /**
-     * A fuggveny létrehozza a megfelelő effect-et és visszaadja azt.
+     * Absztrakt fuggveny, letrehozza a megfelelo effect-et es visszaadja azt.
      */
     public abstract Effect use();
 
+    /**
+     * Visszaadja az agens altal megvalositott effektet
+     */
     public Effect getEffect() {
         return effect;
     }
 
+    /**
+     * Beallitja az agens altal megvalositando effektet
+     *
+     * @param effect az agens altal megvalositando effektet
+     */
     public void setEffect(Effect effect) {
         this.effect = effect;
     }

@@ -5,10 +5,10 @@ import effects.*;
 import java.util.Scanner;
 
 /**
- * A kontrollalhatatlan tancot okozo virus effektjet megvalosito osztaly.
+ * A virust megvalosito osztaly.
  *
- * @author Feher Norbert
- * @since 2022-03-26
+ * @author Kovacs Aron
+ * @since 2022-04-22
  */
 public class Virus extends Agent {
     /**

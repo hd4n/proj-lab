@@ -51,6 +51,6 @@ public class IncreaseBag extends Effect {
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        affectedCitizen.setMaxMaterial(getMaxMaterial() + 10);
+        affectedCitizen.setMaxMaterial((affectedCitizen.getMaxMaterial() + 10));
     }
 }

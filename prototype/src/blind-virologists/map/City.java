@@ -12,50 +12,94 @@ import java.util.Scanner;
 /**
  * A jatek vezerleset megvalosito osztaly
  *
- * @author Hajos Daniel
- * @since 2022-03-26
+ * @author Kovacs Aron
+ * @since 2022-04-22
  */
 public class City {
     private ArrayList<Citizen> players;
     private ArrayList<Field> fields;
     private int codes;
 
+    /**
+     * A City osztaly konstruktora
+     */
     public City() {
     }
 
+    /**
+     * A City osztalyhoz tartozo parameteres konstruktor
+     *
+     * @param players lista a jatekosokrol
+     * @param fields  lista a mezokrol
+     * @param codes   a kodok max szama
+     */
     public City(ArrayList<Citizen> players, ArrayList<Field> fields, int codes) {
         this.players = players;
         this.fields = fields;
     }
 
+    /**
+     * Visszaadja a jatekosok listajat
+     */
     public ArrayList<Citizen> getPlayers() {
         return players;
     }
 
+    /**
+     * Beallitja egy jatekos listat a cityhez
+     *
+     * @param players beallitja a jatekos listat
+     */
     public void setPlayers(ArrayList<Citizen> players) {
         this.players = players;
     }
 
+    /**
+     * Visszaadja a city field listajat
+     */
     public ArrayList<Field> getFields() {
         return fields;
     }
 
+    /**
+     * Beallit egy field listat a cityhez
+     *
+     * @param fields beallitani kivant field lista
+     */
     public void setFields(ArrayList<Field> fields) {
         this.fields = fields;
     }
 
+    /**
+     * Beallitja a kodok maximalis szamat
+     *
+     * @param codes a kodok max szama
+     */
     public void setCodes(int codes) {
         this.codes = codes;
     }
 
+    /**
+     * Visszaadja a kodok maximalis szamat
+     */
     public int getCodes() {
         return codes;
     }
 
+    /**
+     * Hozzaad egy jatekost a city listajahoz
+     *
+     * @param e a hozzaadni kivant jatekos
+     */
     public void addPlayer(Citizen e) {
         players.add(e);
     }
 
+    /**
+     * Hozzaad egy mezot a city listajahoz
+     *
+     * @param f a hozzaadni kivant mezo
+     */
     public void addField(Field f) {
         fields.add(f);
     }
