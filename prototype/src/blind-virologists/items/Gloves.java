@@ -14,7 +14,7 @@ public class Gloves extends Equipment {
      * A fuggveny létrehoz egy Reflect effect-et és visszaadja azt.
      */
     public Gloves(){
-        e = new Reflect(10);
+        e = new Reflect(10, this);
     }
     public Effect use(Citizen target) {
         return e;
