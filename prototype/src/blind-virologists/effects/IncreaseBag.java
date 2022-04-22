@@ -9,13 +9,12 @@ import citizens.Citizen;
  * @since 2022-03-26
  */
 public class IncreaseBag extends Effect {
+    protected int duration = -1;
 
     /**
      * Az IncreaseBag osztaly konstruktora
      */
     public IncreaseBag() {
-        System.out.println("IncreaseBag: letrejon egy IncreaseBag effekt");
-        //Duration = 10;
     }
 
     /**
@@ -24,8 +23,7 @@ public class IncreaseBag extends Effect {
      * @param duration ilyen hosszan tart az effekt
      */
     public IncreaseBag(int duration) {
-        System.out.println("IncreaseBag: letrejon egy IncreaseBag effekt es beallitja az idejet");
-        //Duration = duration;
+        this.duration = duration;
     }
 
     /**
@@ -34,16 +32,15 @@ public class IncreaseBag extends Effect {
      * @param duration hosszú ideig hat az effect
      */
     public void setDuration(int duration) {
-        //Duration = duration;
-        System.out.println("IncreaseBag: beallitja a Durationt");
+        this.duration = duration;
     }
 
     /**
-     * Visszaadja a Duration-t
+     * Visszaadja a duration-t
+     *
+     * @return az adott effekt idotartama
      */
-    public double getDuration() {
-        //Duration = duration;
-        System.out.println("IncreaseBag: visszaadja a Durationt");
+    public int getDuration() {
         return duration;
     }
 
@@ -54,7 +51,6 @@ public class IncreaseBag extends Effect {
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        System.out.println("IncreaseBag: noveli a maximalisan felveheto anyagmennyiseget");
-        //affectedCitizen.setMaxItem(20);
+        affectedCitizen.setMaxMaterial(getMaxMaterial()+10);
     }
 }

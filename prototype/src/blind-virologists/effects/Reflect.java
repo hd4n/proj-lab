@@ -1,6 +1,7 @@
 package effects;
 
 import citizens.Citizen;
+import items.Gloves;
 
 /**
  * A taszito effektet valositja meg. Ez a hatas a kesztyu kovetkezteben lephet ervenybe.
@@ -10,23 +11,19 @@ import citizens.Citizen;
  * @since 2022-03-26
  */
 public class Reflect extends Effect {
+    protected int duration;
+    protected Gloves parent;
 
-    /**
-     * A Reflect osztaly konstruktora
-     */
-    public Reflect() {
-        System.out.println("Reflect: letrejon egy Reflect effekt");
-        //Duration = 10;
-    }
 
     /**
      * A Reflect osztaly konstruktora
      *
      * @param duration ilyen hosszan tart az effekt
+     * @param parent   a kesztyu akitol szarmazik az effekt
      */
-    public Reflect(int duration) {
-        System.out.println("Reflect: letrejon egy Reflect effekt es beallitja az idejet");
-        //Duration = duration;
+    public Reflect(int duration, Gloves parent) {
+        this.duration = duration;
+        this.parent = parent;
     }
 
     /**
@@ -35,17 +32,25 @@ public class Reflect extends Effect {
      * @param duration hosszú ideig hat az effect
      */
     public void setDuration(int duration) {
-        //Duration = duration;
-        System.out.println("Reflect: beallitja a Durationt");
-    }
+        this.duration = duration;
+        }
 
     /**
      * Visszaadja a Duration-t
+     *
+     * @return az ido amig kifejti hatasat
      */
-    public double getDuration() {
-        //Duration = duration;
-        System.out.println("Reflect: visszaadja a Durationt");
+    public int getDuration() {
         return duration;
+    }
+
+    /**
+     * Visszaadja a kesztyut amibol szarmazik
+     *
+     * @return a kesztyu
+     */
+    public Gloves getParent() {
+        return parent;
     }
 
     /**
@@ -55,6 +60,9 @@ public class Reflect extends Effect {
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        System.out.println("Reflect: visszafordito efekt hatas kerul ra");
+        affectedCitizen.addEffect(this);
+        if(affectedCitizen.getReflectCount()>=3){
+            affectedCitizen.removeEquipment(this.getParent());
+        }
     }
 }
