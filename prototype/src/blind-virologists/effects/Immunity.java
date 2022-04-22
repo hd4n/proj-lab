@@ -2,59 +2,69 @@ package effects;
 
 import citizens.Citizen;
 
+// ki kell kommentezni, ha az osszes metodus keszen van
+
 /**
  * A vakcina altal megszerezheto immunitas hatasat reprezentalo osztaly.
  * Hatasa alatt a virologusra kent virusok hatastalanok.
  *
  * @author Eros Pal
- * @since 2022-03-26
+ * @since 2022-04-22
  */
 public class Immunity extends Effect {
 
     /**
-     * Az Immunity osztaly konstruktora
+     * Az Immunity osztaly konstruktora, 3 meretu durationnal.
      */
     public Immunity() {
-        System.out.println("Immunity: letrejon egy Immunity effekt");
-        //Duration = 10;
+        duration = 3;
     }
 
     /**
-     * A Immunity osztaly konstruktora
-     *
-     * @param duration ilyen hosszan tart az effekt
+     * Az Immunity osztaly konstruktora.
+     * @param dur ilyen hosszan tart az effekt.
      */
-    public Immunity(int duration) {
-        System.out.println("Immunity: letrejon egy Immunity effekt es beallitja az idejet");
-        //Duration = duration;
+    public Immunity(double dur) {
+        duration = dur;
     }
 
     /**
-     * Beallitja a Duration-t
-     *
-     * @param duration hosszú ideig hat az effect
+     * A Immunity osztaly konstruktora.
+     * @param citizen akire hat az effekt.
+     * @param dur ilyen hosszan tart az effekt.
      */
-    public void setDuration(int duration) {
-        //Duration = duration;
-        System.out.println("Immunity: beallitja a Durationt");
+    public Immunity(Citizen citizen, double dur) {
+        duration = dur;
+    //    citizen.addEffect(this);
+    }
+
+    /**
+     * Beallitja a Duration-t.
+     * @param dur hosszú ideig hat az effect.
+     */
+    public void setDuration(double dur) {
+        duration = dur;
     }
 
     /**
      * Visszaadja a Duration-t
      */
-    public void getDuration() {
-        //Duration = duration;
-        System.out.println("Immunity: visszadja a Durationt");
+    public double getDuration() {
+        return duration;
     }
 
     /**
      * A Citizen resistance tagvaltozojat 100-ra allitja.
-     *
      * @param affectedCitizen resistance tagvaltozojat allitja at.
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        System.out.println("Immunity: atallitja a resistance tagvaltozot 100-ra");
-        //affectedCitizen.setResistance(100);
+    /*    if (duration == 0){
+            if(affectedCitizen.getResistance() == 100) {
+                affectedCitizen.setResistance(0);
+            }
+        }else {
+            affectedCitizen.setResistance(100);
+        }*/
     }
 }

@@ -1,58 +1,47 @@
 package effects;
 
 import citizens.Citizen;
+import items.Code;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+// ki kell kommentezni, ha az osszes metodus keszen van
 
 /**
  * A felejto virus altal kifejtett hatas, a megfertozott virologus az altala osszegyujtött genetikai kodokat elfelejti.
  *
  * @author Eros Pal
- * @since 2022-03-26
+ * @since 2022-04-22
  */
 public class Forget extends Effect {
 
     /**
-     * A Forget osztaly konstruktora
+     * A Forget osztaly konstruktora.
      */
     public Forget() {
-        System.out.println("Forget: letrejon egy Forget effekt");
-        //Duration = 10;
+    duration = 3;
     }
 
     /**
-     * A Forget osztaly konstruktora
-     *
-     * @param duration ilyen hosszan tart az effekt
+     * A Forget osztaly konstruktora.
+     * @param citizen ra lesz hatassal az effect.
      */
-    public Forget(int duration) {
-        System.out.println("Forget: letrejon egy Forget effekt es beallitja az idejet");
-        //Duration = duration;
-    }
-
-    /**
-     * Beallitja a Duration-t
-     *
-     * @param duration hosszú ideig hat az effect
-     */
-    public void setDuration(int duration) {
-        //Duration = duration;
-        System.out.println("Forget: beallitja a Durationt");
-    }
-
-    /**
-     * Visszaadja a Duration-t
-     */
-    public void getDuration() {
-        //Duration = duration;
-        System.out.println("Forget: visszaadja a Durationt");
+    public Forget(Citizen citizen) {
+    //    citizen.addEffect(this);
+        duration = 1;
     }
 
     /**
      * Kitorli a virologus osszes ismert genetikai kodjat.
-     *
      * @param affectedCitizen felejti el a kodokat.
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        System.out.println("Forget: kitorli az ismert genetikai kodokat");
+    /*    Random random = new Random();
+        double randomNumber = random.nextDouble()*1000;
+        if( randomNumber > affectedCitizen.getResistance() *10) {
+            affectedCitizen.getCodes().remove();
+        }*/
     }
 }
