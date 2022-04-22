@@ -68,7 +68,7 @@ public abstract class Citizen implements Visitor {
      *
      * @return Field listat ad vissza
      */
-    public List<Field> getMoves() {
+    public ArrayList<Field> getMoves() {
         ArrayList<Field> neighbors = currentField.getNeighbors();
         ArrayList<Field> toReturn = new ArrayList<>();
         for (Field field : neighbors) {
