@@ -10,12 +10,25 @@ import effects.*;
  */
 public class Vaccine extends Agent {
     /**
-     * A fuggveny letrehozza egy immunity effect-et és visszaadja azt.
+     * Konstruktor. A fuggveny letrehoz egy vakcinat.
+     *
+     * @param effect a kivant effect
      */
+    public Vaccine(Effect effect) {
+        super(effect);
+    }
+
+    /**
+     * Konstruktor. A fuggveny letrehoz egy vakcinat.
+     */
+    public Vaccine() {
+    }
+
+    /**
+     * A fuggveny a megfelelo effect-et visszaadja.
+     */
+    @Override
     public Effect use() {
-        System.out.println("Vaccine: Letrehoz egy immunitas effectet.");
-        Immunity eImmunity = new Immunity();
-        System.out.println("Vaccine: Visszaadja ezt az effectet.");
-        return eImmunity;
+        return effect;
     }
 }
