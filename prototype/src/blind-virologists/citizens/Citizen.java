@@ -6,9 +6,7 @@ import map.Field;
 import map.Laboratory;
 import map.Shelter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * A varosban lako player altal iranyitott karakter absztarkt osztalya
@@ -17,85 +15,51 @@ import java.util.Scanner;
  * @since 2022-03-26
  */
 public abstract class Citizen implements Visitor {
+    protected boolean stunned = false;
+    protected ArrayList<Effect> effects = new ArrayList<>();
+    protected int resistance = 0;
+    protected Field direction;
+    protected Field currentField;
+    protected boolean reflect = false;
+    protected int maxMaterial = 10;
+
+    public Citizen() {
+    }
+
+    public Citizen(Field start) {
+        currentField = start;
+        direction = currentField;
+    }
+
     /**
      * Kivalasztott mezore lep
      */
     public void move() {
-        Field myField = new Empty();
-        System.out.println("Cel mezo tipusa?");
-        Scanner scanner = new Scanner(System.in);
-        String nextTile = scanner.next();
-        System.out.println("Citizen: Aktualis myField player atributumanak torlese.");
-        myField.setCitizen(null);
-        System.out.println("Citizen: A myField beallitasa az uj " + nextTile + " mezore.");
-        System.out.println("Citizen: Az uj myField player attributumanak atirasa.");
-        myField.setCitizen(this);
+        currentField.setCitizen(null);
+        currentField = direction;
+        currentField.setCitizen(this);
     }
 
     /**
      * Torli az osszes hatast, torli a lejart effecteket, majd beallitja az uj ertekeket
      */
     public void nextRound() {
-        List<Effect> effects = new ArrayList<>();
-        //altiv effektek a teszteleshez
-        //stun
-        System.out.println("Legyen aktiv stun effekt? (igen/nem)");
-        Scanner scanner = new Scanner(System.in);
-        String activeStun = scanner.next();
-        if (activeStun.toLowerCase().equals("igen")) {
-            effects.add(new Stun());
-        }
-        //dance
-        System.out.println("Legyen aktiv dance effekt? (igen/nem)");
-        String activeDance = scanner.next();
-        if (activeDance.toLowerCase().equals("igen")) {
-            effects.add(new Dance());
-        }
-        //forget
-        System.out.println("Legyen aktiv forget effekt? (igen/nem)");
-        String activeForget = scanner.next();
-        if (activeForget.toLowerCase().equals("igen")) {
-            effects.add(new Forget());
-        }
-        //immunuty
-        System.out.println("Legyen aktiv immunuty effekt? (igen/nem)");
-        String activeimmunuty = scanner.next();
-        if (activeimmunuty.toLowerCase().equals("igen")) {
-            effects.add(new Immunity());
-        }
+        stunned = false;
+        resistance = 0;
+        direction = currentField;
+        maxMaterial = 10;
 
-        //protection
-        System.out.println("Legyen aktiv protection effekt? (igen/nem)");
-        String protection = scanner.next();
-        if (protection.toLowerCase().equals("igen")) {
-            effects.add(new Protection());
-        }
-
-        //protection
-        System.out.println("Legyen aktiv reflect effekt? (igen/nem)");
-        String reflect = scanner.next();
-        if (reflect.toLowerCase().equals("igen")) {
-            effects.add(new Reflect());
-        }
-
-        //protection
-        System.out.println("Legyen aktiv increase-bag effekt? (igen/nem)");
-        String increaseBag = scanner.next();
-        if (increaseBag.toLowerCase().equals("igen")) {
-            effects.add(new IncreaseBag());
-        }
-
-        System.out.println("Citizen: Alapertelmezettre allitja az osszes tulajdonsagat.");
-        System.out.println("Citizen: Meghivja az osszes effektjen az update fuggvenyt.");
-
+        ArrayList<Effect> torolni = new ArrayList<>();
         for (Effect item : effects) {
-            boolean letelt = item.update();
-            if (letelt) {
-                System.out.println("Citizen: az adott effektet kiveszi a listajabol mert az letelt.");
+            boolean letlet = item.update();
+            if (letlet) {
+                torolni.add(item);
             } else {
-                System.out.println("Citizen: Meghivja az effekt applyEffect() fuggvenyet.");
                 item.applyEffect(this);
             }
+        }
+        for (Effect item : torolni) {
+            effects.remove(item);
         }
     }
 
@@ -105,30 +69,77 @@ public abstract class Citizen implements Visitor {
      * @return Field listat ad vissza
      */
     public List<Field> getMoves() {
-        Field myField = new Empty();
-        System.out.println("Citizen: Meghivja a myField GetNeighbors() fuggvenyt");
-        List<Field> neighbors = myField.getNeighbors();
-        neighbors = new ArrayList<>();
-        neighbors.add(new Laboratory());
-        Field shelter = new Shelter();
-        shelter.setCitizen(new Virologist());
-        neighbors.add(shelter);
-        System.out.println("Citizen: A szomszedos mezokbol kivalogatja azokat ahol nem all senki, (getCitizen()==null).");
-        for (int i = 0; i < neighbors.size(); i++) {
-            Citizen player = neighbors.get(i).getCitizen();
-            if (player == null) {
-                System.out.println("Citizen: Az adott mezo a jatekos szamara elerheto, visszaadja.");
-            } else {
-                System.out.println("Citizen: A adott mezo a jatekos szamara nem elerheto ezert nem adja vissza.");
-                neighbors.remove(neighbors.get(i));
+        ArrayList<Field> neighbors = currentField.getNeighbors();
+        ArrayList<Field> toReturn = new ArrayList<>();
+        for (Field field : neighbors) {
+            if (field.getCitizen() == null) {
+                toReturn.add(field);
             }
         }
+        return toReturn;
+    }
 
-        return neighbors;
+    /**
+     * @param effect kenni kivant effekt
+     */
+    public void addEffect(Effect effect) {
+        int szam = new Random().nextInt(100);   //random szam az immunitas veletlenszerusegehez
+        if (this.resistance > szam) {
+            //immunis
+        } else {
+            effects.add(effect);
+        }
+    }
+
+    public void interact(){
+        currentField.accept(this);
     }
 
     public void setCurrentField(Field field) {
-        System.out.println("Virologist: currentField beallitva");
+        currentField = field;
     }
 
+    public Field getCurrentField() {
+        return currentField;
+    }
+
+    public boolean isStunned() {
+        return stunned;
+    }
+
+    public void setStunned(boolean stunned) {
+        this.stunned = stunned;
+    }
+
+    public int getResistance() {
+        return resistance;
+    }
+
+    public void setResistance(int resistance) {
+        this.resistance = resistance;
+    }
+
+    public Field getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Field direction) {
+        this.direction = direction;
+    }
+
+    public boolean isReflect() {
+        return reflect;
+    }
+
+    public void setReflect(boolean reflect) {
+        this.reflect = reflect;
+    }
+
+    public int getMaxMaterial() {
+        return maxMaterial;
+    }
+
+    public void setMaxMaterial(int maxMaterial) {
+        this.maxMaterial = maxMaterial;
+    }
 }
