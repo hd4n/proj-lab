@@ -1,10 +1,10 @@
 package effects;
 
 import citizens.Citizen;
+import map.Field;
 
+import java.util.ArrayList;
 import java.util.Random;
-
-// ki kell kommentezni, ha az osszes metodus keszen van
 
 /**
  * A kontrollalhatatlan tancot okozo virus effektjet megvalosito osztaly.
@@ -25,7 +25,7 @@ public class Dance extends Effect {
      * Az osztaly konstruktora, letrehozza az adott peldanyt a parameter meretu durationnal.
      * @param dur ilyen hosszan tart az effekt.
      */
-    public Dance(double dur) {
+    public Dance(int dur) {
         duration = dur;
     }
 
@@ -34,26 +34,9 @@ public class Dance extends Effect {
      * @param citizen akire hat az effekt.
      * @param dur ilyen hosszan tart az effekt.
      */
-    public Dance(Citizen citizen, double dur) {
+    public Dance(Citizen citizen, int dur) {
         duration = dur;
-    //    citizen.addEffect(this);
-    }
-
-    /**
-     * Beallitja a Duration-t.
-     * @param dur hosszú ideig hat az effect.
-     */
-    @Override
-    public void setDuration(double dur) {
-        duration = dur;
-    }
-
-    /**
-     * Visszaadja a Duration-t.
-     */
-    @Override
-    public double getDuration() {
-        return duration;
+        citizen.addEffect(this);
     }
 
     /**
@@ -62,7 +45,7 @@ public class Dance extends Effect {
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-    /*    Random random = new Random();
+        Random random = new Random();
         double randomNumber = random.nextDouble()*1000;
         if( randomNumber > affectedCitizen.getResistance() *10) {
             ArrayList<Field> neighborsFreeFields = new ArrayList<>();
@@ -70,6 +53,6 @@ public class Dance extends Effect {
             Random rand = new Random();
             Field randomNeighborsField = neighborsFreeFields.get(rand.nextInt(neighborsFreeFields.size()));
             affectedCitizen.setDirection(randomNeighborsField);
-        }*/
+        }
     }
 }

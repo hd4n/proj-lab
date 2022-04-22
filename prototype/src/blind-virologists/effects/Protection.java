@@ -23,7 +23,7 @@ public class Protection extends Effect {
      * A Protection osztaly konstruktora.
      * @param dur ilyen hosszan tart az effekt.
      */
-    public Protection(double dur) {
+    public Protection(int dur) {
         duration = dur;
     }
 
@@ -32,26 +32,9 @@ public class Protection extends Effect {
      * @param citizen akire hat az effekt.
      * @param dur ilyen hosszan tart az effekt.
      */
-    public Protection(Citizen citizen, double dur) {
+    public Protection(Citizen citizen, int dur) {
         duration = dur;
-        //citizen.addEffect(this);
-    }
-
-    /**
-     * Beallitja a Duration-t.
-     * @param dur hosszú ideig hat az effect.
-     */
-    @Override
-    public void setDuration(double dur) {
-        duration = dur;
-    }
-
-    /**
-     * Visszaadja a Duration-t.
-     */
-    @Override
-    public double getDuration() {
-        return duration;
+        citizen.addEffect(this);
     }
 
     /**
@@ -60,12 +43,12 @@ public class Protection extends Effect {
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-    /*    if (duration == 0){
+        if (duration == 0){
             if(affectedCitizen.getResistance() == 82.3) {
                 affectedCitizen.setResistance(0);
             }
         }else {
             affectedCitizen.setResistance(82.3);
-        }*/
+        }
     }
 }

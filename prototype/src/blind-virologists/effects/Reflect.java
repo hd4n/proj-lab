@@ -1,6 +1,7 @@
 package effects;
 
 import citizens.Citizen;
+import citizens.Virologist;
 import items.Gloves;
 
 /**
@@ -27,24 +28,6 @@ public class Reflect extends Effect {
     }
 
     /**
-     * Beallitja a Duration-t
-     *
-     * @param duration hosszú ideig hat az effect
-     */
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    /**
-     * Visszaadja a Duration-t
-     *
-     * @return az ido amig kifejti hatasat
-     */
-    public int getDuration() {
-        return duration;
-    }
-
-    /**
      * Visszaadja a kesztyut amibol szarmazik
      *
      * @return a kesztyu
@@ -62,7 +45,8 @@ public class Reflect extends Effect {
     public void applyEffect(Citizen affectedCitizen) {
         affectedCitizen.addEffect(this);
         if (affectedCitizen.getReflectCount() >= 3) {
-            affectedCitizen.removeEquipment(this.getParent());
+            ((Virologist)affectedCitizen).removeEquipment(this.getParent());
+            affectedCitizen.setReflectCount(0);
         }
     }
 }

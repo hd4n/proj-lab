@@ -27,30 +27,12 @@ public class IncreaseBag extends Effect {
     }
 
     /**
-     * Beallitja a Duration-t
-     *
-     * @param duration hosszú ideig hat az effect
-     */
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    /**
-     * Visszaadja a duration-t
-     *
-     * @return az adott effekt idotartama
-     */
-    public int getDuration() {
-        return duration;
-    }
-
-    /**
      * A maximum felveheto anyagok szamat noveli.
      *
      * @param affectedCitizen maximalis anyagmennyiseget noveli.
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        affectedCitizen.setMaxMaterial(getMaxMaterial() + 10);
+        affectedCitizen.setMaxMaterial(affectedCitizen.getMaxMaterial() + 10);
     }
 }

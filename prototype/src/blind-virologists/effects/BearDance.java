@@ -2,9 +2,8 @@ package effects;
 
 import citizens.Citizen;
 import map.Field;
-import java.util.*;
 
-// ki kell kommentezni, ha az osszes metodus keszen van
+import java.util.*;
 
 /**
  * A medvetancot megvalosito osztaly.
@@ -17,19 +16,21 @@ public class BearDance extends Effect {
 
     /**
      * Az osztaly konstruktora, letrehozza az adott peldanyt.
+     *
      * @param dur hosszu durationnal.
      */
-    public BearDance(double dur) {
+    public BearDance(int dur) {
         duration = dur;
     }
 
     /**
      * Az osztaly konstruktora, letrehozza az adott peldanyt.
+     *
      * @param citizen aktiv effektjeihez adja hozzá.
      */
     public BearDance(Citizen citizen) {
-    //    citizen.addEffect(this);
-          duration = 1;
+        citizen.addEffect(this);
+        duration = 1;
     }
 
     /**
@@ -37,11 +38,12 @@ public class BearDance extends Effect {
      * Lekerdezi az eppen aktualis mezot, majd annak a szomszedjait. Ha a szomszéd mezokon áll virologus,
      * akkor azokat megfertozi. A szomszedos mezok kozul random kivalaszt egyet es azt allitja be celmezonek,
      * a jatekos valasztasatol fuggetlenul.
+     *
      * @param affectedCitizen Ennek a tulajdonsagait modositja.
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-    /*    Random random = new Random();
+        Random random = new Random();
         double randomNumber = random.nextDouble()*1000;
         if( randomNumber > affectedCitizen.getResistance() *10) {
             ArrayList<Field> neighborsFreeFields = new ArrayList<>();
@@ -51,7 +53,7 @@ public class BearDance extends Effect {
             affectedCitizen.setDirection(randomNeighborsField);
 
             ArrayList<Field> neighboursFields = new ArrayList<>();
-            neighboursFields = affectedCitizen.getNeighborsField();
+            neighboursFields = affectedCitizen.getCurrentField().getNeighbors();
             ArrayList<Citizen> neighborsCitizen = new ArrayList<>();
             for (Field neighboursField : neighboursFields) {
                 if (neighboursField != null) {
@@ -62,6 +64,6 @@ public class BearDance extends Effect {
                 new BearDance(citizen);
             }
             duration++;
-        }*/
+        }
     }
 }
