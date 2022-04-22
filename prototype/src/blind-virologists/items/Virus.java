@@ -14,10 +14,12 @@ public class Virus extends Agent {
     /**
      * Konstruktor. A fuggveny letrehoz egy vakcinat.
      */
-    public Virus(){
+    public Virus() {
     }
+
     /**
      * Konstruktor. A fuggveny letrehoz egy virust.
+     *
      * @param effect a kivant effect
      */
     public Virus(Effect effect) {

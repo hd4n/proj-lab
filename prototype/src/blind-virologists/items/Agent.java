@@ -11,10 +11,11 @@ import effects.*;
 public abstract class Agent {
     Effect effect;
 
-    public Agent(){}
+    public Agent() {
+    }
 
-    public Agent(Effect effect){
-        this.effect=effect;
+    public Agent(Effect effect) {
+        this.effect = effect;
     }
 
     /**

@@ -52,11 +52,11 @@ public class City {
         return codes;
     }
 
-    public void addPlayer(Citizen e){
+    public void addPlayer(Citizen e) {
         players.add(e);
     }
 
-    public void addField(Field f){
+    public void addField(Field f) {
         fields.add(f);
     }
 
@@ -75,11 +75,11 @@ public class City {
         int fieldCount;
         fieldCount = sc2.nextInt();
 
-        for(int i=0; i<playerCount-1; i++) {
+        for (int i = 0; i < playerCount - 1; i++) {
             players.add(new Virologist());
         }
 
-        for(int i=0; i<fieldCount-1; i++) {
+        for (int i = 0; i < fieldCount - 1; i++) {
             fields.add(new Empty());
         }
 
@@ -109,18 +109,18 @@ public class City {
 
         InfectedLaboratory il1 = new InfectedLaboratory();
         fields.add(il1);
-        il1.setCode(new Code(new Virus(), 3,2));
+        il1.setCode(new Code(new Virus(), 3, 2));
 
         InfectedLaboratory il2 = new InfectedLaboratory();
         fields.add(il2);
-        il2.setCode(new Code(new Virus(), 3,2));
+        il2.setCode(new Code(new Virus(), 3, 2));
 
 
         Random random = new Random();
-        for(int i=0; i<playerCount-1; i++){
+        for (int i = 0; i < playerCount - 1; i++) {
             boolean found = false;
-            while(!found) {
-                Field temp = fields.get(random.nextInt(fieldCount-1));
+            while (!found) {
+                Field temp = fields.get(random.nextInt(fieldCount - 1));
                 if (temp.getCitizen() == null) {
                     players.get(i).setCurrentField(temp);
                     players.get(i).getCurrentField().setCitizen(players.get(i));
@@ -131,17 +131,17 @@ public class City {
 
 
         Random random2 = new Random();
-        for(int i =0; i<fieldCount-1; i++){
-            int temp= random2.nextInt(6-3+1)+3;
-            for(int x=0; x<temp-1; x++){
-            boolean foundN = false;
-            while (!foundN){
-                Field temp2 = fields.get(random.nextInt(fieldCount-1));
-                if (fields.get(i).getNeighbors().contains(temp2) != true){
-                    fields.get(i).addNeighbor(temp2);
-                    foundN = true;
+        for (int i = 0; i < fieldCount - 1; i++) {
+            int temp = random2.nextInt(6 - 3 + 1) + 3;
+            for (int x = 0; x < temp - 1; x++) {
+                boolean foundN = false;
+                while (!foundN) {
+                    Field temp2 = fields.get(random.nextInt(fieldCount - 1));
+                    if (fields.get(i).getNeighbors().contains(temp2) != true) {
+                        fields.get(i).addNeighbor(temp2);
+                        foundN = true;
+                    }
                 }
-            }
             }
         }
     }
@@ -167,7 +167,7 @@ public class City {
     public void nextRound() {
         for (Citizen v : players) {
             v.nextRound();
-            if (v.getCodes().size() == codeNumber){
+            if (v.getCodes().size() == codeNumber) {
                 endGame();
             }
         }

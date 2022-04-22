@@ -33,7 +33,7 @@ public class Reflect extends Effect {
      */
     public void setDuration(int duration) {
         this.duration = duration;
-        }
+    }
 
     /**
      * Visszaadja a Duration-t
@@ -61,7 +61,7 @@ public class Reflect extends Effect {
     @Override
     public void applyEffect(Citizen affectedCitizen) {
         affectedCitizen.addEffect(this);
-        if(affectedCitizen.getReflectCount()>=3){
+        if (affectedCitizen.getReflectCount() >= 3) {
             affectedCitizen.removeEquipment(this.getParent());
         }
     }

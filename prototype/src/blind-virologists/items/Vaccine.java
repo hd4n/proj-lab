@@ -11,6 +11,7 @@ import effects.*;
 public class Vaccine extends Agent {
     /**
      * Konstruktor. A fuggveny letrehoz egy vakcinat.
+     *
      * @param effect a kivant effect
      */
     public Vaccine(Effect effect) {
