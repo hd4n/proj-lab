@@ -31,7 +31,9 @@ public class Virologist extends Citizen {
     @Override
     public void visit(Laboratory lab) {
         Code code = lab.readCode();
-        codes.add(code);
+        if (!codes.contains(code)){
+            codes.add(code);
+        }
     }
 
     /**
