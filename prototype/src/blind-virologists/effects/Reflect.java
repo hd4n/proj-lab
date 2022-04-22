@@ -42,9 +42,10 @@ public class Reflect extends Effect {
     /**
      * Visszaadja a Duration-t
      */
-    public void getDuration() {
+    public double getDuration() {
         //Duration = duration;
         System.out.println("Reflect: visszaadja a Durationt");
+        return duration;
     }
 
     /**

@@ -7,41 +7,37 @@ import citizens.Citizen;
  * Az adott korben megkapott effekt a kovetkezo korben fejti ki a hatasat.
  *
  * @author Eros Pal
- * @since 2022-03-26
+ * @since 2022-04-22
  */
 public abstract class Effect {
+    protected double duration;
 
     /**
      * Minden korben meghivodik, eggyel csokkenti a Duration tagvaltozot.
-     *
      * @return Ha letelik a hatásido, igazat ad vissza.
      */
     public boolean update() {
-        System.out.println("Effect: egyel csokkenti a Duration tagvaltozot");
-        return false;
+        duration--;
+        return duration == 0;
     }
 
     /**
-     * Beallitja a Duration-t
-     *
-     * @param duration hosszú ideig hat az effect
+     * Beallitja a Duration-t.
+     * @param duration hosszu ideig hat az effect.
      */
-    public void setDuration(int duration) {
-        //Duration = duration;
-        System.out.println("Update: beallitja a Durationt");
+    public void setDuration(double duration) {
+        this.duration = duration;
     }
 
     /**
      * Visszaadja a Duration-t
      */
-    public void getDuration() {
-        //Duration = duration;
-        System.out.println("Update: visszaadja a Durationt");
+    public double getDuration() {
+        return duration;
     }
 
     /**
      * A parameterkent kapott Citizen tulajdonsagait modositja, mindig a korok vegen hivodnak meg.
-     *
      * @param affectedCitizen Ennek a tulajdonsagait modositja.
      */
     public abstract void applyEffect(Citizen affectedCitizen);

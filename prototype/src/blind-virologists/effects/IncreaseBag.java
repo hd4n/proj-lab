@@ -41,9 +41,10 @@ public class IncreaseBag extends Effect {
     /**
      * Visszaadja a Duration-t
      */
-    public void getDuration() {
+    public double getDuration() {
         //Duration = duration;
         System.out.println("IncreaseBag: visszaadja a Durationt");
+        return duration;
     }
 
     /**
