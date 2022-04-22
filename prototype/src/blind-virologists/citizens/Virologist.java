@@ -297,6 +297,10 @@ public class Virologist extends Citizen {
     public void setNeededNucleo(int neededNucleo) {
         this.neededNucleo = neededNucleo;
     }
+
+    public ArrayList<Code> getCodes() {
+        return codes;
+    }
 }
 
 
