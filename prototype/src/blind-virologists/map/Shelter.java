@@ -1,19 +1,37 @@
 package map;
 
-import citizens.Virologist;
 import citizens.Visitor;
-import items.Cape;
 import items.Equipment;
-
-import java.util.Scanner;
 
 /**
  * Az ovohelyet megvalosito osztaly
  *
  * @author Hajos Daniel
- * @since 2022-03-26
+ * @since 2022-04-21
  */
 public class Shelter extends Field {
+
+    /**
+     * Az ovohelyen talalhato felszereles
+     */
+    private Equipment equipment;
+
+    /**
+     * Parameteres konstruktor
+     *
+     * @param e az eltarolando felszereles
+     */
+    public Shelter(Equipment e) {
+        equipment = e;
+    }
+
+    /**
+     * Parameter nelkuli konstruktor
+     */
+    public Shelter() {
+        equipment=null;
+    }
+
     /**
      * Elfogadja a Visitort
      *
@@ -25,19 +43,14 @@ public class Shelter extends Field {
     }
 
     /**
-     * A mezon allo virologushoz hozzaadja az ittlevo equipmentet
+     * Eltavolitja es visszaadja a mezon levo equipmentet
+     *
+     * @return a mezon levo equipment
      */
     public Equipment pickUpEquipment() {
-        System.out.println("Shelter: Equipment felvetele");
-        System.out.println("Shelter: Van Equipment a shelterben? (igen/nem)");
-        Scanner sc = new Scanner(System.in);
-        String res = sc.next();
-        if (res.equalsIgnoreCase("igen")) {
-            System.out.println("Shelter: Equipment eltavolitva");
-            return new Cape();
-        } else {
-            return null;
-        }
+        Equipment tmp = equipment;
+        equipment = null;
+        return tmp;
     }
 
     /**
@@ -46,6 +59,15 @@ public class Shelter extends Field {
      * @param e a beallitando Equipment
      */
     public void setEquipment(Equipment e) {
-        System.out.println("Shelter: Equipment eltarolva");
+        equipment = e;
+    }
+
+    /**
+     * Getter az equipmenthez
+     *
+     * @return a mezon levo equipment
+     */
+    public Equipment getEquipment() {
+        return equipment;
     }
 }
