@@ -5,7 +5,6 @@ import items.*;
 import map.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Egy Citizen leszarmazott,
@@ -22,6 +21,20 @@ public class Virologist extends Citizen {
     private ArrayList<Agent> agents = new ArrayList<>();
     private int neededAmino = -1;
     private int neededNucleo = -1;
+
+
+    public Virologist() {
+
+    }
+
+    /**
+     * A Virologist konstruktora
+     *
+     * @param start kezdomezo
+     */
+    public Virologist(Field start) {
+        super(start);
+    }
 
     /**
      * Visitor pattern resze, ha a myField laboratory
@@ -76,18 +89,7 @@ public class Virologist extends Citizen {
         }
     }
 
-    public Virologist() {
 
-    }
-
-    /**
-     * A Virologist konstruktora
-     *
-     * @param start kezdomezo
-     */
-    public Virologist(Field start) {
-        super(start);
-    }
 
     /**
      * A jatekos altal vezerlet bemenet hivja meg
@@ -305,34 +307,103 @@ public class Virologist extends Citizen {
     @Override
     public String toString() {
         StringBuilder ki= new StringBuilder();
-        for (Code item:codes) {
-            ki.append("\n\t").append(item);
+        //codes
+        if (codes.size() > 0){
+            for (Code item:codes) {
+                ki.append(item.getID() + "+");
+                ki.deleteCharAt(ki.length() - 1);
+            }
         }
-        for (Material item:materials) {
-            ki.append("\n\t").append(item);
+        else{
+            ki.append("\n\tco_null");
         }
-        for (Agent item:agents) {
-            ki.append("\n\t").append(item);
+        //material
+        if (materials.size() > 0){
+            ki.append("\n\tma_");
+            for (Material item:materials) {
+                ki.append(item.getID() + "+");
+                ki.deleteCharAt(ki.length() - 1);
+            }
         }
-        for (Equipment item:equipments) {
-            ki.append("\n\t").append(item);
+        else{
+            ki.append("\n\tma_null");
         }
-        for (Equipment item:activeEquipments) {
-            ki.append("\n\t").append(item);
+        //agents
+        if (agents.size() > 0){
+            ki.append("\n\tag_");
+            for (Agent item:agents) {
+                ki.append(item.getID() + "+");
+                ki.deleteCharAt(ki.length() - 1);
+            }
         }
+        else{
+            ki.append("\n\tag_null");
+        }
+        //equipments
+        if (equipments.size() > 0){
+            ki.append("\n\teq_");
+            for (Equipment item:equipments) {
+                ki.append(item.getID() + "+");
+                ki.deleteCharAt(ki.length() - 1);
+            }
+        }
+        else{
+            ki.append("\n\teq_null");
+        }
+        //active equipments
+        if (activeEquipments.size() > 0){
+            ki.append("\n\teqa_");
+            for (Equipment item:activeEquipments) {
+                ki.append(item.getID() + "+");
+                ki.deleteCharAt(ki.length() - 1);
+            }
+        }
+        else{
+            ki.append("\n\teqa_null");
+        }
+        //effects
+        if (effects.size() > 0){
+            ki.append("\n\tef_");
+            for (Effect item:effects) {
+                ki.append(item.getID() + "+");
+                ki.deleteCharAt(ki.length() - 1);
+            }
+        }
+        else{
+            ki.append("\n\tef_null");
+        }
+
         return "Virologist:" +
-                "\n\tstunned=" + stunned +
-                "\n\teffects=" + effects +
-                "\n\tresistance=" + resistance +
-                "\n\tdirection=" + direction +
-                "\n\tcurrentField=" + currentField +
-                "\n\treflect=" + reflect +
-                "\n\tmaxMaterial=" + maxMaterial +
-                "\n\treflectCount=" + reflectCount +
-                "\n\tneededAmino=" + neededAmino +
-                "\n\tneededNucleo=" + neededNucleo +
+                "\n\tfi_" + currentField +
+                "\n\tdi_" + direction +
+                "\n\tst_" + stunned +
+                "\n\tres_" + resistance +
+                "\n\tre_" + reflect +
+                "\n\tma_" + maxMaterial +
+                "\n\tref_" + reflectCount +
+                "\n\tneededAmino_" + neededAmino +
+                "\n\tneededNucleo_" + neededNucleo +
                 ki;
     }
+
+    /**
+     * for tests
+     * @param id - test id
+     */
+    public Virologist(String id) {
+        this.ID = id;
+    }
+
+    /**
+     * for tests
+     * @param start
+     * @param id - test id
+     */
+    public Virologist(Field start,String id) {
+        super(start);
+        this.ID = id;
+    }
+
 }
 
 

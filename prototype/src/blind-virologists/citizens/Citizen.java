@@ -1,10 +1,7 @@
 package citizens;
 
 import effects.*;
-import map.Empty;
 import map.Field;
-import map.Laboratory;
-import map.Shelter;
 
 import java.util.*;
 
@@ -23,6 +20,7 @@ public abstract class Citizen implements Visitor {
     protected boolean reflect = false;
     protected int maxMaterial = 10;
     protected int reflectCount = 0;
+    protected String ID;
 
     public Citizen() {
     }
@@ -155,5 +153,13 @@ public abstract class Citizen implements Visitor {
 
     public void setReflectCount(int reflectCount) {
         this.reflectCount = reflectCount;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }
