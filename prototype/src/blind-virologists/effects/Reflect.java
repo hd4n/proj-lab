@@ -12,7 +12,6 @@ import items.Gloves;
  * @since 2022-04-23
  */
 public class Reflect extends Effect {
-    protected int duration;
     protected Gloves parent;
 
 
