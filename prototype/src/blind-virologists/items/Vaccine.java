@@ -31,4 +31,14 @@ public class Vaccine extends Agent {
     public Effect use() {
         return effect;
     }
+
+    /**
+     * A fuggveny segitsegevel tortenik az objektum azonositasa a tesztesetekhez
+     *
+     * @return out az objektum azonositoja
+     */
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

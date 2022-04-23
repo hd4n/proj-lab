@@ -8,11 +8,10 @@ import items.Gloves;
  * A taszito effektet valositja meg. Ez a hatas a kesztyu kovetkezteben lephet ervenybe.
  * A virologusra felkent agenst forditja vissza.
  *
- * @author Eros Pal
- * @since 2022-03-26
+ * @author Kovacs Aron
+ * @since 2022-04-23
  */
 public class Reflect extends Effect {
-    protected int duration;
     protected Gloves parent;
 
 
@@ -25,6 +24,27 @@ public class Reflect extends Effect {
     public Reflect(int duration, Gloves parent) {
         this.duration = duration;
         this.parent = parent;
+    }
+
+    /**
+     * A Reflect osztaly konstruktora
+     *
+     * @param duration ilyen hosszan tart az effekt
+     * @param parent   a kesztyu akitol szarmazik az effekt
+     * @param ID aznosito
+     */
+    public Reflect(int duration, Gloves parent, String ID) {
+        this.duration = duration;
+        this.parent = parent;
+        this.ID = ID;
+    }
+
+    /**
+     * A Reflect osztaly konstruktora
+     * @param ID aznosito
+     */
+    public Reflect (String ID){
+        this.ID = ID;
     }
 
     /**
@@ -48,5 +68,22 @@ public class Reflect extends Effect {
             ((Virologist)affectedCitizen).removeEquipment(this.getParent());
             affectedCitizen.setReflectCount(0);
         }
+    }
+
+    /**
+     * A fuggveny segitsegevel tortenik az objektum azonositasa a tesztesetekhez
+     *
+     * @return out az objektum azonositoja
+     */
+    @Override
+    public String toString() {
+        String out = super.toString();
+        out +="\n\tpa_";
+        if(parent == null){
+            out+="null";
+        }else{
+            out+=parent.getID();
+        }
+        return out;
     }
 }
