@@ -30,24 +30,25 @@ public class Main {
 
     private ArrayList<Effect> effects = new ArrayList<>();
 
-    private static final String wdPath=System.getProperty("user.dir");
+    private static final String wdPath=new File(System.getProperty("user.dir")).getParent()/*+"\\proj-lab\\prototype"*/;
 
     public static void main(String[] args) {
         System.out.println("Vilagtalan virologusok vilaga - Proto");
         System.out.println("Csapat: alma");
         System.out.println("-------------------------------");
-        //todo path fix
-        Scanner sc;
+        Scanner sc=null;
         PrintStream ps = null;
         var stdout = System.out;
         Main main = new Main();
 
+        //System.out.println(wdPath);
+
         if (args.length == 3 && args[0].equals("-t")) {
+            System.out.println("-------------------------------");
             System.out.println("Teszt futtatasa: " + args[1]);
             System.out.println("-------------------------------");
 
-            File testFile = new File(wdPath+"/prototype/tests/input/" + args[1]);
-            System.out.println(testFile.getAbsolutePath());
+            File testFile = new File(wdPath + "/tests/input/" + args[1]);
             try {
                 sc = new Scanner(testFile);
             } catch (FileNotFoundException e) {
@@ -56,7 +57,7 @@ public class Main {
             }
 
             //stdout fileba
-            File outFile = new File(wdPath+"/prototype/tests/output/" + args[1]);
+            File outFile = new File(wdPath + "/tests/output/" + args[1]);
             try {
                 outFile.createNewFile();
             } catch (IOException e) {
@@ -68,6 +69,8 @@ public class Main {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
+        }else if(args.length==1&&args[0].equals("-a")){
+            //todo run all
         } else {
             sc = new Scanner(System.in);
             sc.useDelimiter(System.getProperty("line.separator"));
@@ -136,7 +139,7 @@ public class Main {
 
     //load file.conf
     private void loadFile(String[] commandArgs) {
-        File input = new File(wdPath+"/prototype/tests/config/" + commandArgs[1]);
+        File input = new File(wdPath+"/tests/config/" + commandArgs[1]);
         Scanner sc;
         try {
             sc = new Scanner(input);
@@ -145,7 +148,7 @@ public class Main {
             return;
         }
 
-        String section = "@item";
+        String section = "@items";
         while (sc.hasNextLine()) {
             String line = sc.nextLine();
             String[] args = line.split(" ");
@@ -389,7 +392,7 @@ public class Main {
         System.out.println("unequip: " + commandArgs[1] + " " + commandArgs[2]);
     }
 
-    //steal virologus_id target_id materials/equipment
+    //steal virologus_id target_id materials/equipments
     private void steal(String[] commandArgs) {
         Virologist virologist = (Virologist) getByID(commandArgs[1]);
         Virologist target = (Virologist) getByID(commandArgs[2]);
@@ -462,8 +465,8 @@ public class Main {
     }
 
     private static boolean compareResults(String f1, String f2) {
-        File act = new File(wdPath+"/prototype/tests/output/" + f1);
-        File exp = new File(wdPath+"/prototype/tests/expected/" + f2);
+        File act = new File(wdPath+"/tests/output/" + f1);
+        File exp = new File(wdPath+"/tests/expected/" + f2);
 
         Scanner aSc = null, eSc = null;
 
