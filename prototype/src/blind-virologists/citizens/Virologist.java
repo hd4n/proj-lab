@@ -309,6 +309,7 @@ public class Virologist extends Citizen {
         StringBuilder ki= new StringBuilder();
         //codes
         if (codes.size() > 0){
+            ki.append("\n\tco_");
             for (Code item:codes) {
                 ki.append(item.getID() + "+");
                 ki.deleteCharAt(ki.length() - 1);
@@ -374,8 +375,8 @@ public class Virologist extends Citizen {
         }
 
         return "Virologist:" +
-                "\n\tfi_" + currentField +
-                "\n\tdi_" + direction +
+                "\n\tfi_" + currentField.getID() +
+                "\n\tdi_" + direction.getID() +
                 "\n\tst_" + stunned +
                 "\n\tres_" + resistance +
                 "\n\tre_" + reflect +
