@@ -24,7 +24,7 @@ public class IncreaseBag extends Effect {
      * Az IncreaseBag osztaly konstruktora
      */
     public IncreaseBag(String ID) {
-        this.duration = 0;
+        this.duration = -1;
         this.setID(ID);
     }
 
@@ -46,6 +46,9 @@ public class IncreaseBag extends Effect {
      */
     public IncreaseBag(int duration) {
         this.duration = duration;
+        eID++;
+        int i = eID;
+        setID("ib" + i);
     }
 
     /**
