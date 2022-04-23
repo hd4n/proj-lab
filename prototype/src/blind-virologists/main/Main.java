@@ -279,23 +279,29 @@ public class Main {
         fields.get(args[1]).setCitizen(v);
 
         if (args.length == 3) {
-            String[] eq = args[2].split(";");
-            for (int i = 0; i < eq.length; ++i) {
-                virologists.get(args[0]).addEquipment(equipments.get(eq[i]));
+            if (!args[2].equals("null")) {
+                String[] eq = args[2].split(";");
+                for (int i = 0; i < eq.length; ++i) {
+                    virologists.get(args[0]).addEquipment(equipments.get(eq[i]));
+                }
             }
         }
 
-        if (args.length == 4) {
-            String[] ma = args[3].split(";");
-            for (int i = 0; i < ma.length; ++i) {
-                virologists.get(args[0]).addMaterial(materials.get(ma[i]));
+        if (args.length >= 4) {
+            if (!args[3].equals("null")) {
+                String[] ma = args[3].split(";");
+                for (int i = 0; i < ma.length; ++i) {
+                    virologists.get(args[0]).addMaterial(materials.get(ma[i]));
+                }
             }
         }
 
-        if (args.length == 5) {
-            String[] ef = args[4].split(";");
-            for (int i = 0; i < ef.length; ++i) {
-                virologists.get(args[0]).addEffect(effects.get(ef[i]));
+        if (args.length >= 5) {
+            if (!args[4].equals("null")) {
+                String[] ef = args[4].split(";");
+                for (int i = 0; i < ef.length; ++i) {
+                    virologists.get(args[0]).addEffect(effects.get(ef[i]));
+                }
             }
         }
     }
@@ -322,7 +328,8 @@ public class Main {
         } else {
             Object o = getByKey(commandArgs[1]);
             if (o != null) {
-                System.out.println(o);
+                String out = "stats: " + commandArgs[1] + " hash: " + o.hashCode() + "\n" + o.toString();
+                System.out.println(out);
             }
         }
     }
