@@ -286,7 +286,7 @@ public class Main {
 
         ((Field) getByID(args[1])).setCitizen(v);
 
-        if (args.length == 3) {
+        if (args.length >= 3) {
             if (!args[2].equals("null")) {
                 String[] eq = args[2].split(";");
                 for (int i = 0; i < eq.length; ++i) {
