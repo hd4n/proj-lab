@@ -16,7 +16,15 @@ public class Gloves extends Equipment {
     public Gloves(){
         e = new Reflect(10, this);
     }
+    public Gloves(String _ID){
+        e = new Reflect(10, this);
+        setID(_ID);
+    }
     public Effect use(Citizen target) {
         return e;
+    }
+    @Override
+    public String toString(){
+        return super.toString();
     }
 }

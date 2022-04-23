@@ -16,7 +16,11 @@ public class Nucleotide extends Material {
     /**
      * Megnezi, hogy van-e elegendo anyag valamilyen agens elkeszitesehez
      */
-    @Override
+
+    public Nucleotide(){}
+    public Nucleotide(String _ID){
+        setID(_ID);
+    }
     public void prepareForCraft(Virologist v) {
         int needed = v.getNeededNucleo();
         while(needed > 0){

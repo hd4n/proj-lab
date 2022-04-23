@@ -15,13 +15,17 @@ public class Aminoacid extends Material {
     /**
      * Megnezi, hogy van-e elegendo anyag valamilyen agens elkeszitesehez
      */
-    @Override
+
+
+    public Aminoacid(){}
+    public Aminoacid(String _ID){
+        setID(_ID);
+    }
     public void prepareForCraft(Virologist v) {
         int needed = v.getNeededAmino();
         while(needed > 0){
             v.setNeededAmino(needed-1);
             needed--;
         }
-
     }
 }

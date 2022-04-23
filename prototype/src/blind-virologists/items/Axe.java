@@ -24,6 +24,10 @@ public class Axe extends Equipment{
     public Axe(){
         e = null;
     }
+    public Axe(String _ID){
+        e = null;
+        setID(_ID);
+    }
     public boolean getUsed(){
         return used;
     }
@@ -32,5 +36,9 @@ public class Axe extends Equipment{
 
         used = true;
         return null;
+    }
+    @Override
+    public String toString(){
+        return super.toString();
     }
 }

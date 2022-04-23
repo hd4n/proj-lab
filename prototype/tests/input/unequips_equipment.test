@@ -1,0 +1,3 @@
+load unequips_equipment.conf
+unequip v1 c1
+getstats v1
