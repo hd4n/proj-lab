@@ -1,0 +1,5 @@
+load step_on_empty.conf
+step v1 e2
+nextround
+getstats v1
+getstats e2

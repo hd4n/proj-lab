@@ -1,0 +1,5 @@
+load step_on_warehouse.conf
+step v1 w1
+nextround
+getstats v1
+getstats w1
