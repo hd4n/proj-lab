@@ -34,6 +34,7 @@ public abstract class Citizen implements Visitor {
      * Kivalasztott mezore lep
      */
     public void move() {
+        if (direction == null) return;
         currentField.setCitizen(null);
         currentField = direction;
         currentField.setCitizen(this);
