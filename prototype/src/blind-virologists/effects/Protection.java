@@ -17,6 +17,9 @@ public class Protection extends Effect {
      */
     public Protection() {
         duration = 3;
+        eID++;
+        int i = eID;
+        setID("p" + i);
     }
 
     /**

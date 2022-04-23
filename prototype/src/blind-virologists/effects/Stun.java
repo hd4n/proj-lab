@@ -17,6 +17,9 @@ public class Stun extends Effect {
      */
     public Stun() {
         duration = 3;
+        eID++;
+        int i = eID;
+        setID("s" + i);
     }
 
     /**

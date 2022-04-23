@@ -16,6 +16,9 @@ public class Immunity extends Effect {
      */
     public Immunity() {
         duration = 3;
+        eID++;
+        int i = eID;
+        setID("i" + i);
     }
 
     /**

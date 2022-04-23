@@ -18,6 +18,9 @@ public class Forget extends Effect {
      */
     public Forget() {
         duration = 1;
+        eID++;
+        int i = eID;
+        setID("f" + i);
     }
 
     /**
