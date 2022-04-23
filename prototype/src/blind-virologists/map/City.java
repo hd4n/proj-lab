@@ -197,8 +197,10 @@ public class City {
     /**
      * Kiirja a tesztesetekhez szukseges informaciokat az adott objektumrol
      */
+    /*
     public String toString(){
     }
+    */
 
     /**
      * Elinditja a jatekot

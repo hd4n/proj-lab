@@ -26,6 +26,12 @@ public class Code {
         this.aminoCost = aminoCost;
     }
 
+    public Code(){
+        this.agent = null;
+        this.nucleoCost = 0;
+        this.aminoCost = 0;
+    }
+
     /**
      * Getter. A fuggveny visszaadja a magaban eltarolt agens egy masolatát.
      */
@@ -50,8 +56,10 @@ public class Code {
     /**
      * Kiirja a tesztesetekhez szukseges informaciokat az adott objektumrol
      */
+    /*
     public String toString(){
         //return
     }
+    */
 
 }

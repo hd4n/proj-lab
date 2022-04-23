@@ -50,7 +50,9 @@ public abstract class Agent {
     /**
      * Kiirja a tesztesetekhez szukseges informaciokat az adott objektumrol
      */
+    /*
     public String toString(){
 
     }
+    */
 }
