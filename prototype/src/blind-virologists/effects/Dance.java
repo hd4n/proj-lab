@@ -22,6 +22,15 @@ public class Dance extends Effect {
     }
 
     /**
+     * Az osztaly konstruktora, letrehozza az adott peldanyt 3 meretu durationnal.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Dance(String id) {
+        duration = 3;
+        setId(id);
+    }
+
+    /**
      * Az osztaly konstruktora, letrehozza az adott peldanyt a parameter meretu durationnal.
      * @param dur ilyen hosszan tart az effekt.
      */
@@ -30,13 +39,25 @@ public class Dance extends Effect {
     }
 
     /**
+     * Az osztaly konstruktora, letrehozza az adott peldanyt a parameter meretu durationnal.
+     * @param dur ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Dance(int dur, String id) {
+        duration = dur;
+        setId(id);
+    }
+
+    /**
      * A Dance osztaly konstruktora.
      * @param citizen akire hat az effekt.
      * @param dur ilyen hosszan tart az effekt.
+     * @param id az id-je az adott peldanynak
      */
-    public Dance(Citizen citizen, int dur) {
+    public Dance(Citizen citizen, int dur, String id) {
         duration = dur;
         citizen.addEffect(this);
+        setId(id);
     }
 
     /**
@@ -48,7 +69,7 @@ public class Dance extends Effect {
         Random random = new Random();
         double randomNumber = random.nextDouble()*1000;
         if( randomNumber > affectedCitizen.getResistance() *10) {
-            ArrayList<Field> neighborsFreeFields = new ArrayList<>();
+            ArrayList<Field> neighborsFreeFields;
             neighborsFreeFields = affectedCitizen.getMoves();
             Random rand = new Random();
             Field randomNeighborsField = neighborsFreeFields.get(rand.nextInt(neighborsFreeFields.size()));

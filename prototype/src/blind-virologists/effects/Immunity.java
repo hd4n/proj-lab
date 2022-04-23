@@ -20,7 +20,6 @@ public class Immunity extends Effect {
 
     /**
      * Az Immunity osztaly konstruktora.
-     *
      * @param dur ilyen hosszan tart az effekt.
      */
     public Immunity(int dur) {
@@ -28,19 +27,39 @@ public class Immunity extends Effect {
     }
 
     /**
+     * Az Immunity osztaly konstruktora, 3 meretu durationnal.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Immunity(String id) {
+        duration = 3;
+        setId(id);
+    }
+
+    /**
+     * Az Immunity osztaly konstruktora.
+     * @param dur ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Immunity(int dur, String id) {
+        duration = dur;
+        setId(id);
+    }
+
+    /**
      * A Immunity osztaly konstruktora.
      *
      * @param citizen akire hat az effekt.
      * @param dur     ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
      */
-    public Immunity(Citizen citizen, int dur) {
+    public Immunity(Citizen citizen, int dur, String id) {
         duration = dur;
         citizen.addEffect(this);
+        setId(id);
     }
 
     /**
      * A Citizen resistance tagvaltozojat 100-ra allitja.
-     *
      * @param affectedCitizen resistance tagvaltozojat allitja at.
      */
     @Override

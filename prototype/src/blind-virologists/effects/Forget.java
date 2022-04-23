@@ -23,8 +23,16 @@ public class Forget extends Effect {
     }
 
     /**
+     * A Forget osztaly konstruktora.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Forget(String id) {
+        duration = 1;
+        setId(id);
+    }
+
+    /**
      * Kitorli a virologus osszes ismert genetikai kodjat.
-     *
      * @param affectedCitizen felejti el a kodokat.
      */
     @Override

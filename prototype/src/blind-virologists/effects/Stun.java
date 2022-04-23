@@ -30,14 +30,35 @@ public class Stun extends Effect {
     }
 
     /**
+     * A Stun osztaly konstruktora, 3 meretu durationnal.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Stun(String id) {
+        duration = 3;
+        setId(id);
+    }
+
+    /**
+     * A Stun osztaly konstruktora.
+     * @param dur ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Stun(int dur, String id) {
+        duration = dur;
+        setId(id);
+    }
+
+    /**
      * A Stun osztaly konstruktora.
      * @param citizen akire hat az effekt.
      * @param dur ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
      */
-    public Stun(Citizen citizen, int dur) {
+    public Stun(Citizen citizen, int dur, String id) {
         duration = dur;
         citizen.setStunned(true);
         citizen.addEffect(this);
+        setId(id);
     }
 
     /**
@@ -50,11 +71,7 @@ public class Stun extends Effect {
         double randomNumber = random.nextDouble()*1000;
         if( randomNumber > affectedCitizen.getResistance() *10) {
             affectedCitizen.setDirection(affectedCitizen.getCurrentField());
-            if (duration == 0) {
-                affectedCitizen.setStunned(false);
-            } else {
-                affectedCitizen.setStunned(true);
-            }
+            affectedCitizen.setStunned(duration != 0);
         }
     }
 }

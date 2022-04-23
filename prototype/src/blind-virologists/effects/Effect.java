@@ -11,6 +11,7 @@ import citizens.Citizen;
  */
 public abstract class Effect {
     protected int duration;
+    private String Id;
 
     /**
      * Minden korben meghivodik, eggyel csokkenti a Duration tagvaltozot.
@@ -41,4 +42,20 @@ public abstract class Effect {
      * @param affectedCitizen Ennek a tulajdonsagait modositja.
      */
     public abstract void applyEffect(Citizen affectedCitizen);
+
+    /**
+     * Beallítja az Id erteket.
+     * @param id ez lesz az Id.
+     */
+    public void setId(String id){
+        Id = id;
+    }
+
+    /**
+     * Visszaadja az Id erteket.
+     * @return az Id.
+     */
+    public String getId(){
+        return Id;
+    }
 }

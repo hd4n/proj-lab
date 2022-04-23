@@ -28,13 +28,33 @@ public class Protection extends Effect {
     }
 
     /**
+     * A Protection osztaly konstruktora, 3 meretu durationnal.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Protection(String id) {
+        duration = 3;
+        setId(id);
+    }
+
+    /**
+     * A Protection osztaly konstruktora.
+     * @param dur ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Protection(int dur, String id) {
+        duration = dur;
+    }
+
+    /**
      * A Protection osztaly konstruktora.
      * @param citizen akire hat az effekt.
      * @param dur ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
      */
-    public Protection(Citizen citizen, int dur) {
+    public Protection(Citizen citizen, int dur, String id) {
         duration = dur;
         citizen.addEffect(this);
+        setId(id);
     }
 
     /**

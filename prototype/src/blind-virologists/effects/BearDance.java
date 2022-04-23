@@ -34,6 +34,29 @@ public class BearDance extends Effect {
     }
 
     /**
+     * Az osztaly konstruktora, letrehozza az adott peldanyt.
+     *
+     * @param dur hosszu durationnal.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public BearDance(int dur, String id) {
+        duration = dur;
+        setId(id);
+    }
+
+    /**
+     * Az osztaly konstruktora, letrehozza az adott peldanyt.
+     *
+     * @param citizen aktiv effektjeihez adja hozzá.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public BearDance(Citizen citizen, String id) {
+        citizen.addEffect(this);
+        duration = 1;
+        setId(id);
+    }
+
+    /**
      * Alkalmazza az effektet a parameteren.
      * Lekerdezi az eppen aktualis mezot, majd annak a szomszedjait. Ha a szomszéd mezokon áll virologus,
      * akkor azokat megfertozi. A szomszedos mezok kozul random kivalaszt egyet es azt allitja be celmezonek,
@@ -46,13 +69,13 @@ public class BearDance extends Effect {
         Random random = new Random();
         double randomNumber = random.nextDouble()*1000;
         if( randomNumber > affectedCitizen.getResistance() *10) {
-            ArrayList<Field> neighborsFreeFields = new ArrayList<>();
+            ArrayList<Field> neighborsFreeFields;
             neighborsFreeFields = affectedCitizen.getMoves();
             Random rand = new Random();
             Field randomNeighborsField = neighborsFreeFields.get(rand.nextInt(neighborsFreeFields.size()));
             affectedCitizen.setDirection(randomNeighborsField);
 
-            ArrayList<Field> neighboursFields = new ArrayList<>();
+            ArrayList<Field> neighboursFields;
             neighboursFields = affectedCitizen.getCurrentField().getNeighbors();
             ArrayList<Citizen> neighborsCitizen = new ArrayList<>();
             for (Field neighboursField : neighboursFields) {
