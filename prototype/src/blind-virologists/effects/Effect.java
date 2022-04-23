@@ -12,6 +12,7 @@ import citizens.Citizen;
 public abstract class Effect {
     protected int duration;
     private String ID;
+    protected static int eID = 100;
 
     /**
      * Minden korben meghivodik, eggyel csokkenti a Duration tagvaltozot.
