@@ -43,6 +43,7 @@ public class Protection extends Effect {
      */
     public Protection(int dur, String id) {
         duration = dur;
+        setID(id);
     }
 
     /**
