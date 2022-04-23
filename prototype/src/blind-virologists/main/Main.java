@@ -1,5 +1,6 @@
 package main;
 
+import citizens.Citizen;
 import citizens.Virologist;
 import effects.*;
 import items.*;
@@ -19,16 +20,26 @@ public class Main {
 
     private City city = new City();
 
-    private HashMap<String, Equipment> equipments = new HashMap<>();
-    private HashMap<String, Material> materials = new HashMap<>();
-    private HashMap<String, Code> codes = new HashMap<>();
-    private HashMap<String, Agent> agents = new HashMap<>();
+    //private HashMap<String, Equipment> equipments = new HashMap<>();
+    private ArrayList<Equipment> equipments = new ArrayList<>();
 
-    private HashMap<String, Effect> effects = new HashMap<>();
+    //private HashMap<String, Material> materials = new HashMap<>();
+    private ArrayList<Material> materials = new ArrayList<>();
 
-    private HashMap<String, Field> fields = new HashMap<>();
+    //private HashMap<String, Code> codes = new HashMap<>();
+    private ArrayList<Code> codes = new ArrayList<>();
 
-    private HashMap<String, Virologist> virologists = new HashMap<>();
+    //private HashMap<String, Agent> agents = new HashMap<>();
+    private ArrayList<Agent> agents = new ArrayList<>();
+
+    //private HashMap<String, Effect> effects = new HashMap<>();
+    private ArrayList<Effect> effects = new ArrayList<>();
+
+    //private HashMap<String, Field> fields = new HashMap<>();
+
+    //private HashMap<String, Virologist> virologists = new HashMap<>();
+
+    private static final String wdPath=System.getProperty("user.dir");
 
     public static void main(String[] args) {
         System.out.println("Vilagtalan virologusok vilaga - Proto");
@@ -44,7 +55,8 @@ public class Main {
             System.out.println("Teszt futtatasa: " + args[1]);
             System.out.println("-------------------------------");
 
-            File testFile = new File("prototype/tests/input/" + args[1]);
+            File testFile = new File(wdPath+"/prototype/tests/input/" + args[1]);
+            System.out.println(testFile.getAbsolutePath());
             try {
                 sc = new Scanner(testFile);
             } catch (FileNotFoundException e) {
@@ -53,7 +65,7 @@ public class Main {
             }
 
             //stdout fileba
-            File outFile = new File("prototype/tests/output/" + args[1]);
+            File outFile = new File(wdPath+"/prototype/tests/output/" + args[1]);
             try {
                 outFile.createNewFile();
             } catch (IOException e) {
@@ -133,7 +145,7 @@ public class Main {
 
     //load file.conf
     private void loadFile(String[] commandArgs) {
-        File input = new File("prototype/tests/config/" + commandArgs[1]);
+        File input = new File(wdPath+"/prototype/tests/config/" + commandArgs[1]);
         Scanner sc;
         try {
             sc = new Scanner(input);
@@ -167,15 +179,17 @@ public class Main {
                     addAgent(args);
                     break;
                 case "@codes":
-                    codes.put(args[1], new Code(agents.get(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4])));
+                    Agent a=(Agent)getByID(args[2]);
+                    codes.add(new Code(a,Integer.parseInt(args[3]), Integer.parseInt(args[4]),args[1]));
+                    //codes.add(args[1], new Code(agents.get(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4])));
                     city.increaseCodeCount();
                     break;
                 case "@fields":
                     addField(args);
                     break;
                 case "@neighbors":
-                    fields.get(args[0]).addNeighbor(fields.get(args[1]));
-                    fields.get(args[1]).addNeighbor(fields.get(args[0]));
+                    ((Field)getByID(args[0])).addNeighbor((Field) getByID(args[1]));
+                    ((Field)getByID(args[1])).addNeighbor((Field) getByID(args[0]));
                     break;
                 case "@virologists":
                     addVirologist(args);
@@ -189,22 +203,22 @@ public class Main {
     private void addItem(String[] args) {
         switch (args[0]) {
             case "ax":
-                equipments.put(args[1], new Axe());
+                equipments.add(new Axe(args[1]));
                 break;
             case "ba":
-                equipments.put(args[1], new Bag());
+                equipments.add( new Bag(args[1]));
                 break;
             case "ca":
-                equipments.put(args[1], new Cape());
+                equipments.add( new Cape(args[1]));
                 break;
             case "gl":
-                equipments.put(args[1], new Gloves());
+                equipments.add(new Gloves(args[1]));
                 break;
             case "am":
-                materials.put(args[1], new Aminoacid());
+                materials.add( new Aminoacid(args[1]));
                 break;
             case "nu":
-                materials.put(args[1], new Nucleotide());
+                materials.add( new Nucleotide(args[1]));
                 break;
         }
     }
@@ -212,28 +226,30 @@ public class Main {
     private void addEffect(String[] args) {
         switch (args[0]) {
             case "be":
-                effects.put(args[1], new BearDance(Integer.parseInt(args[2])));
+                effects.add( new BearDance(Integer.parseInt(args[2]),args[1]));
                 break;
             case "da":
-                effects.put(args[1], new Dance(Integer.parseInt(args[2])));
+                effects.add(new Dance(Integer.parseInt(args[2]),args[1]));
                 break;
             case "fo":
-                effects.put(args[1], new Forget());
+                effects.add(new Forget(args[1]));
                 break;
             case "im":
-                effects.put(args[1], new Immunity(Integer.parseInt(args[2])));
+                effects.add(new Immunity(Integer.parseInt(args[2]),args[1]));
                 break;
             case "in":
-                effects.put(args[1], new IncreaseBag(Integer.parseInt(args[2])));
+                effects.add(new IncreaseBag(Integer.parseInt(args[2]),args[1]));
                 break;
             case "pr":
-                effects.put(args[1], new Protection(Integer.parseInt(args[2])));
+                effects.add(new Protection(Integer.parseInt(args[2]),args[1]));
                 break;
             case "re":
-                effects.put(args[1], new Reflect(Integer.parseInt(args[2]), (Gloves) equipments.get(args[3])));
+                Gloves g=(Gloves)getByID(args[3]);
+                effects.add(new Reflect(Integer.parseInt(args[2]),g,args[1]));
+                //effects.put(args[1], new Reflect(Integer.parseInt(args[2]), (Gloves) equipments.get(args[3])));
                 break;
             case "st":
-                effects.put(args[1], new Stun(Integer.parseInt(args[2])));
+                effects.add( new Stun(Integer.parseInt(args[2]),args[1]));
                 break;
         }
     }
@@ -241,10 +257,10 @@ public class Main {
     private void addAgent(String[] args) {
         switch (args[0]) {
             case "vi":
-                agents.put(args[1], new Virus(effects.get(args[2])));
+                agents.add( new Virus((Effect)getByID(args[2]),args[1]));
                 break;
             case "va":
-                agents.put(args[1], new Vaccine(effects.get(args[2])));
+                agents.add( new Vaccine((Effect)getByID(args[2]),args[1]));
                 break;
         }
     }
@@ -253,36 +269,36 @@ public class Main {
         Field field = null;
         switch (args[0]) {
             case "em":
-                field = args.length == 3 ? new Empty(equipments.get(args[2])) : new Empty();
+                field = args.length == 3 ? new Empty((Equipment) getByID(args[2]),args[1]) : new Empty(args[1]);
                 break;
             case "in":
-                field = args.length == 3 ? new InfectedLaboratory(codes.get(args[2])) : new InfectedLaboratory();
+                field = args.length == 3 ? new InfectedLaboratory((Code) getByID(args[2]),args[1]) : new InfectedLaboratory(args[1]);
                 break;
             case "la":
-                field = args.length == 3 ? new Laboratory(codes.get(args[2])) : new Laboratory();
+                field = args.length == 3 ? new Laboratory((Code) getByID(args[2]),args[1]) : new Laboratory(args[1]);
                 break;
             case "sh":
-                field = args.length == 3 ? new Shelter(equipments.get(args[2])) : new Shelter();
+                field = args.length == 3 ? new Shelter((Equipment)getByID(args[2]),args[1]) : new Shelter(args[1]);
                 break;
             case "wa":
-                field = args.length == 3 ? new Warehouse(materials.get(args[2])) : new Warehouse();
+                field = args.length == 3 ? new Warehouse((Material) getByID(args[2]),args[1]) : new Warehouse(args[1]);
         }
-        fields.put(args[1], field);
         city.addField(field);
     }
 
     private void addVirologist(String[] args) {
-        Virologist v = new Virologist();
-        virologists.put(args[0], v);
+        Virologist v = new Virologist(args[0]);
+        v.setCurrentField((Field) getByID(args[1]));
         city.addPlayer(v);
-        virologists.get(args[0]).setCurrentField(fields.get(args[1]));
-        fields.get(args[1]).setCitizen(v);
+        //virologists.put(args[0], v);
+
+        ((Field) getByID(args[1])).setCitizen(v);
 
         if (args.length == 3) {
             if (!args[2].equals("null")) {
                 String[] eq = args[2].split(";");
                 for (int i = 0; i < eq.length; ++i) {
-                    virologists.get(args[0]).addEquipment(equipments.get(eq[i]));
+                    ((Virologist)getByID(args[0])).addEquipment((Equipment) getByID(eq[i]));
                 }
             }
         }
@@ -291,7 +307,7 @@ public class Main {
             if (!args[3].equals("null")) {
                 String[] ma = args[3].split(";");
                 for (int i = 0; i < ma.length; ++i) {
-                    virologists.get(args[0]).addMaterial(materials.get(ma[i]));
+                    ((Virologist)getByID(args[0])).addMaterial((Material) getByID(ma[i]));
                 }
             }
         }
@@ -300,7 +316,7 @@ public class Main {
             if (!args[4].equals("null")) {
                 String[] ef = args[4].split(";");
                 for (int i = 0; i < ef.length; ++i) {
-                    virologists.get(args[0]).addEffect(effects.get(ef[i]));
+                    ((Virologist)getByID(args[0])).addEffect((Effect) getByID(ef[i]));
                 }
             }
         }
@@ -309,8 +325,8 @@ public class Main {
 
     //step virologus_id celmezo_id
     private void step(String[] commandArgs) {
-        Virologist virologist = (Virologist) getByKey(commandArgs[1]);
-        Field target = (Field) getByKey(commandArgs[2]);
+        Virologist virologist = (Virologist) getByID(commandArgs[1]);
+        Field target = (Field) getByID(commandArgs[2]);
         virologist.setCurrentField(target);
         System.out.println("step: " + commandArgs[1] + " " + commandArgs[2]);
     }
@@ -319,16 +335,16 @@ public class Main {
     private void getStats(String[] commandArgs) {
         if (commandArgs[1].equals("map")) {
             System.out.println("stat map:");
-            for (Map.Entry<String, Field> entry : fields.entrySet()) {
-                List<Field> neighbors = entry.getValue().getNeighbors();
+            for (Field field:city.getFields()) {
+                List<Field> neighbors = field.getNeighbors();
                 for (Field f : neighbors) {
-                    System.out.println("\t" + entry.getValue().hashCode() + " - " + f.hashCode());
+                    System.out.println("\t" + field.getID() + " - " + f.getID());
                 }
             }
         } else {
-            Object o = getByKey(commandArgs[1]);
+            Object o = getByID(commandArgs[1]);
             if (o != null) {
-                String out = "stats: " + commandArgs[1] + " hash: " + o.hashCode() + "\n" + o.toString();
+                String out = "\nstats: " + commandArgs[1] + "\n"+o;
                 System.out.println(out);
             }
         }
@@ -342,7 +358,7 @@ public class Main {
 
     //interact virologus_id
     private void interact(String[] commandArgs) {
-        Virologist virologist = (Virologist) getByKey(commandArgs[1]);
+        Virologist virologist = (Virologist) getByID(commandArgs[1]);
         Field current = virologist.getCurrentField();
         current.accept(virologist);
         System.out.println("interact: " + commandArgs[1] + ", mezo hash: " + current.hashCode());
@@ -350,41 +366,41 @@ public class Main {
 
     //drop virologus_id equipment_id
     private void drop(String[] commandArgs) {
-        Virologist virologist = (Virologist) getByKey(commandArgs[1]);
-        Equipment equipment = (Equipment) getByKey(commandArgs[2]);
+        Virologist virologist = (Virologist) getByID(commandArgs[1]);
+        Equipment equipment = (Equipment) getByID(commandArgs[2]);
         virologist.drop(equipment);
         System.out.println("drop: " + commandArgs[1] + " " + commandArgs[2]);
     }
 
     //equip virologus_id equipment_id
     private void equip(String[] commandArgs) {
-        Virologist virologist = (Virologist) getByKey(commandArgs[1]);
-        Equipment equipment = (Equipment) getByKey(commandArgs[2]);
+        Virologist virologist = (Virologist) getByID(commandArgs[1]);
+        Equipment equipment = (Equipment) getByID(commandArgs[2]);
         virologist.equip(equipment);
         System.out.println("equip: " + commandArgs[1] + " " + commandArgs[2]);
     }
 
     //useagent virologus_id cel_id agent_id
     private void useAgent(String[] commandArgs) {
-        Virologist virologist = (Virologist) getByKey(commandArgs[1]);
-        Virologist target = (Virologist) getByKey(commandArgs[2]);
-        Agent agent = (Agent) getByKey(commandArgs[3]);
+        Virologist virologist = (Virologist) getByID(commandArgs[1]);
+        Virologist target = (Virologist) getByID(commandArgs[2]);
+        Agent agent = (Agent) getByID(commandArgs[3]);
         virologist.useAgent(target, agent);
         System.out.println("useagent: " + commandArgs[1] + " " + commandArgs[2] + " " + commandArgs[3]);
     }
 
     //unequip virologus_id equipment_id
     private void unequip(String[] commandArgs) {
-        Virologist virologist = (Virologist) getByKey(commandArgs[1]);
-        Equipment equipment = (Equipment) getByKey(commandArgs[2]);
+        Virologist virologist = (Virologist) getByID(commandArgs[1]);
+        Equipment equipment = (Equipment) getByID(commandArgs[2]);
         virologist.unequip(equipment);
         System.out.println("unequip: " + commandArgs[1] + " " + commandArgs[2]);
     }
 
     //steal virologus_id target_id materials/equipment
     private void steal(String[] commandArgs) {
-        Virologist virologist = (Virologist) getByKey(commandArgs[1]);
-        Virologist target = (Virologist) getByKey(commandArgs[2]);
+        Virologist virologist = (Virologist) getByID(commandArgs[1]);
+        Virologist target = (Virologist) getByID(commandArgs[2]);
         switch (commandArgs[3]) {
             case "materials":
                 ArrayList<Material> stolenM = target.stealMaterial();
@@ -401,55 +417,61 @@ public class Main {
 
     //craft virologus_id code_id
     private void craft(String[] commandArgs) {
-        Virologist virologist = (Virologist) getByKey(commandArgs[1]);
-        Code code = (Code) getByKey(commandArgs[2]);
+        Virologist virologist = (Virologist) getByID(commandArgs[1]);
+        Code code = (Code) getByID(commandArgs[2]);
         virologist.craft(code);
         System.out.println("craft: " + commandArgs[1] + " " + commandArgs[2]);
     }
 
-    private Object getByKey(String key) {
-        Object o;
-        o = equipments.get(key);
-        if (o != null) {
-            return o;
+    private Object getByID(String ID) {
+        for(Equipment o:equipments){
+            if(o.getID().equals(ID)){
+                return o;
+            }
         }
 
-        o = materials.get(key);
-        if (o != null) {
-            return o;
+        for(Material o:materials){
+            if(o.getID().equals(ID)){
+                return o;
+            }
         }
 
-        o = codes.get(key);
-        if (o != null) {
-            return o;
+        for(Code o:codes){
+            if(o.getID().equals(ID)){
+                return o;
+            }
         }
 
-        o = agents.get(key);
-        if (o != null) {
-            return o;
+        for(Agent o:agents){
+            if(o.getID().equals(ID)){
+                return o;
+            }
         }
 
-        o = effects.get(key);
-        if (o != null) {
-            return o;
+        for(Effect o:effects){
+            if(o.getID().equals(ID)){
+                return o;
+            }
         }
 
-        o = fields.get(key);
-        if (o != null) {
-            return o;
+        for(Field o:city.getFields()){
+            if(o.getID().equals(ID)){
+                return o;
+            }
         }
 
-        o = virologists.get(key);
-        if (o != null) {
-            return o;
+        for(Citizen o:city.getPlayers()){
+            if(o.getID().equals(ID)){
+                return o;
+            }
         }
 
         return null;
     }
 
     private static boolean compareResults(String f1, String f2) {
-        File act = new File("prototype/tests/output/" + f1);
-        File exp = new File("prototype/tests/expected/" + f2);
+        File act = new File(wdPath+"/prototype/tests/output/" + f1);
+        File exp = new File(wdPath+"/prototype/tests/expected/" + f2);
 
         Scanner aSc = null, eSc = null;
 

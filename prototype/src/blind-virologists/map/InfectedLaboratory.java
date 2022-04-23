@@ -29,8 +29,7 @@ public class InfectedLaboratory extends Laboratory {
      * @param c az eltarolando kod
      */
     public InfectedLaboratory(Code c, String _ID) {
-        super(c);
-        setID(_ID);
+        super(c,_ID);
     }
 
     /**
