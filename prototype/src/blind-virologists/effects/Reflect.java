@@ -51,7 +51,7 @@ public class Reflect extends Effect {
             duration = -1;
             eID++;
             int i = eID;
-            setID("i" + i);
+            setID("r" + i);
     }
 
     /**

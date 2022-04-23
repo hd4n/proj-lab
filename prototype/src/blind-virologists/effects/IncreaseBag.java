@@ -17,7 +17,7 @@ public class IncreaseBag extends Effect {
     public IncreaseBag() {
         eID++;
         int i = eID;
-        setID("p" + i);
+        setID("ib" + i);
     }
 
     /**
