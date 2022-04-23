@@ -19,6 +19,9 @@ public class Dance extends Effect {
      */
     public Dance() {
         duration = 3;
+        eID++;
+        int i = eID;
+        setID("d" + i);
     }
 
     /**
