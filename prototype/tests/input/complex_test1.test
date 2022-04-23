@@ -1,4 +1,4 @@
-load complex-test1.conf
+load complex_test1.conf
 getstats v1
 getstats v2
 step v1 l1
