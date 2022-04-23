@@ -47,4 +47,11 @@ public class Code {
         return aminoCost;
     }
 
+    /**
+     * Kiirja a tesztesetekhez szukseges informaciokat az adott objektumrol
+     */
+    public String toString(){
+        //return
+    }
+
 }

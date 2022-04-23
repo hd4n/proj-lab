@@ -46,4 +46,11 @@ public abstract class Agent {
     public void setEffect(Effect effect) {
         this.effect = effect;
     }
+
+    /**
+     * Kiirja a tesztesetekhez szukseges informaciokat az adott objektumrol
+     */
+    public String toString(){
+
+    }
 }

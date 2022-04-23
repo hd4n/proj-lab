@@ -1,0 +1,21 @@
+Load: sikeres
+
+stats v1:
+fi_e1
+eq_null
+ma_null
+ef_null
+co_null
+
+craft: c1 cd1 va1 #kell?
+
+useagent:
+v1+v1
+immunity
+
+stats v1:
+fi_e1
+eq_null
+ma_null
+ef_i1
+co_null

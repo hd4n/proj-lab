@@ -1,0 +1,23 @@
+Load: sikeres
+
+stats v1:
+fi_l1
+eq_null
+ma_null
+ef_null
+co_null
+
+interact: v1 readcode
+
+stats v1:
+fi_l1
+eq_null
+ma_null
+ef_null
+co_cd1
+
+stats l1:
+vi_v1
+eq_null
+ma_null
+co_cd1

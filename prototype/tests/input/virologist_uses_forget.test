@@ -1,0 +1,5 @@
+load virologist_uses_forget.conf
+getstats v2
+craft v1 cd1 #kell?
+useagent v1 v2 f1
+getstats v2

@@ -1,0 +1,19 @@
+Load: sikeres
+
+stats v1:
+fi_e1
+eq_null
+ma_null
+ef_null
+co_null
+
+stats v2:
+fi_e2
+eq_null
+ma_null
+ef_null
+co_null
+
+stats map:
+e1 - e2
+e2 - e1

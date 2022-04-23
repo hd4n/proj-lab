@@ -1,0 +1,16 @@
+Load: sikeres
+
+interact: v1 collect_material
+
+stats v1:
+fi_w1
+eq_null
+ma_a1+n1
+ef_null
+co_null
+
+stats_w1:
+vi_v1
+eq_null
+ma_null
+co_null

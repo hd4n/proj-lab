@@ -1,0 +1,17 @@
+Load: sikeres
+
+stats v1:
+fi_e1
+eq_null
+ma_a1+a2+a3+n1+n2+n3
+ef_null
+co_cd1
+
+craft: c1 cd1 vi1
+
+stats v1:
+fi_e1
+eq_null
+ma_null
+ef_null
+co_cd1

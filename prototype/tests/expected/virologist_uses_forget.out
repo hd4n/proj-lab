@@ -1,0 +1,21 @@
+Load: sikeres
+
+stats v2:
+fi_e2
+eq_null
+ma_null
+ef_null
+co_null
+
+craft: c1 cd1 vi1 #kell?
+
+useagent:
+v1+v2
+forget
+
+stats v2:
+fi_e2
+eq_null
+ma_null
+ef_f1
+co_null

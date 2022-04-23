@@ -1,0 +1,53 @@
+Load: sikeres
+stats v1:
+fi_e1
+eq_null
+ma_null
+ef_null
+co_null
+
+stats v2:
+fi_e2
+eq_null
+ma_null
+ef_null
+co_null
+
+step: v1 l1
+
+nextround
+
+interact: v1 readcode
+
+step: v1 w1
+
+nextround
+
+interact: v1 collect_material
+
+craft: c1 cd1 vi1
+
+useagent:
+v1+v2
+dance
+
+nextround
+
+stats v1:
+fi_w1
+eq_null
+ma_null
+ef_null
+co_null
+
+stats v2:
+fi_e2
+eq_null
+ma_null
+ef_d1
+co_null
+
+stats map:
+e1 - l1
+l1 - w1
+w1 - e2
