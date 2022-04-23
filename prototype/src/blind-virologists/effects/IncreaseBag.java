@@ -15,6 +15,9 @@ public class IncreaseBag extends Effect {
      * Az IncreaseBag osztaly konstruktora
      */
     public IncreaseBag() {
+        eID++;
+        int i = eID;
+        setID("p" + i);
     }
 
     /**

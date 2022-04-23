@@ -47,6 +47,13 @@ public class Reflect extends Effect {
         setID(ID);
     }
 
+    public Reflect(){
+            duration = -1;
+            eID++;
+            int i = eID;
+            setID("i" + i);
+    }
+
     /**
      * Visszaadja a kesztyut amibol szarmazik
      *
