@@ -63,7 +63,7 @@ public class Reflect extends Effect {
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        affectedCitizen.addEffect(this);
+        affectedCitizen.setReflect(true);
         if (affectedCitizen.getReflectCount() >= 3) {
             ((Virologist)affectedCitizen).removeEquipment(this.getParent());
             affectedCitizen.setReflectCount(0);
