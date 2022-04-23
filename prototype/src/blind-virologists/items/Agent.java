@@ -43,7 +43,7 @@ public abstract class Agent {
      * Az agent parameteres konstruktora
      *
      * @param effect az agens altal megvalositott effekt
-     * @param ID az agens azonositoja
+     * @param ID     az agens azonositoja
      */
     public Agent(Effect effect, String ID) {
         this.effect = effect;
@@ -72,11 +72,32 @@ public abstract class Agent {
     }
 
     /**
-     * Kiirja a tesztesetekhez szukseges informaciokat az adott objektumrol
+     * Visszaadja az agens azonositojat
      */
-    /*
-    public String toString(){
-
+    public String getID() {
+        return ID;
     }
-    */
+
+    /**
+     * Beallitja az agens azonositojat
+     */
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    /**
+     * A fuggveny segitsegevel tortenik az objektum azonositasa a tesztesetekhez
+     *
+     * @return out az objektum azonositoja
+     */
+    @Override
+    public String toString() {
+        String out = "\tag_";
+        if (effect == null) {
+            out += "null";
+        } else {
+            out += effect.getID();
+        }
+        return out;
+    }
 }

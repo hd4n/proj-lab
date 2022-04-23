@@ -33,7 +33,7 @@ public class Code {
      * @param agent      a kodban tarolt agens
      * @param nucleoCost a kod nukleotid ara
      * @param aminoCost  a kod aminosav ara
-     * @param ID a kod azonositoja
+     * @param ID         a kod azonositoja
      */
     public Code(Agent agent, int nucleoCost, int aminoCost, String ID) { //new code(new agent(mew effect))
         this.agent = agent;
@@ -44,6 +44,7 @@ public class Code {
 
     /**
      * Konstruktor. A fuggveny letrehoz egy kodot, a parameter szerinti ID-val.
+     *
      * @param ID a kod azonositoja
      */
     public Code(String ID) {
@@ -56,7 +57,7 @@ public class Code {
     /**
      * Konstruktor. A fuggveny letrehoz egy kodot, a parameterek nelkul a tesztesetekhez.
      */
-    public Code(){
+    public Code() {
         this.agent = null;
         this.nucleoCost = 0;
         this.aminoCost = 0;
@@ -83,4 +84,33 @@ public class Code {
         return aminoCost;
     }
 
+    /**
+     * Getter. A fuggveny visszaadja a magaban eltarolt agens azonositojat.
+     */
+    public String getID() {
+        return ID;
+    }
+
+    /**
+     * Setter. A fuggveny beallitja az agens azonositojat.
+     */
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    /**
+     * A fuggveny segitsegevel tortenik az objektum azonositasa a tesztesetekhez
+     *
+     * @return out az objektum azonositoja
+     */
+    @Override
+    public String toString() {
+        String out = "\tco_";
+        if (agent == null) {
+            out += "null";
+        } else {
+            out += agent.getID();
+        }
+        return out;
+    }
 }
