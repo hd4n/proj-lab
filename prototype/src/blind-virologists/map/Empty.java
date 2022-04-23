@@ -19,8 +19,9 @@ public class Empty extends Field {
      * @param equipment ha esetleg equipmenttel hoznank letre ures mezot
      */
 
-    public Empty(Equipment equipment) {
+    public Empty(Equipment equipment,String _ID) {
         this.equipment = equipment;
+        setID(_ID);
     }
 
     /**
@@ -28,6 +29,11 @@ public class Empty extends Field {
      */
     public Empty() {
         this.equipment = null;
+    }
+
+    public Empty(String _ID){
+        equipment=null;
+        setID(_ID);
     }
 
     /**
@@ -77,5 +83,18 @@ public class Empty extends Field {
     @Override
     public void accept(Visitor v) {
         v.visit(this);
+    }
+
+
+    @Override
+    public String toString(){
+        String out= super.toString();
+        out+="\teq_";
+        if(equipment==null){
+            out+="null";
+        }else{
+            out+=equipment.getID();
+        }
+        return out;
     }
 }

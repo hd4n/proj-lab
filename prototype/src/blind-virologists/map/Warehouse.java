@@ -18,8 +18,9 @@ public class Warehouse extends Field {
      *
      * @param material a warehouseban levo materialt adja meg
      */
-    public Warehouse(Material material) {
+    public Warehouse(Material material,String _ID) {
         this.material = material;
+        setID(_ID);
     }
 
     /**
@@ -27,6 +28,11 @@ public class Warehouse extends Field {
      */
     public Warehouse() {
         this.material = null;
+    }
+
+    public Warehouse(String _ID){
+        setID(_ID);
+        material=null;
     }
 
     /**
@@ -66,5 +72,17 @@ public class Warehouse extends Field {
     @Override
     public void accept(Visitor v) {
         v.visit(this);
+    }
+
+    @Override
+    public String toString(){
+        String out= super.toString();
+        out+="\teq_";
+        if(material==null){
+            out+="null";
+        }else{
+            out+=material.getID();
+        }
+        return out;
     }
 }

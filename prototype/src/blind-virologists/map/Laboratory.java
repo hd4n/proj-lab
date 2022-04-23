@@ -18,8 +18,9 @@ public class Laboratory extends Field {
      *
      * @param code a laboratoryban levo kodot adja meg
      */
-    public Laboratory(Code code) {
+    public Laboratory(Code code,String _ID) {
         this.code = code;
+        setID(_ID);
     }
 
     /**
@@ -27,6 +28,11 @@ public class Laboratory extends Field {
      */
     public Laboratory() {
         this.code = null;
+    }
+
+    public Laboratory(String _ID){
+        code=null;
+        setID(_ID);
     }
 
     /**
@@ -53,5 +59,18 @@ public class Laboratory extends Field {
     @Override
     public void accept(Visitor v) {
         v.visit(this);
+    }
+
+
+    @Override
+    public String toString() {
+        String out = super.toString();
+        out += "\tco_";
+        if (code == null) {
+            out += "null";
+        } else {
+            out += code.getID();
+        }
+        return out;
     }
 }

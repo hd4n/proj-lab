@@ -21,14 +21,20 @@ public class Shelter extends Field {
      *
      * @param e az eltarolando felszereles
      */
-    public Shelter(Equipment e) {
+    public Shelter(Equipment e, String _ID) {
         equipment = e;
+        setID(_ID);
     }
 
     /**
      * Parameter nelkuli konstruktor
      */
     public Shelter() {
+        equipment=null;
+    }
+
+    public Shelter(String _ID){
+        setID(_ID);
         equipment=null;
     }
 
@@ -69,5 +75,17 @@ public class Shelter extends Field {
      */
     public Equipment getEquipment() {
         return equipment;
+    }
+
+    @Override
+    public String toString(){
+        String out= super.toString();
+        out+="\teq_";
+        if(equipment==null){
+            out+="null";
+        }else{
+            out+=equipment.getID();
+        }
+        return out;
     }
 }

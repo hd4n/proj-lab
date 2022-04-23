@@ -18,13 +18,19 @@ public class InfectedLaboratory extends Laboratory {
     public InfectedLaboratory() {
     }
 
+    public InfectedLaboratory(String _ID){
+        setID(_ID);
+        code=null;
+    }
+
     /**
      * Parameteres konstruktor
      *
      * @param c az eltarolando kod
      */
-    public InfectedLaboratory(Code c) {
+    public InfectedLaboratory(Code c, String _ID) {
         super(c);
+        setID(_ID);
     }
 
     /**
@@ -35,5 +41,10 @@ public class InfectedLaboratory extends Laboratory {
     @Override
     public void accept(Visitor v) {
         v.visit(this);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

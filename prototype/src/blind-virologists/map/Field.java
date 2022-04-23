@@ -19,6 +19,8 @@ public abstract class Field implements Visitable {
      */
     protected Citizen citizen;
 
+    private String ID;
+
     /**
      * Szomszedos mezok
      */
@@ -74,5 +76,33 @@ public abstract class Field implements Visitable {
      */
     public void addNeighbor(Field f) {
         neighbors.add(f);
+    }
+
+    @Override
+    public String toString(){
+        String out= "\tci_";
+        if(citizen==null){
+            out+="null";
+        }else{
+            out+=citizen.getID();
+        }
+        out+="\n\tne_";
+        if(neighbors.isEmpty()){
+            out+="null\n";
+            return out;
+        }else{
+            for(Field f:neighbors){
+                out+=f.getID()+"+";
+            }
+            return out.substring(0,out.length()-1)+"\n";
+        }
+    }
+
+    public String getID(){
+        return ID;
+    }
+
+    public void setID(String _ID){
+        ID=_ID;
     }
 }
