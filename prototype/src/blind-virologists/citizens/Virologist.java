@@ -44,7 +44,7 @@ public class Virologist extends Citizen {
     @Override
     public void visit(Laboratory lab) {
         Code code = lab.readCode();
-        if (!codes.contains(code)){
+        if (!codes.contains(code)) {
             codes.add(code);
         }
     }
@@ -88,7 +88,6 @@ public class Virologist extends Citizen {
             equipments.add(equipment);
         }
     }
-
 
 
     /**
@@ -306,89 +305,90 @@ public class Virologist extends Citizen {
 
     @Override
     public String toString() {
-        StringBuilder ki= new StringBuilder();
-        //codes
-        if (codes.size() > 0){
-            ki.append("\n\tco_");
-            for (Code item:codes) {
-                ki.append(item.getID() + "+");
-                ki.deleteCharAt(ki.length() - 1);
-            }
+        String ki = "";
+        ki += "\tfi_" + currentField.getID();
+        if (direction != null) {
+            ki += "\n\tdi_" + direction.getID();
         }
         else{
-            ki.append("\n\tco_null");
+            ki += "\n\tdi_null";
+        }
+        ki += "\n\tst_" + stunned;
+        ki += "\n\tres_" + resistance;
+        ki += "\n\tre_" + reflect;
+        ki += "\n\tma_" + maxMaterial;
+        ki += "\n\tref_" + reflectCount;
+        ki += "\n\tneededAmino_" + neededAmino;
+        ki += "\n\tneededNucleo_" + neededNucleo;
+
+        //codes
+        if (codes.size() > 0) {
+            ki += "\n\tco_";
+
+            for (Code item : codes) {
+                ki += item.getID() + "+";
+                ki = ki.substring(0, ki.length() - 1);
+            }
+        } else {
+            ki += ("\n\tco_null");
         }
         //material
-        if (materials.size() > 0){
-            ki.append("\n\tma_");
-            for (Material item:materials) {
-                ki.append(item.getID() + "+");
-                ki.deleteCharAt(ki.length() - 1);
+        if (materials.size() > 0) {
+            ki += ("\n\tma_");
+            for (Material item : materials) {
+                ki += (item.getID() + "+");
+                ki = ki.substring(0, ki.length() - 1);
             }
-        }
-        else{
-            ki.append("\n\tma_null");
+        } else {
+            ki += ("\n\tma_null");
         }
         //agents
-        if (agents.size() > 0){
-            ki.append("\n\tag_");
-            for (Agent item:agents) {
-                ki.append(item.getID() + "+");
-                ki.deleteCharAt(ki.length() - 1);
+        if (agents.size() > 0) {
+            ki += ("\n\tag_");
+            for (Agent item : agents) {
+                ki += (item.getID() + "+");
+                ki = ki.substring(0, ki.length() - 1);
             }
-        }
-        else{
-            ki.append("\n\tag_null");
+        } else {
+            ki += ("\n\tag_null");
         }
         //equipments
-        if (equipments.size() > 0){
-            ki.append("\n\teq_");
-            for (Equipment item:equipments) {
-                ki.append(item.getID() + "+");
-                ki.deleteCharAt(ki.length() - 1);
+        if (equipments.size() > 0) {
+            ki += ("\n\teq_");
+            for (Equipment item : equipments) {
+                ki += (item.getID() + "+");
+                ki = ki.substring(0, ki.length() - 1);
             }
-        }
-        else{
-            ki.append("\n\teq_null");
+        } else {
+            ki += ("\n\teq_null");
         }
         //active equipments
-        if (activeEquipments.size() > 0){
-            ki.append("\n\teqa_");
-            for (Equipment item:activeEquipments) {
-                ki.append(item.getID() + "+");
-                ki.deleteCharAt(ki.length() - 1);
+        if (activeEquipments.size() > 0) {
+            ki += ("\n\teqa_");
+            for (Equipment item : activeEquipments) {
+                ki += (item.getID() + "+");
+                ki = ki.substring(0, ki.length() - 1);
             }
-        }
-        else{
-            ki.append("\n\teqa_null");
+        } else {
+            ki += ("\n\teqa_null");
         }
         //effects
-        if (effects.size() > 0){
-            ki.append("\n\tef_");
-            for (Effect item:effects) {
-                ki.append(item.getID() + "+");
-                ki.deleteCharAt(ki.length() - 1);
+        if (effects.size() > 0) {
+            ki += ("\n\tef_");
+            for (Effect item : effects) {
+                ki += (item.getID() + "+");
+                ki = ki.substring(0, ki.length() - 1);
             }
-        }
-        else{
-            ki.append("\n\tef_null");
+        } else {
+            ki += ("\n\tef_null");
         }
 
-        return "Virologist:" +
-                "\n\tfi_" + currentField.getID() +
-                "\n\tdi_" + direction.getID() +
-                "\n\tst_" + stunned +
-                "\n\tres_" + resistance +
-                "\n\tre_" + reflect +
-                "\n\tma_" + maxMaterial +
-                "\n\tref_" + reflectCount +
-                "\n\tneededAmino_" + neededAmino +
-                "\n\tneededNucleo_" + neededNucleo +
-                ki;
+        return ki;
     }
 
     /**
      * for tests
+     *
      * @param id - test id
      */
     public Virologist(String id) {
@@ -397,10 +397,11 @@ public class Virologist extends Citizen {
 
     /**
      * for tests
+     *
      * @param start
-     * @param id - test id
+     * @param id    - test id
      */
-    public Virologist(Field start,String id) {
+    public Virologist(Field start, String id) {
         super(start);
         this.ID = id;
     }
