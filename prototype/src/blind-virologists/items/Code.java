@@ -11,6 +11,7 @@ public class Code {
     protected Agent agent;
     protected int nucleoCost;
     protected int aminoCost;
+    private String ID;
 
 
     /**
@@ -24,6 +25,32 @@ public class Code {
         this.agent = agent;
         this.nucleoCost = nucleoCost;
         this.aminoCost = aminoCost;
+    }
+
+    /**
+     * Konstruktor. A fuggveny letrehoz egy kodot, a parameterek szerint.
+     *
+     * @param agent      a kodban tarolt agens
+     * @param nucleoCost a kod nukleotid ara
+     * @param aminoCost  a kod aminosav ara
+     * @param ID a kod azonositoja
+     */
+    public Code(Agent agent, int nucleoCost, int aminoCost, String ID) { //new code(new agent(mew effect))
+        this.agent = agent;
+        this.nucleoCost = nucleoCost;
+        this.aminoCost = aminoCost;
+        this.ID = ID;
+    }
+
+    /**
+     * Konstruktor. A fuggveny letrehoz egy kodot, a parameter szerinti ID-val.
+     * @param ID a kod azonositoja
+     */
+    public Code(String ID) {
+        this.agent = null;
+        this.nucleoCost = 0;
+        this.aminoCost = 0;
+        this.ID = ID;
     }
 
     /**
@@ -55,14 +82,5 @@ public class Code {
     public int getAminoCost() {
         return aminoCost;
     }
-
-    /**
-     * Kiirja a tesztesetekhez szukseges informaciokat az adott objektumrol
-     */
-    /*
-    public String toString(){
-        //return
-    }
-    */
 
 }

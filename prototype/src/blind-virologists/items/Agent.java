@@ -10,11 +10,24 @@ import effects.*;
  */
 public abstract class Agent {
     Effect effect;
+    private String ID;
 
     /**
      * Az agent parameter nelkuli konstruktora
      */
     public Agent() {
+        this.effect = null;
+        this.ID = null;
+    }
+
+    /**
+     * Az agent ID parameteres konstruktora
+     *
+     * @param ID az agens azonositoja
+     */
+    public Agent(String ID) {
+        this.effect = null;
+        this.ID = ID;
     }
 
     /**
@@ -24,6 +37,17 @@ public abstract class Agent {
      */
     public Agent(Effect effect) {
         this.effect = effect;
+    }
+
+    /**
+     * Az agent parameteres konstruktora
+     *
+     * @param effect az agens altal megvalositott effekt
+     * @param ID az agens azonositoja
+     */
+    public Agent(Effect effect, String ID) {
+        this.effect = effect;
+        this.ID = ID;
     }
 
     /**
