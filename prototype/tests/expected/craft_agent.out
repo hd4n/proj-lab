@@ -11,7 +11,7 @@ stats: v1
 	neededAmino_-1
 	neededNucleo_-1
 	co_null
-	ma_a1a2a3n1n2n3
+	ma_a1+a2+a3+n1+n2+n3
 	ag_null
 	eq_null
 	eqa_null
@@ -29,7 +29,7 @@ stats: v1
 	neededAmino_0
 	neededNucleo_0
 	co_null
-	ma_a2a3n2n3
+	ma_a2+a3+n2+n3
 	ag_vi1
 	eq_null
 	eqa_null
