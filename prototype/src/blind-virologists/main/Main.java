@@ -20,24 +20,15 @@ public class Main {
 
     private City city = new City();
 
-    //private HashMap<String, Equipment> equipments = new HashMap<>();
     private ArrayList<Equipment> equipments = new ArrayList<>();
 
-    //private HashMap<String, Material> materials = new HashMap<>();
     private ArrayList<Material> materials = new ArrayList<>();
 
-    //private HashMap<String, Code> codes = new HashMap<>();
     private ArrayList<Code> codes = new ArrayList<>();
 
-    //private HashMap<String, Agent> agents = new HashMap<>();
     private ArrayList<Agent> agents = new ArrayList<>();
 
-    //private HashMap<String, Effect> effects = new HashMap<>();
     private ArrayList<Effect> effects = new ArrayList<>();
-
-    //private HashMap<String, Field> fields = new HashMap<>();
-
-    //private HashMap<String, Virologist> virologists = new HashMap<>();
 
     private static final String wdPath=System.getProperty("user.dir");
 
@@ -181,7 +172,6 @@ public class Main {
                 case "@codes":
                     Agent a=(Agent)getByID(args[2]);
                     codes.add(new Code(a,Integer.parseInt(args[3]), Integer.parseInt(args[4]),args[1]));
-                    //codes.add(args[1], new Code(agents.get(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4])));
                     city.increaseCodeCount();
                     break;
                 case "@fields":
@@ -246,7 +236,6 @@ public class Main {
             case "re":
                 Gloves g=(Gloves)getByID(args[3]);
                 effects.add(new Reflect(Integer.parseInt(args[2]),g,args[1]));
-                //effects.put(args[1], new Reflect(Integer.parseInt(args[2]), (Gloves) equipments.get(args[3])));
                 break;
             case "st":
                 effects.add( new Stun(Integer.parseInt(args[2]),args[1]));
@@ -290,7 +279,6 @@ public class Main {
         Virologist v = new Virologist(args[0]);
         v.setCurrentField((Field) getByID(args[1]));
         city.addPlayer(v);
-        //virologists.put(args[0], v);
 
         ((Field) getByID(args[1])).setCitizen(v);
 
@@ -361,7 +349,7 @@ public class Main {
         Virologist virologist = (Virologist) getByID(commandArgs[1]);
         Field current = virologist.getCurrentField();
         current.accept(virologist);
-        System.out.println("interact: " + commandArgs[1] + ", mezo hash: " + current.hashCode());
+        System.out.println("interact: " + commandArgs[1] + " " + current.getID());
     }
 
     //drop virologus_id equipment_id
