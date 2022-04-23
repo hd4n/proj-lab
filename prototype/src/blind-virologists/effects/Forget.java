@@ -38,10 +38,6 @@ public class Forget extends Effect {
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        Random random = new Random();
-        double randomNumber = random.nextDouble() * 1000;
-        if (randomNumber > affectedCitizen.getResistance() * 10) {
-            ((Virologist) affectedCitizen).getCodes().clear();
-        }
+        ((Virologist)affectedCitizen).clearCodes();
     }
 }
