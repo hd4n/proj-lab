@@ -301,6 +301,38 @@ public class Virologist extends Citizen {
     public ArrayList<Code> getCodes() {
         return codes;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder ki= new StringBuilder();
+        for (Code item:codes) {
+            ki.append("\n\t").append(item);
+        }
+        for (Material item:materials) {
+            ki.append("\n\t").append(item);
+        }
+        for (Agent item:agents) {
+            ki.append("\n\t").append(item);
+        }
+        for (Equipment item:equipments) {
+            ki.append("\n\t").append(item);
+        }
+        for (Equipment item:activeEquipments) {
+            ki.append("\n\t").append(item);
+        }
+        return "Virologist:" +
+                "\n\tstunned=" + stunned +
+                "\n\teffects=" + effects +
+                "\n\tresistance=" + resistance +
+                "\n\tdirection=" + direction +
+                "\n\tcurrentField=" + currentField +
+                "\n\treflect=" + reflect +
+                "\n\tmaxMaterial=" + maxMaterial +
+                "\n\treflectCount=" + reflectCount +
+                "\n\tneededAmino=" + neededAmino +
+                "\n\tneededNucleo=" + neededNucleo +
+                ki;
+    }
 }
 
 

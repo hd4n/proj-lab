@@ -1,0 +1,14 @@
+load situation_1.conf
+step v1 w1
+nextround
+interact v1 collect_material
+craft v1 cd1
+useagent v1 v2 vi1
+nextround
+
+steal v1 v2 equipments b1
+equip v1 b1
+
+
+getstats v1
+getstats v2

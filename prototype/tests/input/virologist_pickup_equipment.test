@@ -1,0 +1,3 @@
+load virologist_pickup_equipment.conf
+interact v1 pickup
+getstats v1
