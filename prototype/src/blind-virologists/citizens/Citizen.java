@@ -52,11 +52,10 @@ public abstract class Citizen implements Visitor {
 
         ArrayList<Effect> torolni = new ArrayList<>();
         for (Effect item : effects) {
+            item.applyEffect(this);
             boolean letlet = item.update();
             if (letlet) {
                 torolni.add(item);
-            } else {
-                item.applyEffect(this);
             }
         }
         for (Effect item : torolni) {
