@@ -319,7 +319,7 @@ public class Main {
     private void step(String[] commandArgs) {
         Virologist virologist = (Virologist) getByID(commandArgs[1]);
         Field target = (Field) getByID(commandArgs[2]);
-        virologist.setCurrentField(target);
+        virologist.setDirection(target);
         System.out.println("step: " + commandArgs[1] + " " + commandArgs[2]);
     }
 
