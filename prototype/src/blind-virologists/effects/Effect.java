@@ -11,7 +11,7 @@ import citizens.Citizen;
  */
 public abstract class Effect {
     protected int duration;
-    private String Id;
+    private String ID;
 
     /**
      * Minden korben meghivodik, eggyel csokkenti a Duration tagvaltozot.
@@ -48,7 +48,7 @@ public abstract class Effect {
      * @param id ez lesz az Id.
      */
     public void setID(String id){
-        Id = id;
+        ID = id;
     }
 
     /**
@@ -56,7 +56,7 @@ public abstract class Effect {
      * @return az Id.
      */
     public String getID(){
-        return Id;
+        return ID;
     }
 
     /**
