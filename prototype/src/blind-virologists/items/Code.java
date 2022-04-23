@@ -26,6 +26,9 @@ public class Code {
         this.aminoCost = aminoCost;
     }
 
+    /**
+     * Konstruktor. A fuggveny letrehoz egy kodot, a parameterek nelkul a tesztesetekhez.
+     */
     public Code(){
         this.agent = null;
         this.nucleoCost = 0;
