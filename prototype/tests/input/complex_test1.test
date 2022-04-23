@@ -8,7 +8,7 @@ step v1 w1
 nextround
 interact v1 collect_material
 craft v1 cd1
-useagent v1 v2 f1
+useagent v1 v2 vi1
 nextround
 getstats v1
 getstats v2

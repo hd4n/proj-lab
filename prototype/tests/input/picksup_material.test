@@ -1,4 +1,5 @@
 load picksup_material.conf
+getstats v1
 interact v1 collect_material
 getstats v1
 getstats w1
