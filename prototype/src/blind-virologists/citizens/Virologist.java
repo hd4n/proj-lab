@@ -319,6 +319,7 @@ public class Virologist extends Citizen {
         codes = new ArrayList<>();
     }
 
+
     @Override
     public String toString() {
         String ki = "";
