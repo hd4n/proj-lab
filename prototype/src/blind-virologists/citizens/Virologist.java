@@ -1,5 +1,6 @@
 package citizens;
 
+import effects.BearDance;
 import effects.Effect;
 import items.*;
 import map.*;
@@ -87,6 +88,15 @@ public class Virologist extends Citizen {
         if (equipment != null) {
             equipments.add(equipment);
         }
+    }
+
+    @Override
+    public void visit(InfectedLaboratory infectedLaboratory) {
+        Code code = infectedLaboratory.readCode();
+        if (!codes.contains(code)) {
+            codes.add(code);
+        }
+        this.addEffect(new BearDance(1,"b99"));
     }
 
 
