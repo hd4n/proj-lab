@@ -58,4 +58,15 @@ public abstract class Effect {
     public String getId(){
         return Id;
     }
+
+    /**
+     * A kiirashoz kell
+     * @return az id stringkent osszefuzve
+     */
+    @Override
+    public String toString(){
+        String out = "\tef_";
+        out+=getId();
+        return out;
+    }
 }
