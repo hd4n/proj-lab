@@ -170,6 +170,7 @@ public class Virologist extends Citizen {
     }
 
     public void addEquipment(Equipment equipment) {
+        //todo <3
         if (equipment != null) {
             equipments.add(equipment);
         }
@@ -243,6 +244,7 @@ public class Virologist extends Citizen {
     }
 
     public void addMaterial(Material material) {
+        //todo <maxMaterial
         if (material != null) {
             materials.add(material);
         }
@@ -334,11 +336,10 @@ public class Virologist extends Citizen {
         //codes
         if (codes.size() > 0) {
             ki += "\n\tco_";
-
             for (Code item : codes) {
                 ki += item.getID() + "+";
-                ki = ki.substring(0, ki.length() - 1);
             }
+            ki = ki.substring(0, ki.length() - 1);
         } else {
             ki += ("\n\tco_null");
         }
@@ -347,8 +348,8 @@ public class Virologist extends Citizen {
             ki += ("\n\tma_");
             for (Material item : materials) {
                 ki += (item.getID() + "+");
-                ki = ki.substring(0, ki.length() - 1);
             }
+            ki = ki.substring(0, ki.length() - 1);
         } else {
             ki += ("\n\tma_null");
         }
@@ -357,8 +358,8 @@ public class Virologist extends Citizen {
             ki += ("\n\tag_");
             for (Agent item : agents) {
                 ki += (item.getID() + "+");
-                ki = ki.substring(0, ki.length() - 1);
             }
+            ki = ki.substring(0, ki.length() - 1);
         } else {
             ki += ("\n\tag_null");
         }
@@ -367,8 +368,8 @@ public class Virologist extends Citizen {
             ki += ("\n\teq_");
             for (Equipment item : equipments) {
                 ki += (item.getID() + "+");
-                ki = ki.substring(0, ki.length() - 1);
             }
+            ki = ki.substring(0, ki.length() - 1);
         } else {
             ki += ("\n\teq_null");
         }
@@ -377,8 +378,8 @@ public class Virologist extends Citizen {
             ki += ("\n\teqa_");
             for (Equipment item : activeEquipments) {
                 ki += (item.getID() + "+");
-                ki = ki.substring(0, ki.length() - 1);
             }
+            ki = ki.substring(0, ki.length() - 1);
         } else {
             ki += ("\n\teqa_null");
         }
@@ -387,8 +388,8 @@ public class Virologist extends Citizen {
             ki += ("\n\tef_");
             for (Effect item : effects) {
                 ki += (item.getID() + "+");
-                ki = ki.substring(0, ki.length() - 1);
             }
+            ki = ki.substring(0, ki.length() - 1);
         } else {
             ki += ("\n\tef_null");
         }

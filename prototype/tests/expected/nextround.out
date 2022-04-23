@@ -1,8 +1,9 @@
 Load: sikeres
+step: v1 e2
 
 stats: v1
 	fi_e1
-	di_null
+	di_e2
 	st_false
 	res_0.0
 	re_false
@@ -13,15 +14,16 @@ stats: v1
 	co_null
 	ma_null
 	ag_null
-	eq_null
+	eq_c1
 	eqa_null
-	ef_null
+	ef_p1
+nextround: sikeres
 
-stats: v2
+stats: v1
 	fi_e2
-	di_null
+	di_e2
 	st_false
-	res_0.0
+	res_82.3
 	re_false
 	ma_10
 	ref_0
@@ -30,11 +32,6 @@ stats: v2
 	co_null
 	ma_null
 	ag_null
-	eq_null
+	eq_c1
 	eqa_null
-	ef_null
-stat map:
-	e1 - s1
-	e2 - s1
-	s1 - e1
-	s1 - e2
+	ef_p1
