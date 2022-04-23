@@ -36,7 +36,7 @@ public class Reflect extends Effect {
     public Reflect(int duration, Gloves parent, String ID) {
         this.duration = duration;
         this.parent = parent;
-        this.ID = ID;
+        this.setID(ID);
     }
 
     /**
@@ -44,7 +44,7 @@ public class Reflect extends Effect {
      * @param ID aznosito
      */
     public Reflect (String ID){
-        this.ID = ID;
+        setID(ID);
     }
 
     /**

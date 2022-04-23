@@ -22,7 +22,7 @@ public class IncreaseBag extends Effect {
      */
     public IncreaseBag(String ID) {
         this.duration = 0;
-        this.ID = ID;
+        this.setID(ID);
     }
 
     /**
@@ -33,7 +33,7 @@ public class IncreaseBag extends Effect {
      */
     public IncreaseBag(int duration, String ID) {
         this.duration = duration;
-        this.ID = ID;
+        this.setID(ID);
     }
 
     /**

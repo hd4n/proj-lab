@@ -27,6 +27,26 @@ public class Virus extends Agent {
     }
 
     /**
+     * Konstruktor. A fuggveny letrehoz egy virust, a parameterben megadott azonositoval
+     *
+     * @param ID azonosito
+     */
+    public Virus(String ID) {
+        this.setID(ID);
+    }
+
+    /**
+     * Konstruktor. A fuggveny letrehoz egy virust, a parameterben megadott azonositoval es effekttel
+     *
+     * @param effect a kivant effect
+     * @param ID aonosito
+     */
+    public Virus(Effect effect, String ID) {
+        super(effect);
+        this.setID(ID);
+    }
+
+    /**
      * A fuggveny a megfelelo effect-et visszaadja.
      */
     @Override
