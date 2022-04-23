@@ -170,8 +170,12 @@ public class Main {
                     addAgent(args);
                     break;
                 case "@codes":
-                    Agent a=(Agent)getByID(args[2]);
-                    codes.add(new Code(a,Integer.parseInt(args[3]), Integer.parseInt(args[4]),args[1]));
+                    if(args.length==2){
+                        codes.add(new Code(args[1]));
+                    }else{
+                        Agent a=(Agent)getByID(args[2]);
+                        codes.add(new Code(a,Integer.parseInt(args[3]), Integer.parseInt(args[4]),args[1]));
+                    }
                     city.increaseCodeCount();
                     break;
                 case "@fields":
