@@ -41,7 +41,7 @@ public class BearDance extends Effect {
      */
     public BearDance(int dur, String id) {
         duration = dur;
-        setId(id);
+        setID(id);
     }
 
     /**
@@ -53,7 +53,7 @@ public class BearDance extends Effect {
     public BearDance(Citizen citizen, String id) {
         citizen.addEffect(this);
         duration = 1;
-        setId(id);
+        setID(id);
     }
 
     /**

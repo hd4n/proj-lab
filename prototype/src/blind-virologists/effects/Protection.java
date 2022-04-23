@@ -33,7 +33,7 @@ public class Protection extends Effect {
      */
     public Protection(String id) {
         duration = 3;
-        setId(id);
+        setID(id);
     }
 
     /**
@@ -54,7 +54,7 @@ public class Protection extends Effect {
     public Protection(Citizen citizen, int dur, String id) {
         duration = dur;
         citizen.addEffect(this);
-        setId(id);
+        setID(id);
     }
 
     /**

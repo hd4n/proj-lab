@@ -32,7 +32,7 @@ public class Immunity extends Effect {
      */
     public Immunity(String id) {
         duration = 3;
-        setId(id);
+        setID(id);
     }
 
     /**
@@ -42,7 +42,7 @@ public class Immunity extends Effect {
      */
     public Immunity(int dur, String id) {
         duration = dur;
-        setId(id);
+        setID(id);
     }
 
     /**
@@ -55,7 +55,7 @@ public class Immunity extends Effect {
     public Immunity(Citizen citizen, int dur, String id) {
         duration = dur;
         citizen.addEffect(this);
-        setId(id);
+        setID(id);
     }
 
     /**

@@ -2,9 +2,7 @@ package effects;
 
 import citizens.Citizen;
 import citizens.Virologist;
-import items.Code;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -28,7 +26,7 @@ public class Forget extends Effect {
      */
     public Forget(String id) {
         duration = 1;
-        setId(id);
+        setID(id);
     }
 
     /**

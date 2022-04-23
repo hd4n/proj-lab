@@ -47,7 +47,7 @@ public abstract class Effect {
      * Beallítja az Id erteket.
      * @param id ez lesz az Id.
      */
-    public void setId(String id){
+    public void setID(String id){
         Id = id;
     }
 
@@ -55,7 +55,7 @@ public abstract class Effect {
      * Visszaadja az Id erteket.
      * @return az Id.
      */
-    public String getId(){
+    public String getID(){
         return Id;
     }
 
@@ -66,7 +66,7 @@ public abstract class Effect {
     @Override
     public String toString(){
         String out = "\tef_";
-        out+=getId();
+        out+=getID();
         return out;
     }
 }

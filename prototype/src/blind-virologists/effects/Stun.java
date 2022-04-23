@@ -1,9 +1,7 @@
 package effects;
 
 import citizens.Citizen;
-import map.Field;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -35,7 +33,7 @@ public class Stun extends Effect {
      */
     public Stun(String id) {
         duration = 3;
-        setId(id);
+        setID(id);
     }
 
     /**
@@ -45,7 +43,7 @@ public class Stun extends Effect {
      */
     public Stun(int dur, String id) {
         duration = dur;
-        setId(id);
+        setID(id);
     }
 
     /**
@@ -58,7 +56,7 @@ public class Stun extends Effect {
         duration = dur;
         citizen.setStunned(true);
         citizen.addEffect(this);
-        setId(id);
+        setID(id);
     }
 
     /**

@@ -27,7 +27,7 @@ public class Dance extends Effect {
      */
     public Dance(String id) {
         duration = 3;
-        setId(id);
+        setID(id);
     }
 
     /**
@@ -45,7 +45,7 @@ public class Dance extends Effect {
      */
     public Dance(int dur, String id) {
         duration = dur;
-        setId(id);
+        setID(id);
     }
 
     /**
@@ -57,7 +57,7 @@ public class Dance extends Effect {
     public Dance(Citizen citizen, int dur, String id) {
         duration = dur;
         citizen.addEffect(this);
-        setId(id);
+        setID(id);
     }
 
     /**
