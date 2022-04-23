@@ -85,6 +85,7 @@ public abstract class Citizen implements Visitor {
      * @return sikeres volt e a kenes, false ha visszakeni
      */
     public boolean addEffect(Effect effect) {
+        if (effect == null) return true;
         int szam = new Random().nextInt(100);   //random szam az immunitas veletlenszerusegehez
         if (reflect) {
             reflect = false;
