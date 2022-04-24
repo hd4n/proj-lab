@@ -1,0 +1,4 @@
+load virologists_touch.conf
+getstats v1
+getstats v2
+getstats map

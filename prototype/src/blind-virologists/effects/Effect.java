@@ -70,4 +70,8 @@ public abstract class Effect {
         out+=getID();
         return out;
     }
+
+    public static void resetEID(){
+        eID=100;
+    }
 }

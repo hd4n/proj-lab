@@ -30,13 +30,13 @@ public class Main {
 
     private ArrayList<Effect> effects = new ArrayList<>();
 
-    private static final String wdPath=new File(System.getProperty("user.dir")).getParent()/*+"\\proj-lab\\prototype"*/;
+    private static final String wdPath = new File(System.getProperty("user.dir")).getParent()/*+"\\proj-lab\\prototype"*/;
 
     public static void main(String[] args) {
         System.out.println("Vilagtalan virologusok vilaga - Proto");
         System.out.println("Csapat: alma");
-        System.out.println("-------------------------------");
-        Scanner sc=null;
+
+        Scanner sc = null;
         PrintStream ps = null;
         var stdout = System.out;
         Main main = new Main();
@@ -44,38 +44,66 @@ public class Main {
         //System.out.println(wdPath);
 
         if (args.length == 3 && args[0].equals("-t")) {
-            System.out.println("-------------------------------");
-            System.out.println("Teszt futtatasa: " + args[1]);
-            System.out.println("-------------------------------");
-
-            File testFile = new File(wdPath + "/tests/input/" + args[1]);
-            try {
-                sc = new Scanner(testFile);
-            } catch (FileNotFoundException e) {
-                System.err.println("Nem talalhato a teszt file");
-                return;
+            main.runTest(args[1], args[2]);
+        } else if (args.length == 1 && args[0].equals("-at")) {
+            File inputFolder = new File(wdPath + "/tests/input");
+            File[] inputFiles = inputFolder.listFiles();
+            for (File inputFile : inputFiles) {
+                String input = inputFile.getName();
+                if (input.equals("sample.test")) {
+                    continue;
+                }
+                String expected = input.substring(0, input.length() - 5) + ".out";
+                main.runTest(input, expected);
             }
-
-            //stdout fileba
-            File outFile = new File(wdPath + "/tests/output/" + args[1]);
-            try {
-                outFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                ps = new PrintStream(outFile);
-                System.setOut(ps);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }else if(args.length==1&&args[0].equals("-a")){
-            //todo run all
         } else {
+            System.out.println("-------------------------------");
             sc = new Scanner(System.in);
             sc.useDelimiter(System.getProperty("line.separator"));
+            while (sc.hasNextLine()) {
+                String command = sc.nextLine();
+                main.execCommand(command);
+            }
+        }
+    }
+
+    private void runTest(String inputFile, String expectedFile) {
+        System.out.println("-------------------------------");
+        System.out.println("Teszt futtatasa: " + inputFile);
+
+        PrintStream ps = null;
+        Scanner sc = null;
+        Main main = new Main();
+        var stdout = System.out;
+
+        File testFile = new File(wdPath + "/tests/input/" + inputFile);
+        try {
+            sc = new Scanner(testFile);
+        } catch (FileNotFoundException e) {
+            System.err.println("Nem talalhato a teszt file");
+            return;
         }
 
+        //stdout fileba
+        File outFile = new File(wdPath + "/tests/output/" + inputFile);
+        try {
+            outFile.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        try {
+            ps = new PrintStream(outFile);
+            System.setOut(ps);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        //eID visszaallitasa, mert uj teszteset van
+        Effect.resetEID();
+
+        //feldolgozas
         while (sc.hasNextLine()) {
             String command = sc.nextLine();
             main.execCommand(command);
@@ -87,10 +115,10 @@ public class Main {
         }
 
         //kimenet ellenorzes
-        if (compareResults(args[1], args[2])) {
+        if (compareResults(inputFile, expectedFile)) {
             System.out.println("A teszt futasa sikeres");
         } else {
-            System.err.println("A teszt futasa sikertelen");
+            System.err.println("**A teszt futasa sikertelen**");
         }
     }
 
@@ -139,7 +167,7 @@ public class Main {
 
     //load file.conf
     private void loadFile(String[] commandArgs) {
-        File input = new File(wdPath+"/tests/config/" + commandArgs[1]);
+        File input = new File(wdPath + "/tests/config/" + commandArgs[1]);
         Scanner sc;
         try {
             sc = new Scanner(input);
@@ -173,11 +201,11 @@ public class Main {
                     addAgent(args);
                     break;
                 case "@codes":
-                    if(args.length==2){
+                    if (args.length == 2) {
                         codes.add(new Code(args[1]));
-                    }else{
-                        Agent a=(Agent)getByID(args[2]);
-                        codes.add(new Code(a,Integer.parseInt(args[3]), Integer.parseInt(args[4]),args[1]));
+                    } else {
+                        Agent a = (Agent) getByID(args[2]);
+                        codes.add(new Code(a, Integer.parseInt(args[3]), Integer.parseInt(args[4]), args[1]));
                     }
                     city.increaseCodeCount();
                     break;
@@ -185,8 +213,8 @@ public class Main {
                     addField(args);
                     break;
                 case "@neighbors":
-                    ((Field)getByID(args[0])).addNeighbor((Field) getByID(args[1]));
-                    ((Field)getByID(args[1])).addNeighbor((Field) getByID(args[0]));
+                    ((Field) getByID(args[0])).addNeighbor((Field) getByID(args[1]));
+                    ((Field) getByID(args[1])).addNeighbor((Field) getByID(args[0]));
                     break;
                 case "@virologists":
                     addVirologist(args);
@@ -203,19 +231,19 @@ public class Main {
                 equipments.add(new Axe(args[1]));
                 break;
             case "ba":
-                equipments.add( new Bag(args[1]));
+                equipments.add(new Bag(args[1]));
                 break;
             case "ca":
-                equipments.add( new Cape(args[1]));
+                equipments.add(new Cape(args[1]));
                 break;
             case "gl":
                 equipments.add(new Gloves(args[1]));
                 break;
             case "am":
-                materials.add( new Aminoacid(args[1]));
+                materials.add(new Aminoacid(args[1]));
                 break;
             case "nu":
-                materials.add( new Nucleotide(args[1]));
+                materials.add(new Nucleotide(args[1]));
                 break;
         }
     }
@@ -223,29 +251,29 @@ public class Main {
     private void addEffect(String[] args) {
         switch (args[0]) {
             case "be":
-                effects.add( new BearDance(Integer.parseInt(args[2]),args[1]));
+                effects.add(new BearDance(Integer.parseInt(args[2]), args[1]));
                 break;
             case "da":
-                effects.add(new Dance(Integer.parseInt(args[2]),args[1]));
+                effects.add(new Dance(Integer.parseInt(args[2]), args[1]));
                 break;
             case "fo":
                 effects.add(new Forget(args[1]));
                 break;
             case "im":
-                effects.add(new Immunity(Integer.parseInt(args[2]),args[1]));
+                effects.add(new Immunity(Integer.parseInt(args[2]), args[1]));
                 break;
             case "in":
-                effects.add(new IncreaseBag(Integer.parseInt(args[2]),args[1]));
+                effects.add(new IncreaseBag(Integer.parseInt(args[2]), args[1]));
                 break;
             case "pr":
-                effects.add(new Protection(Integer.parseInt(args[2]),args[1]));
+                effects.add(new Protection(Integer.parseInt(args[2]), args[1]));
                 break;
             case "re":
-                Gloves g=(Gloves)getByID(args[3]);
-                effects.add(new Reflect(Integer.parseInt(args[2]),g,args[1]));
+                Gloves g = (Gloves) getByID(args[3]);
+                effects.add(new Reflect(Integer.parseInt(args[2]), g, args[1]));
                 break;
             case "st":
-                effects.add( new Stun(Integer.parseInt(args[2]),args[1]));
+                effects.add(new Stun(Integer.parseInt(args[2]), args[1]));
                 break;
         }
     }
@@ -253,10 +281,10 @@ public class Main {
     private void addAgent(String[] args) {
         switch (args[0]) {
             case "vi":
-                agents.add( new Virus((Effect)getByID(args[2]),args[1]));
+                agents.add(new Virus((Effect) getByID(args[2]), args[1]));
                 break;
             case "va":
-                agents.add( new Vaccine((Effect)getByID(args[2]),args[1]));
+                agents.add(new Vaccine((Effect) getByID(args[2]), args[1]));
                 break;
         }
     }
@@ -265,19 +293,19 @@ public class Main {
         Field field = null;
         switch (args[0]) {
             case "em":
-                field = args.length == 3 ? new Empty((Equipment) getByID(args[2]),args[1]) : new Empty(args[1]);
+                field = args.length == 3 ? new Empty((Equipment) getByID(args[2]), args[1]) : new Empty(args[1]);
                 break;
             case "in":
-                field = args.length == 3 ? new InfectedLaboratory((Code) getByID(args[2]),args[1]) : new InfectedLaboratory(args[1]);
+                field = args.length == 3 ? new InfectedLaboratory((Code) getByID(args[2]), args[1]) : new InfectedLaboratory(args[1]);
                 break;
             case "la":
-                field = args.length == 3 ? new Laboratory((Code) getByID(args[2]),args[1]) : new Laboratory(args[1]);
+                field = args.length == 3 ? new Laboratory((Code) getByID(args[2]), args[1]) : new Laboratory(args[1]);
                 break;
             case "sh":
-                field = args.length == 3 ? new Shelter((Equipment)getByID(args[2]),args[1]) : new Shelter(args[1]);
+                field = args.length == 3 ? new Shelter((Equipment) getByID(args[2]), args[1]) : new Shelter(args[1]);
                 break;
             case "wa":
-                field = args.length == 3 ? new Warehouse((Material) getByID(args[2]),args[1]) : new Warehouse(args[1]);
+                field = args.length == 3 ? new Warehouse((Material) getByID(args[2]), args[1]) : new Warehouse(args[1]);
         }
         city.addField(field);
     }
@@ -293,7 +321,7 @@ public class Main {
             if (!args[2].equals("null")) {
                 String[] eq = args[2].split(";");
                 for (int i = 0; i < eq.length; ++i) {
-                    ((Virologist)getByID(args[0])).addEquipment((Equipment) getByID(eq[i]));
+                    ((Virologist) getByID(args[0])).addEquipment((Equipment) getByID(eq[i]));
                 }
             }
         }
@@ -302,7 +330,7 @@ public class Main {
             if (!args[3].equals("null")) {
                 String[] ma = args[3].split(";");
                 for (int i = 0; i < ma.length; ++i) {
-                    ((Virologist)getByID(args[0])).addMaterial((Material) getByID(ma[i]));
+                    ((Virologist) getByID(args[0])).addMaterial((Material) getByID(ma[i]));
                 }
             }
         }
@@ -311,7 +339,7 @@ public class Main {
             if (!args[4].equals("null")) {
                 String[] ef = args[4].split(";");
                 for (int i = 0; i < ef.length; ++i) {
-                    ((Virologist)getByID(args[0])).addEffect((Effect) getByID(ef[i]));
+                    ((Virologist) getByID(args[0])).addEffect((Effect) getByID(ef[i]));
                 }
             }
         }
@@ -330,7 +358,7 @@ public class Main {
     private void getStats(String[] commandArgs) {
         if (commandArgs[1].equals("map")) {
             System.out.println("stat map:");
-            for (Field field:city.getFields()) {
+            for (Field field : city.getFields()) {
                 List<Field> neighbors = field.getNeighbors();
                 for (Field f : neighbors) {
                     System.out.println("\t" + field.getID() + " - " + f.getID());
@@ -339,7 +367,7 @@ public class Main {
         } else {
             Object o = getByID(commandArgs[1]);
             if (o != null) {
-                String out = "\nstats: " + commandArgs[1] + "\n"+o;
+                String out = "\nstats: " + commandArgs[1] + "\n" + o;
                 System.out.println(out);
             }
         }
@@ -419,44 +447,44 @@ public class Main {
     }
 
     private Object getByID(String ID) {
-        for(Equipment o:equipments){
-            if(o.getID().equals(ID)){
+        for (Equipment o : equipments) {
+            if (o.getID().equals(ID)) {
                 return o;
             }
         }
 
-        for(Material o:materials){
-            if(o.getID().equals(ID)){
+        for (Material o : materials) {
+            if (o.getID().equals(ID)) {
                 return o;
             }
         }
 
-        for(Code o:codes){
-            if(o.getID().equals(ID)){
+        for (Code o : codes) {
+            if (o.getID().equals(ID)) {
                 return o;
             }
         }
 
-        for(Agent o:agents){
-            if(o.getID().equals(ID)){
+        for (Agent o : agents) {
+            if (o.getID().equals(ID)) {
                 return o;
             }
         }
 
-        for(Effect o:effects){
-            if(o.getID().equals(ID)){
+        for (Effect o : effects) {
+            if (o.getID().equals(ID)) {
                 return o;
             }
         }
 
-        for(Field o:city.getFields()){
-            if(o.getID().equals(ID)){
+        for (Field o : city.getFields()) {
+            if (o.getID().equals(ID)) {
                 return o;
             }
         }
 
-        for(Citizen o:city.getPlayers()){
-            if(o.getID().equals(ID)){
+        for (Citizen o : city.getPlayers()) {
+            if (o.getID().equals(ID)) {
                 return o;
             }
         }
@@ -465,8 +493,8 @@ public class Main {
     }
 
     private static boolean compareResults(String f1, String f2) {
-        File act = new File(wdPath+"/tests/output/" + f1);
-        File exp = new File(wdPath+"/tests/expected/" + f2);
+        File act = new File(wdPath + "/tests/output/" + f1);
+        File exp = new File(wdPath + "/tests/expected/" + f2);
 
         Scanner aSc = null, eSc = null;
 

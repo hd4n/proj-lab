@@ -1,0 +1,5 @@
+load step_on_infected_laboratory.conf
+step v1 i1
+nextround
+getstats v1
+getstats i1

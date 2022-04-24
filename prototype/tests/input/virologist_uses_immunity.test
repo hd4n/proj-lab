@@ -1,0 +1,5 @@
+load virologist_uses_immunity.conf
+getstats v1
+craft v1 cd1
+useagent v1 v1 va1
+getstats v1

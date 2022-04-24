@@ -1,0 +1,5 @@
+load step_on_shelter.conf
+step v1 s1
+nextround
+getstats v1
+getstats s1
