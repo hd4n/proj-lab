@@ -1,3 +1,0 @@
-load equip_cape.conf
-equip v1 c1
-getstats v1

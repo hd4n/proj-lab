@@ -1,5 +1,0 @@
-load step_on_laboratory.conf
-step v1 l1
-nextround
-getstats v1
-getstats l1

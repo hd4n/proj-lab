@@ -1,8 +1,0 @@
-load virologist_uses_forget.conf
-interact v2 readcode
-getstats v2
-craft v1 cd1
-useagent v1 v2 vi1
-getstats v2
-nextround
-getstats v2

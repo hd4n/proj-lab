@@ -1,5 +1,0 @@
-load nextround.conf
-step v1 e2
-getstats v1
-nextround
-getstats v1

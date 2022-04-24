@@ -1,7 +1,0 @@
-load virologist_reflects_agent.conf
-interact v1
-craft v1 c1
-nextround
-useagent v1 v2 s1
-getstats v1
-getstats v2

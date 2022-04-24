@@ -1,6 +1,0 @@
-load virologist_uses_stun.conf
-interact v1
-craft v1 c1
-useagent v1 v2 s1
-nextround
-getstats v2

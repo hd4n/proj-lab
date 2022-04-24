@@ -1,3 +1,0 @@
-load equip_bag.conf
-equip v1 b1
-getstats v1

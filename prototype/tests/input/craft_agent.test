@@ -1,4 +1,0 @@
-load craft_agent.conf
-getstats v1
-craft v1 cd1
-getstats v1

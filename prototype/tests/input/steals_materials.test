@@ -1,4 +1,0 @@
-load steals_materials.conf
-steal v2 v1 materials
-getstats v1
-getstats v2

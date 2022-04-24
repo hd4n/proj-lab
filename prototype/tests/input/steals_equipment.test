@@ -1,4 +1,0 @@
-load steals_equipment.conf
-steal v2 v1 equipment c1
-getstats v1
-getstats v2
