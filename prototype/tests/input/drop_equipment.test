@@ -1,0 +1,4 @@
+load drop_equipment.conf
+drop v1 c1
+getstats v1
+getstats e1

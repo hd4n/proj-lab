@@ -5,17 +5,38 @@ import citizens.Citizen;
 /**
  * A Bag osztaly hatasat reprezentalo osztaly. Ha aktiv a hatasa, akkor a jatekos tobb anyagot tud felvenni.
  *
- * @author Eros Pal
- * @since 2022-03-26
+ * @author Kovacs Aron
+ * @since 2022-04-23
  */
 public class IncreaseBag extends Effect {
+    protected int duration = -1;
 
     /**
      * Az IncreaseBag osztaly konstruktora
      */
     public IncreaseBag() {
-        System.out.println("IncreaseBag: letrejon egy IncreaseBag effekt");
-        //Duration = 10;
+        eID++;
+        int i = eID;
+        setID("ib" + i);
+    }
+
+    /**
+     * Az IncreaseBag osztaly konstruktora
+     */
+    public IncreaseBag(String ID) {
+        this.duration = -1;
+        this.setID(ID);
+    }
+
+    /**
+     * A IncreaseBag osztaly konstruktora
+     *
+     * @param duration ilyen hosszan tart az effekt
+     * @param ID       azonosito
+     */
+    public IncreaseBag(int duration, String ID) {
+        this.duration = duration;
+        this.setID(ID);
     }
 
     /**
@@ -24,26 +45,10 @@ public class IncreaseBag extends Effect {
      * @param duration ilyen hosszan tart az effekt
      */
     public IncreaseBag(int duration) {
-        System.out.println("IncreaseBag: letrejon egy IncreaseBag effekt es beallitja az idejet");
-        //Duration = duration;
-    }
-
-    /**
-     * Beallitja a Duration-t
-     *
-     * @param duration hosszú ideig hat az effect
-     */
-    public void setDuration(int duration) {
-        //Duration = duration;
-        System.out.println("IncreaseBag: beallitja a Durationt");
-    }
-
-    /**
-     * Visszaadja a Duration-t
-     */
-    public void getDuration() {
-        //Duration = duration;
-        System.out.println("IncreaseBag: visszaadja a Durationt");
+        this.duration = duration;
+        eID++;
+        int i = eID;
+        setID("ib" + i);
     }
 
     /**
@@ -53,7 +58,16 @@ public class IncreaseBag extends Effect {
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        System.out.println("IncreaseBag: noveli a maximalisan felveheto anyagmennyiseget");
-        //affectedCitizen.setMaxItem(20);
+        affectedCitizen.setMaxMaterial(affectedCitizen.getMaxMaterial() + 10);
+    }
+
+    /**
+     * A fuggveny segitsegevel tortenik az objektum azonositasa a tesztesetekhez
+     *
+     * @return out az objektum azonositoja
+     */
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

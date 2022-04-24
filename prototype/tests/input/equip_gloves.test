@@ -1,0 +1,3 @@
+load equip_gloves.conf
+equip v1 g1
+getstats v1

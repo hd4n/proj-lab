@@ -3,19 +3,62 @@ package items;
 import effects.*;
 
 /**
- * A kontrollalhatatlan tancot okozo virus effektjet megvalosito osztaly.
+ * A vakcinat megvalosito osztaly.
  *
- * @author Feher Norbert
- * @since 2022-03-26
+ * @author Kovacs Aron
+ * @since 2022-04-22
  */
 public class Vaccine extends Agent {
     /**
-     * A fuggveny letrehozza egy immunity effect-et és visszaadja azt.
+     * Konstruktor. A fuggveny letrehoz egy vakcinat.
+     *
+     * @param effect a kivant effect
      */
+    public Vaccine(Effect effect) {
+        super(effect);
+    }
+
+    /**
+     * Konstruktor. A fuggveny letrehoz egy vakcinat.
+     */
+    public Vaccine() {
+    }
+
+    /**
+     * Konstruktor. A fuggveny letrehoz egy vakcinat, a parameterben megadott azonositoval
+     *
+     * @param ID azonosito
+     */
+    public Vaccine(String ID) {
+        this.setID(ID);
+    }
+
+    /**
+     * Konstruktor. A fuggveny letrehoz egy vakcinat.
+     *
+     * @param effect a kivant effect
+     * @param ID aonosito
+     */
+    public Vaccine(Effect effect, String ID) {
+        super(effect);
+        this.setID(ID);
+    }
+
+    /**
+     * A fuggveny a megfelelo effect-et visszaadja.
+     */
+    @Override
     public Effect use() {
-        System.out.println("Vaccine: Letrehoz egy immunitas effectet.");
-        Immunity eImmunity = new Immunity();
-        System.out.println("Vaccine: Visszaadja ezt az effectet.");
-        return eImmunity;
+        return effect;
+    }
+
+    /**
+     * A fuggveny segitsegevel tortenik az objektum azonositasa a tesztesetekhez
+     *
+     * @return out az objektum azonositoja
+     */
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

@@ -6,8 +6,8 @@ import items.Material;
 /**
  * A warehouse mezot megvalositó osztaly.
  *
- * @author Kovacs Aron
- * @since 2022-03-26
+ * @author Kovacs Aron, Hajos Daniel
+ * @since 2022-04-21
  */
 public class Warehouse extends Field {
 
@@ -18,8 +18,9 @@ public class Warehouse extends Field {
      *
      * @param material a warehouseban levo materialt adja meg
      */
-    public Warehouse(Material material) {
+    public Warehouse(Material material,String _ID) {
         this.material = material;
+        setID(_ID);
     }
 
     /**
@@ -29,13 +30,17 @@ public class Warehouse extends Field {
         this.material = null;
     }
 
+    public Warehouse(String _ID){
+        setID(_ID);
+        material=null;
+    }
+
     /**
      * A warehouse mezo gettere
      *
      * @return material visszaadja a mezon levo anyagot
      */
     public Material getMaterial() {
-        System.out.println("Warehouse: getter fuggvenye meghivodott");
         return material;
     }
 
@@ -45,7 +50,6 @@ public class Warehouse extends Field {
      * @param material a warehouseban levo anyagot allitja be
      */
     public void setMaterial(Material material) {
-        System.out.println("Warehouse: setter fuggvenye meghivodott");
         this.material = material;
     }
 
@@ -55,19 +59,30 @@ public class Warehouse extends Field {
      * @return collected a felvett anyagot adja vissza
      */
     public Material collectMaterial() {
-        System.out.println("Warehouse: anyag felvetele");
         Material collected = this.material;
         setMaterial(null);
         return collected;
     }
 
     /**
-     * Az warehouse mezore lepo visitor fogadasat vegzo fuggveny
+     * A mezovel interakcioba lepo visitor fogadasat vegzo fuggveny
      *
-     * @param v a mezore lepo visitor
+     * @param v az interakciot vegzo visitor
      */
     @Override
     public void accept(Visitor v) {
         v.visit(this);
+    }
+
+    @Override
+    public String toString(){
+        String out= super.toString();
+        out+="\teq_";
+        if(material==null){
+            out+="null";
+        }else{
+            out+=material.getID();
+        }
+        return out;
     }
 }

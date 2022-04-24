@@ -1,0 +1,19 @@
+Load: sikeres
+equip: v1 c1
+
+stats: v1
+	fi_e1
+	di_null
+	st_false
+	res_0.0
+	re_false
+	ma_10
+	ref_0
+	neededAmino_-1
+	neededNucleo_-1
+	co_null
+	ma_null
+	ag_null
+	eq_null
+	eqa_c1
+	ef_null

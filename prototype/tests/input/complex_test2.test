@@ -1,0 +1,17 @@
+load complex_test2.conf
+step v1 l1
+nextround
+interact v1
+interact v2
+step v2 e2
+craft v1 c1
+nextround
+useagent v1 v2 ag1
+nextround
+step v1 e4
+nextround
+step v2 l1
+nextround
+interact v2
+getstats v1
+getstats v2

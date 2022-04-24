@@ -1,14 +1,13 @@
 package map;
 
-import citizens.Virologist;
 import citizens.Visitor;
 import items.Equipment;
 
 /**
  * Az ures mezot megvalosito osztaly.
  *
- * @author Kovacs Aron
- * @since 2022-03-26
+ * @author Kovacs Aron, Hajos Daniel
+ * @since 2022-04-21
  */
 public class Empty extends Field {
 
@@ -20,8 +19,9 @@ public class Empty extends Field {
      * @param equipment ha esetleg equipmenttel hoznank letre ures mezot
      */
 
-    public Empty(Equipment equipment) {
+    public Empty(Equipment equipment,String _ID) {
         this.equipment = equipment;
+        setID(_ID);
     }
 
     /**
@@ -31,13 +31,17 @@ public class Empty extends Field {
         this.equipment = null;
     }
 
+    public Empty(String _ID){
+        equipment=null;
+        setID(_ID);
+    }
+
     /**
      * Az ures mezo gettere
      *
      * @return a mezon levo felszerelest adja vissza
      */
     public Equipment getEquipment() {
-        System.out.println("Empty: getter fuggvenye meghivodott");
         return equipment;
     }
 
@@ -47,7 +51,6 @@ public class Empty extends Field {
      * @param equipment beallitja az ures mezon levo felszerelest
      */
     public void setEquipment(Equipment equipment) {
-        System.out.println("Empty: setter fuggvenye meghivodott");
         this.equipment = equipment;
     }
 
@@ -57,19 +60,41 @@ public class Empty extends Field {
      * @return a felvett felszerelest adja vissza
      */
     public Equipment pickUpEquipment() {
-        System.out.println("Empty: Equipment felvetele");
         Equipment collected = equipment;
-        setEquipment(null);
+        equipment = null;
         return collected;
     }
 
     /**
-     * Az ures mezore lepo visitor fogadasat vegzo fuggveny
+     * Az eldobott equipmentet eltarolja a mezon
      *
-     * @param v a mezore lepo visitor
+     * @param e az eldobott Equipment
+     */
+    @Override
+    public void dropEquipment(Equipment e) {
+        equipment = e;
+    }
+
+    /**
+     * A mezovel interakcioba lepo visitor fogadasat vegzo fuggveny
+     *
+     * @param v az interakciot vegzo visitor
      */
     @Override
     public void accept(Visitor v) {
         v.visit(this);
+    }
+
+
+    @Override
+    public String toString(){
+        String out= super.toString();
+        out+="\teq_";
+        if(equipment==null){
+            out+="null";
+        }else{
+            out+=equipment.getID();
+        }
+        return out;
     }
 }

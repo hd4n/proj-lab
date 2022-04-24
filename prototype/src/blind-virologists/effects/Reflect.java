@@ -1,50 +1,66 @@
 package effects;
 
 import citizens.Citizen;
+import citizens.Virologist;
+import items.Gloves;
 
 /**
  * A taszito effektet valositja meg. Ez a hatas a kesztyu kovetkezteben lephet ervenybe.
  * A virologusra felkent agenst forditja vissza.
  *
- * @author Eros Pal
- * @since 2022-03-26
+ * @author Kovacs Aron
+ * @since 2022-04-23
  */
 public class Reflect extends Effect {
+    protected Gloves parent;
+
 
     /**
      * A Reflect osztaly konstruktora
+     *
+     * @param duration ilyen hosszan tart az effekt
+     * @param parent   a kesztyu akitol szarmazik az effekt
      */
-    public Reflect() {
-        System.out.println("Reflect: letrejon egy Reflect effekt");
-        //Duration = 10;
+    public Reflect(int duration, Gloves parent) {
+        this.duration = duration;
+        this.parent = parent;
     }
 
     /**
      * A Reflect osztaly konstruktora
      *
      * @param duration ilyen hosszan tart az effekt
+     * @param parent   a kesztyu akitol szarmazik az effekt
+     * @param ID aznosito
      */
-    public Reflect(int duration) {
-        System.out.println("Reflect: letrejon egy Reflect effekt es beallitja az idejet");
-        //Duration = duration;
+    public Reflect(int duration, Gloves parent, String ID) {
+        this.duration = duration;
+        this.parent = parent;
+        this.setID(ID);
     }
 
     /**
-     * Beallitja a Duration-t
+     * A Reflect osztaly konstruktora
+     * @param ID aznosito
+     */
+    public Reflect (String ID){
+        setID(ID);
+    }
+
+    public Reflect(){
+            duration = -1;
+            eID++;
+            int i = eID;
+            setID("r" + i);
+    }
+
+    /**
+     * Visszaadja a kesztyut amibol szarmazik
      *
-     * @param duration hosszú ideig hat az effect
+     * @return a kesztyu
      */
-    public void setDuration(int duration) {
-        //Duration = duration;
-        System.out.println("Reflect: beallitja a Durationt");
-    }
-
-    /**
-     * Visszaadja a Duration-t
-     */
-    public void getDuration() {
-        //Duration = duration;
-        System.out.println("Reflect: visszaadja a Durationt");
+    public Gloves getParent() {
+        return parent;
     }
 
     /**
@@ -54,6 +70,27 @@ public class Reflect extends Effect {
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        System.out.println("Reflect: visszafordito efekt hatas kerul ra");
+        affectedCitizen.setReflect(true);
+        if (affectedCitizen.getReflectCount() >= 3) {
+            ((Virologist)affectedCitizen).removeEquipment(this.getParent());
+            affectedCitizen.setReflectCount(0);
+        }
+    }
+
+    /**
+     * A fuggveny segitsegevel tortenik az objektum azonositasa a tesztesetekhez
+     *
+     * @return out az objektum azonositoja
+     */
+    @Override
+    public String toString() {
+        String out = super.toString();
+        out +="\n\tpa_";
+        if(parent == null){
+            out+="null";
+        }else{
+            out+=parent.getID();
+        }
+        return out;
     }
 }
