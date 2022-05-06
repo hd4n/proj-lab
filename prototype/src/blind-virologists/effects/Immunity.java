@@ -7,54 +7,72 @@ import citizens.Citizen;
  * Hatasa alatt a virologusra kent virusok hatastalanok.
  *
  * @author Eros Pal
- * @since 2022-03-26
+ * @since 2022-04-22
  */
 public class Immunity extends Effect {
 
     /**
-     * Az Immunity osztaly konstruktora
+     * Az Immunity osztaly konstruktora, 3 meretu durationnal.
      */
     public Immunity() {
-        System.out.println("Immunity: letrejon egy Immunity effekt");
-        //Duration = 10;
+        duration = 3;
+        eID++;
+        int i = eID;
+        setID("i" + i);
     }
 
     /**
-     * A Immunity osztaly konstruktora
+     * Az Immunity osztaly konstruktora.
+     * @param dur ilyen hosszan tart az effekt.
+     */
+    public Immunity(int dur) {
+        duration = dur;
+    }
+
+    /**
+     * Az Immunity osztaly konstruktora, 3 meretu durationnal.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Immunity(String id) {
+        duration = 3;
+        setID(id);
+    }
+
+    /**
+     * Az Immunity osztaly konstruktora.
+     * @param dur ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Immunity(int dur, String id) {
+        duration = dur;
+        setID(id);
+    }
+
+    /**
+     * A Immunity osztaly konstruktora.
      *
-     * @param duration ilyen hosszan tart az effekt
+     * @param citizen akire hat az effekt.
+     * @param dur     ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
      */
-    public Immunity(int duration) {
-        System.out.println("Immunity: letrejon egy Immunity effekt es beallitja az idejet");
-        //Duration = duration;
-    }
-
-    /**
-     * Beallitja a Duration-t
-     *
-     * @param duration hosszú ideig hat az effect
-     */
-    public void setDuration(int duration) {
-        //Duration = duration;
-        System.out.println("Immunity: beallitja a Durationt");
-    }
-
-    /**
-     * Visszaadja a Duration-t
-     */
-    public void getDuration() {
-        //Duration = duration;
-        System.out.println("Immunity: visszadja a Durationt");
+    public Immunity(Citizen citizen, int dur, String id) {
+        duration = dur;
+        citizen.addEffect(this);
+        setID(id);
     }
 
     /**
      * A Citizen resistance tagvaltozojat 100-ra allitja.
-     *
      * @param affectedCitizen resistance tagvaltozojat allitja at.
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        System.out.println("Immunity: atallitja a resistance tagvaltozot 100-ra");
-        //affectedCitizen.setResistance(100);
+        if (duration == 0){
+            if(affectedCitizen.getResistance() == 100) {
+                affectedCitizen.setResistance(0);
+            }
+        }else {
+            affectedCitizen.setResistance(100);
+        }
     }
 }

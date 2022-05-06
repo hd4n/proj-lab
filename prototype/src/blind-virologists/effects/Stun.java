@@ -2,57 +2,77 @@ package effects;
 
 import citizens.Citizen;
 
+import java.util.Random;
+
 /**
  * A benito effektet valositja meg. Ha ervenyben van, akkor az ido lejartaig a jatekos nem tud mozogni.
  *
  * @author Eros Pal
- * @since 2022-03-26
+ * @since 2022-04-22
  */
 public class Stun extends Effect {
 
     /**
-     * A Stun osztaly konstruktora
+     * A Stun osztaly konstruktora, 3 meretu durationnal.
      */
     public Stun() {
-        System.out.println("Stun: letrejon egy Stun effekt");
-        //Duration = 10;
+        duration = 3;
+        eID++;
+        int i = eID;
+        setID("s" + i);
     }
 
     /**
-     * A Stun osztaly konstruktora
-     *
-     * @param duration ilyen hosszan tart az effekt
+     * A Stun osztaly konstruktora.
+     * @param dur ilyen hosszan tart az effekt.
      */
-    public Stun(int duration) {
-        System.out.println("Stun: letrejon egy Stun effekt es beallitja az idejet");
-        //Duration = duration;
+    public Stun(int dur) {
+        duration = dur;
     }
 
     /**
-     * Beallitja a Duration-t
-     *
-     * @param duration hosszú ideig hat az effect
+     * A Stun osztaly konstruktora, 3 meretu durationnal.
+     * @param id az id-ja az adott peldanynak.
      */
-    public void setDuration(int duration) {
-        //Duration = duration;
-        System.out.println("Stun: beallitja a Durationt");
+    public Stun(String id) {
+        duration = 3;
+        setID(id);
     }
 
     /**
-     * Visszaadja a Duration-t
+     * A Stun osztaly konstruktora.
+     * @param dur ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
      */
-    public void getDuration() {
-        //Duration = duration;
-        System.out.println("Stun: visszaadja a Durationt");
+    public Stun(int dur, String id) {
+        duration = dur;
+        setID(id);
     }
 
     /**
-     * Az adott Citizen stunned parameteret igazra allitja.
-     *
-     * @param affectedCitizen stunned parameteret alitja at.
+     * A Stun osztaly konstruktora.
+     * @param citizen akire hat az effekt.
+     * @param dur ilyen hosszan tart az effekt.
+     * @param id az id-ja az adott peldanynak.
+     */
+    public Stun(Citizen citizen, int dur, String id) {
+        duration = dur;
+        citizen.setStunned(true);
+        citizen.addEffect(this);
+        setID(id);
+    }
+
+    /**
+     * Lekerdezi az aktualis mezot, majd beallitja celmezonek.
+     * @param affectedCitizen ennek allitja at a celmezojet az aktualis mezore.
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        System.out.println("Stun: igazra allitja a stunned parametert");
+        Random random = new Random();
+        double randomNumber = random.nextDouble()*1000;
+        if( randomNumber > affectedCitizen.getResistance() *10) {
+            affectedCitizen.setDirection(affectedCitizen.getCurrentField());
+            affectedCitizen.setStunned(duration != 0);
+        }
     }
 }

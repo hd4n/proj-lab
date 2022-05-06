@@ -1,0 +1,56 @@
+Load: sikeres
+interact: v2 l1
+
+stats: v2
+	fi_l1
+	di_null
+	st_false
+	res_0.0
+	re_false
+	ma_10
+	ref_0
+	neededAmino_-1
+	neededNucleo_-1
+	co_cd1
+	ma_null
+	ag_null
+	eq_null
+	eqa_null
+	ef_null
+craft: v1 cd1
+useagent: v1 v2 vi1
+
+stats: v2
+	fi_l1
+	di_null
+	st_false
+	res_0.0
+	re_false
+	ma_10
+	ref_0
+	neededAmino_-1
+	neededNucleo_-1
+	co_cd1
+	ma_null
+	ag_null
+	eq_null
+	eqa_null
+	ef_f1
+nextround: sikeres
+
+stats: v2
+	fi_l1
+	di_l1
+	st_false
+	res_0.0
+	re_false
+	ma_10
+	ref_0
+	neededAmino_-1
+	neededNucleo_-1
+	co_null
+	ma_null
+	ag_null
+	eq_null
+	eqa_null
+	ef_null

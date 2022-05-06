@@ -1,58 +1,43 @@
 package effects;
 
 import citizens.Citizen;
+import citizens.Virologist;
+
+import java.util.Random;
 
 /**
  * A felejto virus altal kifejtett hatas, a megfertozott virologus az altala osszegyujtött genetikai kodokat elfelejti.
  *
  * @author Eros Pal
- * @since 2022-03-26
+ * @since 2022-04-22
  */
 public class Forget extends Effect {
 
     /**
-     * A Forget osztaly konstruktora
+     * A Forget osztaly konstruktora.
      */
     public Forget() {
-        System.out.println("Forget: letrejon egy Forget effekt");
-        //Duration = 10;
+        duration = 1;
+        eID++;
+        int i = eID;
+        setID("f" + i);
     }
 
     /**
-     * A Forget osztaly konstruktora
-     *
-     * @param duration ilyen hosszan tart az effekt
+     * A Forget osztaly konstruktora.
+     * @param id az id-ja az adott peldanynak.
      */
-    public Forget(int duration) {
-        System.out.println("Forget: letrejon egy Forget effekt es beallitja az idejet");
-        //Duration = duration;
-    }
-
-    /**
-     * Beallitja a Duration-t
-     *
-     * @param duration hosszú ideig hat az effect
-     */
-    public void setDuration(int duration) {
-        //Duration = duration;
-        System.out.println("Forget: beallitja a Durationt");
-    }
-
-    /**
-     * Visszaadja a Duration-t
-     */
-    public void getDuration() {
-        //Duration = duration;
-        System.out.println("Forget: visszaadja a Durationt");
+    public Forget(String id) {
+        duration = 1;
+        setID(id);
     }
 
     /**
      * Kitorli a virologus osszes ismert genetikai kodjat.
-     *
      * @param affectedCitizen felejti el a kodokat.
      */
     @Override
     public void applyEffect(Citizen affectedCitizen) {
-        System.out.println("Forget: kitorli az ismert genetikai kodokat");
+        ((Virologist)affectedCitizen).clearCodes();
     }
 }

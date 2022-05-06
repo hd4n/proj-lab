@@ -1,0 +1,45 @@
+Load: sikeres
+interact: v1 l1
+City: Veget ert a jatek
+nextround: sikeres
+step: v1 e1
+craft: v1 cd1
+drop: v2 g1
+drop: v1 c1
+useagent: v1 v1 vi1
+steal: v1 target: v2, materials
+nextround: sikeres
+
+stats: v1
+	fi_e1
+	di_e1
+	st_false
+	res_0.0
+	re_false
+	ma_10
+	ref_0
+	neededAmino_0
+	neededNucleo_0
+	co_null
+	ma_a2+a3+n2
+	ag_null
+	eq_b1
+	eqa_null
+	ef_null
+
+stats: v2
+	fi_s2
+	di_s2
+	st_true
+	res_0.0
+	re_false
+	ma_10
+	ref_0
+	neededAmino_-1
+	neededNucleo_-1
+	co_null
+	ma_null
+	ag_null
+	eq_null
+	eqa_null
+	ef_s1

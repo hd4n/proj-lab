@@ -1,0 +1,12 @@
+load complex_test3.conf
+interact v1
+nextround
+step v1 e1
+craft v1 cd1
+drop v2 g1
+drop v1 c1
+useagent v1 v1 vi1
+steal v1 v2 materials
+nextround
+getstats v1
+getstats v2

@@ -6,20 +6,21 @@ import items.Code;
 /**
  * A laboratory mezot megvalosito osztaly.
  *
- * @author Kovacs Aron
- * @since 2022-03-26
+ * @author Kovacs Aron, Hajos Daniel
+ * @since 2022-04-21
  */
 public class Laboratory extends Field {
 
-    private Code code;
+    protected Code code;
 
     /**
      * Az laboratory mezot letrehozo konstruktor
      *
      * @param code a laboratoryban levo kodot adja meg
      */
-    public Laboratory(Code code) {
+    public Laboratory(Code code,String _ID) {
         this.code = code;
+        setID(_ID);
     }
 
     /**
@@ -29,14 +30,9 @@ public class Laboratory extends Field {
         this.code = null;
     }
 
-    /**
-     * Az laboratory mezo gettere
-     *
-     * @return code visszaadja a mezon levo kodot
-     */
-    public Code getCode() {
-        System.out.println("Laboratory: getter fuggvenye meghivodott");
-        return code;
+    public Laboratory(String _ID){
+        code=null;
+        setID(_ID);
     }
 
     /**
@@ -45,7 +41,6 @@ public class Laboratory extends Field {
      * @param code a laboratoryn levo kodot allitja be
      */
     public void setCode(Code code) {
-        System.out.println("Laboratory: setter fuggvenye meghivodott");
         this.code = code;
     }
 
@@ -53,17 +48,29 @@ public class Laboratory extends Field {
      * Az laboratory mezon levo kodot adja vissza a
      */
     public Code readCode() {
-        System.out.println("Laboratory: kod leolvasasa");
-        return getCode();
+        return code;
     }
 
     /**
-     * Az laboratory mezore lepo visitor fogadasat vegzo fuggveny
+     * A mezovel interakcioba lepo visitor fogadasat vegzo fuggveny
      *
-     * @param v a mezore lepo visitor
+     * @param v az interakciot vegzo visitor
      */
     @Override
     public void accept(Visitor v) {
         v.visit(this);
+    }
+
+
+    @Override
+    public String toString() {
+        String out = super.toString();
+        out += "\tco_";
+        if (code == null) {
+            out += "null";
+        } else {
+            out += code.getID();
+        }
+        return out;
     }
 }

@@ -36,4 +36,11 @@ public interface Visitor {
      * @param shelter
      */
     public void visit(Shelter shelter);
+
+    /**
+     * Overload visit fuggveny
+     *
+     * @param infectedLaboratory
+     */
+    public void visit(InfectedLaboratory infectedLaboratory);
 }

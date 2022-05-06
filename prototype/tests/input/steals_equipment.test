@@ -1,0 +1,4 @@
+load steals_equipment.conf
+steal v2 v1 equipments
+getstats v1
+getstats v2

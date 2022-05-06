@@ -5,41 +5,63 @@ import effects.*;
 import java.util.Scanner;
 
 /**
- * A kontrollalhatatlan tancot okozo virus effektjet megvalosito osztaly.
+ * A virust megvalosito osztaly.
  *
- * @author Feher Norbert
- * @since 2022-03-26
+ * @author Kovacs Aron
+ * @since 2022-04-22
  */
 public class Virus extends Agent {
     /**
-     * A fuggveny letrehozza a megfelelo effect-et es visszaadja azt.
+     * Konstruktor. A fuggveny letrehoz egy vakcinat.
      */
-    public Effect use() {
-        System.out.println("Virus: Milyen effectet hozzon letre.\n");
-        Effect e = null;
-        Scanner sc = new Scanner(System.in);
-        int caseNo;
-        System.out.println("1 - Forget");
-        System.out.println("2 - Dance");
-        System.out.println("3 - Stun");
-        caseNo = sc.nextInt();
-        switch (caseNo) {
-            case 1:
-                System.out.println("Letrejott egy Forget effect");
-                e = new Forget();
-                break;
-            case 2:
-                System.out.println("Letrejott egy Dance effect");
-                e = new Dance();
-                break;
-            case 3:
-                System.out.println("Letrejott egy Stun effect");
-                e = new Stun();
-                break;
-            default:
-                System.exit(0);
-        }
-        System.out.println("Virus: Visszaadja ezt az effect-et.\n");
-        return e;
+    public Virus() {
     }
+
+    /**
+     * Konstruktor. A fuggveny letrehoz egy virust.
+     *
+     * @param effect a kivant effect
+     */
+    public Virus(Effect effect) {
+        super(effect);
+    }
+
+    /**
+     * Konstruktor. A fuggveny letrehoz egy virust, a parameterben megadott azonositoval
+     *
+     * @param ID azonosito
+     */
+    public Virus(String ID) {
+        this.setID(ID);
+    }
+
+    /**
+     * Konstruktor. A fuggveny letrehoz egy virust, a parameterben megadott azonositoval es effekttel
+     *
+     * @param effect a kivant effect
+     * @param ID aonosito
+     */
+    public Virus(Effect effect, String ID) {
+        super(effect);
+        this.setID(ID);
+    }
+
+    /**
+     * A fuggveny a megfelelo effect-et visszaadja.
+     */
+    @Override
+    public Effect use() {
+        return effect;
+    }
+
+    /**
+     * A fuggveny segitsegevel tortenik az objektum azonositasa a tesztesetekhez
+     *
+     * @return out az objektum azonositoja
+     */
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
 }
