@@ -5,6 +5,7 @@ import citizens.Virologist;
 import effects.*;
 import items.*;
 import map.*;
+import views.MapGenerator;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +33,10 @@ public class Main extends JFrame {
     @Override
     public void paint(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        draw(g2d);
+        //draw(g2d);
+
+        MapGenerator mapGenerator=new MapGenerator();
+        mapGenerator.generateMap(g2d);
     }
 
     public void draw(Graphics2D g) {
