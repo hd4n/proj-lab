@@ -22,6 +22,8 @@ public class Main extends JFrame {
     private static final int WIDTH = 1280;
     private static final int HEIGHT = 720;
 
+    private static MapGenerator mapGenerator=new MapGenerator();
+
     public Main() {
         super("alma");
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -36,8 +38,12 @@ public class Main extends JFrame {
         //draw(g2d);
 
         MapGenerator mapGenerator=new MapGenerator();
-        mapGenerator.generateMap(g2d);
+        //mapGenerator.generateMap(g2d);
+        if(polygon!=null)
+            g2d.drawPolygon(polygon);
     }
+
+    private static Polygon polygon;
 
     public void draw(Graphics2D g) {
         g.drawRect(50, 50, 50, 50);
@@ -47,5 +53,6 @@ public class Main extends JFrame {
         Main m = new Main();
         m.pack();
         m.setVisible(true);
+        polygon=mapGenerator.create();
     }
 }

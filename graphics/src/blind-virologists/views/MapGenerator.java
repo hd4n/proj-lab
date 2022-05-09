@@ -3,6 +3,7 @@ package views;
 import map.Empty;
 import map.Field;
 
+import javax.swing.border.StrokeBorder;
 import javax.swing.text.FieldView;
 import java.awt.*;
 import java.lang.reflect.Array;
@@ -46,10 +47,10 @@ public class MapGenerator {
         Random r = new Random();
 
         ArrayList<FieldView> fieldViews = new ArrayList<>();
-        for (int i = 0; i < MAP_SIZE_Y; i++){
-            for (int j = 0; j < MAP_SIZE_X; j++){
-                int[] xCoords = {j*TILE_SIZE_PX, (j+1)*TILE_SIZE_PX, (j+1)*TILE_SIZE_PX, j*TILE_SIZE_PX};
-                int[] yCoords = {i*TILE_SIZE_PX, i*TILE_SIZE_PX, (i+1)*TILE_SIZE_PX, (i+1)*TILE_SIZE_PX};
+        for (int i = 0; i < MAP_SIZE_Y; i++) {
+            for (int j = 0; j < MAP_SIZE_X; j++) {
+                int[] xCoords = {j * TILE_SIZE_PX, (j + 1) * TILE_SIZE_PX, (j + 1) * TILE_SIZE_PX, j * TILE_SIZE_PX};
+                int[] yCoords = {i * TILE_SIZE_PX, i * TILE_SIZE_PX, (i + 1) * TILE_SIZE_PX, (i + 1) * TILE_SIZE_PX};
                 for (int k = 0; k < xCoords.length; k++) {
                     xCoords[k] += offsetX;
                     yCoords[k] += offsetY;
@@ -75,6 +76,10 @@ public class MapGenerator {
 
 
         //for... add vertices
+
+    }
+
+    public Polygon create() {
         int[] xCoords = {0, TILE_SIZE_PX, TILE_SIZE_PX, 0};
         int[] yCoords = {0, 0, TILE_SIZE_PX, TILE_SIZE_PX};
         for (int k = 0; k < xCoords.length; k++) {
@@ -82,17 +87,16 @@ public class MapGenerator {
             yCoords[k] += offsetY;
         }
 
-        int[] xCoordsProba = {100,135,170,174,170,142,100};
-        int[] yCoordsProba = {100,102,100,138,170,175,170};
+        int[] xCoordsProba = {100, 135, 170, 174, 170, 142, 100};
+        int[] yCoordsProba = {100, 102, 100, 138, 170, 175, 170};
         Polygon proba = new Polygon(xCoordsProba, yCoordsProba, 7);
 
         Polygon p = new Polygon(xCoords, yCoords, 4);
 
         var c = generateVertices(p);
 
-        Polygon pnew=new Polygon(getXCoordinates(c),getYCoordinates(c),c.size());
+        return new Polygon(getXCoordinates(c), getYCoordinates(c), c.size());
 
-        g.drawPolygon(proba);
     }
 
 
@@ -103,26 +107,47 @@ public class MapGenerator {
 
         ArrayList<Coordinates> newCoords = new ArrayList<>();
 
-        for (int i = 0; i < polyCoords.size() - 1; i++) {
+        final int padding = 5;
+
+        for (int i = 0; i < polyCoords.size(); i++) {
             Coordinates edgeBegin = polyCoords.get(i);
-            Coordinates edgeEnd = polyCoords.get(i + 1);
-
-            int newVertCount = random.nextInt(MAX_NEW_VERTICES);
-
-            //todo negatives
-            int _offsetX = random.nextInt(MAX_VERTEX_SHIFT_X);
-            int _offsetY = random.nextInt(MAX_VERTEX_SHIFT_Y);
-
-            int newX = (edgeEnd.x - edgeBegin.x) / 2 + edgeBegin.x;
-            int newY = (edgeEnd.y - edgeBegin.y) / 2 + edgeBegin.y;
-            newX += _offsetX;
-            newY += _offsetY;
+            Coordinates edgeEnd;
+            if (i + 1 == polyCoords.size()) {
+                edgeEnd = polyCoords.get(0);
+            } else {
+                edgeEnd = polyCoords.get(i + 1);
+            }
 
             newCoords.add(edgeBegin);
-            newCoords.add(new Coordinates(newX, newY));
+
+            int newVertCount = random.nextInt(3);
+
+            if (newVertCount == 0) {
+                continue;
+            }
+
+
+            int _offsetX = random.nextInt(2 * MAX_VERTEX_SHIFT_X) - MAX_VERTEX_SHIFT_X;
+            int _offsetY = random.nextInt(2 * MAX_VERTEX_SHIFT_Y) - MAX_VERTEX_SHIFT_Y;
+
+            //int newX = random.nextInt(((edgeEnd.x - padding) - (edgeBegin.x + padding)) + (edgeBegin.x + padding));
+            //int newY = random.nextInt(((edgeEnd.y - padding) - (edgeBegin.y + padding)) + (edgeBegin.y + padding));
+
+            if(newVertCount==1){
+                //todo rand 0 1
+                int newX = (edgeEnd.x - edgeBegin.x) / 2 + edgeBegin.x;
+                int newY = (edgeEnd.y - edgeBegin.y) / 2 + edgeBegin.y;
+            }
+
+
+            //newX += _offsetX;
+            //newY += _offsetY;
+
+            //newCoords.add(new Coordinates(newX, newY));
+
 
         }
-        newCoords.add(polyCoords.get(polyCoords.size()-1));
+        //newCoords.add(polyCoords.get(polyCoords.size()-1));
         return newCoords;
     }
 
@@ -144,19 +169,19 @@ public class MapGenerator {
         return out;
     }
 
-    private int[] getXCoordinates(ArrayList<Coordinates> coords){
-        ArrayList<Integer> outCoords=new ArrayList<>();
+    private int[] getXCoordinates(ArrayList<Coordinates> coords) {
+        ArrayList<Integer> outCoords = new ArrayList<>();
         for (int i = 0; i < coords.size(); i++) {
             outCoords.add(coords.get(i).x);
         }
-        return outCoords.stream().mapToInt(i->i).toArray();
+        return outCoords.stream().mapToInt(i -> i).toArray();
     }
 
-    private int[] getYCoordinates(ArrayList<Coordinates> coords){
-        ArrayList<Integer> outCoords=new ArrayList<>();
+    private int[] getYCoordinates(ArrayList<Coordinates> coords) {
+        ArrayList<Integer> outCoords = new ArrayList<>();
         for (int i = 0; i < coords.size(); i++) {
             outCoords.add(coords.get(i).y);
         }
-        return outCoords.stream().mapToInt(i->i).toArray();
+        return outCoords.stream().mapToInt(i -> i).toArray();
     }
 }
