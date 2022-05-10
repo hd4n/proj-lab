@@ -33,6 +33,10 @@ public abstract class Field implements Visitable {
      */
     public abstract void accept(Visitor v);
 
+    public Equipment getEquipment() {
+        return null;
+    }
+
     /**
      * Visszaadja a szomszedos mezoket
      *

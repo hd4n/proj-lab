@@ -41,6 +41,7 @@ public class Empty extends Field {
      *
      * @return a mezon levo felszerelest adja vissza
      */
+    @Override
     public Equipment getEquipment() {
         return equipment;
     }
