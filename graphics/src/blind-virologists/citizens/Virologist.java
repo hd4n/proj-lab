@@ -319,6 +319,42 @@ public class Virologist extends Citizen {
         codes = new ArrayList<>();
     }
 
+    /**
+     * Visszaadja a materialokat.
+     * @return materials
+     * @author Eros Pal
+     */
+    public ArrayList<Material> getMaterials(){
+        return materials;
+    }
+
+    /**
+     * Visszaadja az agenseket.
+     * @return agents
+     * @author Eros Pal
+     */
+    public ArrayList<Agent> getAgents(){
+        return agents;
+    }
+
+    /**
+     * Visszaadja az equipmenteket.
+     * @return equipments
+     * @author Eros Pal
+     */
+    public ArrayList<Equipment> getEquipments(){
+        return equipments;
+    }
+
+    /**
+     * Visszaadja az aktiv equipmenteket.
+     * @return activeEquipments
+     * @author Eros Pal
+     */
+    public ArrayList<Equipment> getActiveEquipments(){
+        return activeEquipments;
+    }
+
 
     @Override
     public String toString() {
