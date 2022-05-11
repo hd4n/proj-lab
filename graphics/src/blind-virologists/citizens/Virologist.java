@@ -319,6 +319,7 @@ public class Virologist extends Citizen {
         codes = new ArrayList<>();
     }
 
+
     /**
      * Visszaadja a materialokat.
      * @return materials
