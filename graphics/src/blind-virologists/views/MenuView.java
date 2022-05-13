@@ -410,15 +410,7 @@ public class MenuView{
 
         String[] list = new String[actualVirologist.getCodes().size()];
         for (int i = 0; i < actualVirologist.getCodes().size(); i++){
-            if (actualVirologist.getCodes().get(i).getAgent().getEffect() instanceof Dance){
-                list[i] = "Dance Agent";
-            }else if (actualVirologist.getCodes().get(i).getAgent().getEffect() instanceof Forget){
-                list[i] = "Forget Agent";
-            }else if (actualVirologist.getCodes().get(i).getAgent().getEffect() instanceof Immunity){
-                list[i] = "Immunity Agent";
-            }else{
-                list[i] = "Stun Agent";
-            }
+            list[i] = actualVirologist.getCodes().get(i).getAgent().getEffect().toString();
         }
 
         JList listCraft = new JList(list);
@@ -466,15 +458,7 @@ public class MenuView{
         String[] listvirologist = new String[neighboursVirologist.size()];
 
         for (int i = 0; i < actualVirologist.getAgents().size(); i++){
-            if (actualVirologist.getAgents().get(i).getEffect() instanceof Dance){
-                listagents[i] = "Dance Agent";
-            }else if (actualVirologist.getAgents().get(i).getEffect() instanceof Forget){
-                listagents[i] = "Forget Agent";
-            }else if (actualVirologist.getAgents().get(i).getEffect() instanceof Immunity){
-                listagents[i] = "Immunity Agent";
-            }else{
-                listagents[i] = "Stun Agent";
-            }
+            listagents[i] = actualVirologist.getAgents().get(i).getEffect().toString();
         }
 
         for (int i = 0; i < neighboursVirologist.size(); i++){
@@ -590,15 +574,7 @@ public class MenuView{
 
         String[] list = new String[actualVirologist.getEquipments().size()];
         for (int i = 0; i < actualVirologist.getEquipments().size(); i++){
-            if (actualVirologist.getEquipments().get(i) instanceof Gloves){
-                list[i] = "Gloves";
-            }else if (actualVirologist.getEquipments().get(i) instanceof Bag){
-                list[i] = "Bag";
-            }else if (actualVirologist.getEquipments().get(i) instanceof Axe){
-                list[i] = "Axe";
-            }else{
-                list[i] = "Cape";
-            }
+            list[i] = actualVirologist.getEquipments().get(i).toString();
         }
 
         JList listEquip = new JList(list);
@@ -626,15 +602,7 @@ public class MenuView{
 
         String[] list = new String[actualVirologist.getActiveEquipments().size()];
         for (int i = 0; i < actualVirologist.getActiveEquipments().size(); i++){
-            if (actualVirologist.getActiveEquipments().get(i) instanceof Gloves){
-                list[i] = "Gloves";
-            }else if (actualVirologist.getActiveEquipments().get(i) instanceof Bag){
-                list[i] = "Bag";
-            }else if (actualVirologist.getActiveEquipments().get(i) instanceof Axe){
-                list[i] = "Axe";
-            }else{
-                list[i] = "Cape";
-            }
+            list[i] = actualVirologist.getActiveEquipments().get(i).toString();
         }
 
         JList listUnequip = new JList(list);
@@ -662,15 +630,7 @@ public class MenuView{
 
         String[] list = new String[actualVirologist.getEquipments().size()];
         for (int i = 0; i < actualVirologist.getEquipments().size(); i++){
-            if (actualVirologist.getEquipments().get(i) instanceof Gloves){
-                list[i] = "Gloves";
-            }else if (actualVirologist.getEquipments().get(i) instanceof Bag){
-                list[i] = "Bag";
-            }else if (actualVirologist.getEquipments().get(i) instanceof Axe){
-                list[i] = "Axe";
-            }else{
-                list[i] = "Cape";
-            }
+            list[i] = actualVirologist.getEquipments().get(i).toString();
         }
 
         JList listDrop = new JList(list);

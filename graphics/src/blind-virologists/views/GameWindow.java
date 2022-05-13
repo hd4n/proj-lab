@@ -5,7 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * A jatekter kirajzolasaertfelelos osztaly
+ * A jatekter kirajzolasaert felelos osztaly
  *
  * @author Eros Pal
  * @since 2022-05-12
