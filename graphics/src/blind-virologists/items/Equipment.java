@@ -3,6 +3,8 @@ package items;
 import citizens.Citizen;
 import effects.*;
 
+import java.awt.image.BufferedImage;
+
 /**
  * A kontrollalhatatlan tancot okozo virus effektjet megvalosito osztaly.
  *
@@ -10,12 +12,24 @@ import effects.*;
  * @since 2022-04-22
  */
 public abstract class Equipment {
+    protected BufferedImage img;
 
     private String ID;
     /**
      * A fuggveny létrehozza a megfelelő effect-et és visszaadja azt.
      */
     protected Effect e;
+
+    public Equipment(BufferedImage img, Effect e) {
+        this.img = img;
+        this.e = e;
+    }
+
+    public Equipment() {
+        this.img = new BufferedImage(0,0,0);
+        this.e = null;
+    }
+
     public abstract Effect use(Citizen target);
     public String getID(){
         return ID;
@@ -32,5 +46,9 @@ public abstract class Equipment {
             out += e.getID();
         }
         return out;
+    }
+
+    public BufferedImage getImg() {
+        return img;
     }
 }
