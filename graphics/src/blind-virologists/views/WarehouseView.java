@@ -9,9 +9,10 @@ import java.util.ArrayList;
 public class WarehouseView extends FieldView{
     Color color=Color.BLUE;
 
-    public WarehouseView(Warehouse fieldToDraw, ArrayList<Integer> edges) {
-        super(fieldToDraw, edges);
+    public WarehouseView(Field fieldToDraw, Polygon polygonToDraw) {
+        super(fieldToDraw, polygonToDraw);
     }
+
 
     @Override
     public void draw(Graphics2D g) {

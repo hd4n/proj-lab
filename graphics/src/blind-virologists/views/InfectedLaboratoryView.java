@@ -9,9 +9,10 @@ import java.util.ArrayList;
 public class InfectedLaboratoryView extends FieldView{
     Color color= Color.RED;
 
-    public InfectedLaboratoryView(InfectedLaboratory fieldToDraw, ArrayList<Integer> edges) {
-        super(fieldToDraw, edges);
+    public InfectedLaboratoryView(Field fieldToDraw, Polygon polygonToDraw) {
+        super(fieldToDraw, polygonToDraw);
     }
+
 
     @Override
     public void draw(Graphics2D g) {
