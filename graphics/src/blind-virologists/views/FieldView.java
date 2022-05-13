@@ -15,11 +15,22 @@ public abstract class FieldView implements Drawable{
         this.polygonToDraw = polygonToDraw;
     }
 
+    double area(Polygon p)
+    {
+        double total = 0;
+        for (int i = 0; i < p.npoints; i++) {
+            int j = (i + 1) % p.npoints;
+            total += (p.xpoints[i] * p.ypoints[j])
+                    - (p.xpoints[j] * p.ypoints[i]);
+        }
+        return total / 2;
+    }
+
     public Point2D.Double polygonCenterOfMass(Polygon polygon) {
         int N = polygon.npoints;
 
         double cx = 0, cy = 0;
-        //        double A = signedPolygonArea(polygon);
+        double A = area(polygon);
         Point2D.Double res = new Point2D.Double();
         int i, j;
         double sumDet = 0;
@@ -36,8 +47,8 @@ public abstract class FieldView implements Drawable{
         }
         factor = 1 / (3 * sumDet);
 
-        //        A*=6.0;
-        //        factor=1/A;
+        A*=6.0;
+        factor=1/A;
         cx *= factor;
         cy *= factor;
         res.x = cx;
