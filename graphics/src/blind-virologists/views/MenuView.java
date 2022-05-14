@@ -8,7 +8,6 @@ import map.Field;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
 import java.util.Objects;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
@@ -22,18 +21,23 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class MenuView{
     private static MapGenerator mapGenerator;
     private City city; //TODO ez pontosan hogy lesz?
-    private GameWindow gameWindow;
     boolean generateMapBool = false;
     private JFrame window;
     private JPanel panelButton, panelProperty, panelMap, panelCodes, panelAgents, panelEquipment, panelMaterial;
     private JLabel labelNucleotide, labelAminoacid;
-    private JDialog dialogCraft, dialogUseAgent, dialogSteal, dialogEquip, dialogUnequip, dialogDrop;
+    private JDialog dialogCraft;
+    private JDialog dialogEquip;
+    private JDialog dialogUnequip;
+    private JDialog dialogDrop;
     private final int buttonWidth = 150;
     private final int buttonHeight = 100;
     private final int panelWidth = 150;
     private final int panelHeight = 150;
-    private int aminoacid = 0, nucleotide = 0, next = 0;
+    private int aminoacid = 0;
+    private int nucleotide = 0;
+    private final int next = 0;
     private Polygon clickPolygon;
+    boolean isMove = true;
     private Virologist actualVirologist = new Virologist();
     //A map merete: 990, 550 -> 9, 5 db
 
@@ -106,6 +110,7 @@ public class MenuView{
         buttonUseAgent.setBackground(Color.lightGray);
         buttonUseAgent.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
         buttonUseAgent.addActionListener(actionEvent -> {
+            isMove = false;
 
             if (actualVirologist.getAgents().size() > 0) {
                 makeDialogUseAgent();
@@ -127,6 +132,7 @@ public class MenuView{
         buttonSteal.setBackground(Color.lightGray);
         buttonSteal.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
         buttonSteal.addActionListener(actionEvent -> {
+            isMove = false;
             makeDialogSteal();
             repaintWindow();
         });
@@ -201,7 +207,6 @@ public class MenuView{
         buttonNext.setBackground(Color.lightGray);
         buttonNext.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
         buttonNext.addActionListener(actionEvent -> {
-            actualVirologist.setDirection(fieldToPolygon(clickPolygon));
             next();
             city.nextRound();
             repaintWindow();
@@ -427,6 +432,7 @@ public class MenuView{
                     }
                     dialogCraft.dispatchEvent(new WindowEvent(dialogCraft, WindowEvent.WINDOW_CLOSING));
                     repaintWindow();
+                    isMove = true;
                 }
         );
     }
@@ -435,128 +441,57 @@ public class MenuView{
      * Letrehozza es megjeleniti az use agent ablakat.
      */
     public void makeDialogUseAgent(){
-        dialogUseAgent = new JDialog();
+        JDialog dialogUseAgent = new JDialog();
         dialogUseAgent.setTitle("Use Agent");
         dialogUseAgent.setSize(500, 300);
         dialogUseAgent.setVisible(true);
         dialogUseAgent.add(new JLabel("Choose a virologist and an agent!"), BorderLayout.NORTH);
-        ArrayList<Virologist> neighboursVirologist = new ArrayList<>();
 
-        try {
-            for (int i = 0; i < actualVirologist.getCurrentField().getNeighbors().size(); i++) {
-                neighboursVirologist.add((Virologist) actualVirologist.getCurrentField().getNeighbors().get(i).getCitizen());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        neighboursVirologist.add(actualVirologist);
 
         String[] listagents = new String[actualVirologist.getAgents().size()];
-        String[] listvirologist = new String[neighboursVirologist.size()];
+
 
         for (int i = 0; i < actualVirologist.getAgents().size(); i++){
             listagents[i] = actualVirologist.getAgents().get(i).getEffect().toString();
         }
 
-        for (int i = 0; i < neighboursVirologist.size(); i++){
-            listvirologist[i] = neighboursVirologist.get(i).getID();
-        }
-
 
         JList<String> listAgents = new JList<>(listagents);
-        JList<String> listVirologists = new JList<>(listvirologist);
         listAgents.setVisibleRowCount(10);
-        listVirologists.setVisibleRowCount(10);
         listAgents.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        listVirologists.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         JPanel panelDialogAgents = new JPanel();
-        JPanel panelDialogVirologists = new JPanel();
         panelDialogAgents.add(new JScrollPane(listAgents), BorderLayout.CENTER);
-        panelDialogVirologists.add(new JScrollPane(listVirologists), BorderLayout.CENTER);
 
         dialogUseAgent.add(panelDialogAgents, BorderLayout.WEST);
-        dialogUseAgent.add(panelDialogVirologists, BorderLayout.EAST);
-
-        final int[] agent = {-1};
-        final int[] virologist = {-1};
-        JButton jb = new JButton();
-        jb.setText("Use agent");
-        jb.setBackground(Color.white);
-        dialogUseAgent.add(jb, BorderLayout.CENTER);
-        jb.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (agent[0] != -1 && virologist[0] != -1) {
-                    actualVirologist.useAgent(neighboursVirologist.get(virologist[0]),
-                            actualVirologist.getAgents().get(agent[0]));
-                    dialogUseAgent.dispatchEvent(new WindowEvent(dialogCraft, WindowEvent.WINDOW_CLOSING));
-                    repaintWindow();
-                }
-            }
-        });
 
         listAgents.addListSelectionListener(
-                e -> agent[0] = listAgents.getSelectedIndex()
+                e -> actualVirologist.useAgent(fieldToPolygon(clickPolygon).getCitizen(), actualVirologist.getAgents().get(listAgents.getSelectedIndex()))
         );
 
-        listVirologists.addListSelectionListener(
-                e -> virologist[0] = listVirologists.getSelectedIndex()
-        );
     }
 
     /**
      * Letrehozza es megjeleniti a steal ablakat.
      */
     public void makeDialogSteal(){
-        ArrayList<Virologist> stunnedVirologist = new ArrayList<>();
-        try {
-            for (int i = 0; i < actualVirologist.getCurrentField().getNeighbors().size(); i++) {
-                if (actualVirologist.getCurrentField().getNeighbors().get(i).getCitizen().isStunned()) {
-                    stunnedVirologist.add((Virologist) actualVirologist.getCurrentField().getNeighbors().get(i).getCitizen());
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
-        if (stunnedVirologist.size() == 0){
-            JOptionPane optionPane = new JOptionPane("You can't steal!", JOptionPane.ERROR_MESSAGE, JOptionPane.DEFAULT_OPTION);
-            JDialog jDilaog = optionPane.createDialog("You can't steal!");
-            jDilaog.setVisible(true);
-            return;
-        }
-
-        dialogSteal = new JDialog();
+        JDialog dialogSteal = new JDialog();
         dialogSteal.setTitle("Steal");
         dialogSteal.setSize(500, 300);
         dialogSteal.setVisible(true);
         dialogSteal.add(new JLabel("Choose a virologist!"), BorderLayout.NORTH);
 
-        String[] list = new String[stunnedVirologist.size()];
+        JButton jButton = new JButton("Steal!");
+        jButton.addActionListener(e -> {
+            if (fieldToPolygon(clickPolygon).getCitizen().isStunned()) {
+                actualVirologist.addEquipment(fieldToPolygon(clickPolygon).getCitizen().stealEquipment());
+                actualVirologist.addMaterial(fieldToPolygon(clickPolygon).getCitizen().stealMaterial());
+            }
+        });
 
-        for (int i = 0; i < stunnedVirologist.size(); i++){
-            list[i] = stunnedVirologist.get(i).getID();
-        }
 
-        JList<String> listSteal = new JList<>(list);
-        listSteal.setVisibleRowCount(3);
-        listSteal.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        dialogSteal.add(new JScrollPane(listSteal), BorderLayout.CENTER);
-        listSteal.addListSelectionListener(
-                e -> {
-                    Virologist virologist = stunnedVirologist.get(listSteal.getSelectedIndex());
 
-                    ArrayList<Material> stealMaterials = virologist.stealMaterial();
-                    ArrayList<Equipment> stealEquipments = virologist.stealEquipment();
-
-                    actualVirologist.addEquipment(stealEquipments);
-                    actualVirologist.addMaterial(stealMaterials);
-
-                    dialogSteal.dispatchEvent(new WindowEvent(dialogSteal, WindowEvent.WINDOW_CLOSING));
-                    repaintWindow();
-                }
-        );
     }
 
     /**
@@ -663,7 +598,6 @@ public class MenuView{
         startButton.addActionListener(actionEvent -> {
 
             generate();
-            gameWindow = new GameWindow();
 
             frameBeginning.setVisible(false);
             window = new JFrame();
@@ -718,6 +652,9 @@ public class MenuView{
         }*/
     }
 
+    /**
+     * klikkeles beallitja a poligont.
+     */
     public void click(){
         panelMap.addMouseListener(new MouseAdapter() {
             @Override
@@ -726,9 +663,19 @@ public class MenuView{
                 for (var p : mapGenerator.getUpperLayer()) {
                     if (p.contains(e.getPoint())) {
 
-                        //todo
-                        clickPolygon = p;
-                        //System.out.println(clickPolygon + " - " + e.getPoint());
+                        if (isMove){
+                            for (int j = 0; j < actualVirologist.getCurrentField().getNeighbors().size(); j++) {
+                                if (fieldToPolygon(p) == actualVirologist.getCurrentField().getNeighbors().get(j)){
+                                    actualVirologist.setDirection(fieldToPolygon(p));
+                                }
+                            }
+                        } else {
+                            for (int j = 0; j < actualVirologist.getCurrentField().getNeighbors().size(); j++) {
+                                if (fieldToPolygon(p) == actualVirologist.getCurrentField().getNeighbors().get(j)){
+                                    clickPolygon = p;
+                                }
+                            }
+                        }
                         return;
                     }
                 }
@@ -736,9 +683,19 @@ public class MenuView{
                 for (var p : mapGenerator.getLowerLayer()) {
                     if (p.contains(e.getPoint())) {
 
-                        //todo
-                        clickPolygon = p;
-                        //System.out.println(clickPolygon + " - " + e.getPoint());
+                        if (isMove){
+                            for (int j = 0; j < actualVirologist.getCurrentField().getNeighbors().size(); j++) {
+                                if (fieldToPolygon(p) == actualVirologist.getCurrentField().getNeighbors().get(j)){
+                                    actualVirologist.setDirection(fieldToPolygon(p));
+                                }
+                            }
+                        } else {
+                            for (int j = 0; j < actualVirologist.getCurrentField().getNeighbors().size(); j++) {
+                                if (fieldToPolygon(p) == actualVirologist.getCurrentField().getNeighbors().get(j)){
+                                    clickPolygon = p;
+                                }
+                            }
+                        }
                         return;
                     }
                 }
@@ -746,15 +703,20 @@ public class MenuView{
         });
     }
 
+    /**
+     * Egy poligon alapjan megmondja, hogy melyik mezo tartozik hozza.
+     * @param p poligon
+     * @return a mezo, ami hozza tartozik
+     */
     public Field fieldToPolygon(Polygon p){
         for (int i = 0; i < mapGenerator.getFieldViews().size(); i++){
-            //if (mapGenerator.getFieldViews().get(i).getPolygon = clickPolygon) {
-            //    return mapGenerator.getFieldViews().get(i).getField;
-            //}
+            if (mapGenerator.getFieldViews().get(i).getPolygonToDraw() == p) {
+                return mapGenerator.getFieldViews().get(i).getFieldToDraw();
+            }
         }
-
         return null;
     }
+
 
 
 
