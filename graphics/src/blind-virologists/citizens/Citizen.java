@@ -53,7 +53,7 @@ public abstract class Citizen implements Visitor {
 
         stunned = false;
         resistance = 0;
-        direction = currentField;
+
         maxMaterial = 10;
 
         ArrayList<Effect> torolni = new ArrayList<>();
@@ -69,6 +69,7 @@ public abstract class Citizen implements Visitor {
         }
 
         move();
+        direction = currentField;
     }
 
     /**
