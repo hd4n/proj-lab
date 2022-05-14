@@ -23,8 +23,9 @@ public class Cape extends Equipment {
     public Effect use(Citizen target) {
         return e;
     }
+
     @Override
     public String toString(){
-        return super.toString();
+        return "Cape";
     }
 }

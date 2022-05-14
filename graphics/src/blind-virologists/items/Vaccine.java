@@ -1,6 +1,6 @@
 package items;
 
-import effects.*;
+import effects.Effect;
 
 /**
  * A vakcinat megvalosito osztaly.
@@ -37,7 +37,7 @@ public class Vaccine extends Agent {
      * Konstruktor. A fuggveny letrehoz egy vakcinat.
      *
      * @param effect a kivant effect
-     * @param ID aonosito
+     * @param ID     aonosito
      */
     public Vaccine(Effect effect, String ID) {
         super(effect);
@@ -59,6 +59,6 @@ public class Vaccine extends Agent {
      */
     @Override
     public String toString() {
-        return super.toString();
+        return "Vaccine - " + effect.toString();
     }
 }

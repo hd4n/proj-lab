@@ -105,12 +105,6 @@ public class Code {
      */
     @Override
     public String toString() {
-        String out = "\tco_";
-        if (agent == null) {
-            out += "null";
-        } else {
-            out += agent.getID();
-        }
-        return out;
+        return "Code - " + agent.effect.toString();
     }
 }

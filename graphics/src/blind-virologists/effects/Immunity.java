@@ -75,4 +75,9 @@ public class Immunity extends Effect {
             affectedCitizen.setResistance(100);
         }
     }
+
+    @Override
+    public String toString(){
+        return "Immunity";
+    }
 }

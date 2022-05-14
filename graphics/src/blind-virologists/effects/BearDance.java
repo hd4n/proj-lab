@@ -89,4 +89,9 @@ public class BearDance extends Effect {
             duration++;
         }
     }
+
+    @Override
+    public String toString(){
+        return "Bear Dance";
+    }
 }

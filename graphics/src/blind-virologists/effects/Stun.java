@@ -75,4 +75,9 @@ public class Stun extends Effect {
             affectedCitizen.setStunned(duration != 0);
         }
     }
+
+    @Override
+    public String toString(){
+        return "Stun";
+    }
 }
