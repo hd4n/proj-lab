@@ -84,7 +84,7 @@ public class MapGenerator {
         for (int i = 0; i < MAP_SIZE_Y; i++) {
             for (int j = 0; j < MAP_SIZE_X; j++) {
                 Polygon polygon;
-                if ((i * MAP_SIZE_Y + j) % 2 == 0) {
+                if ((i * MAP_SIZE_X + j) % 2 == 0) {
                     polygon = lowerLayer.get(lowerIndex);
                     lowerIndex++;
                 } else {
@@ -236,26 +236,26 @@ public class MapGenerator {
     private void setNeighbors() {
         for (int y = 0; y < MAP_SIZE_Y; y++) {
             for (int x = 0; x < MAP_SIZE_X; x++) {
-                Field current = fieldViews.get(y * MAP_SIZE_Y + x).getFieldToDraw();
+                Field current = fieldViews.get(y * MAP_SIZE_X + x).getFieldToDraw();
 
                 //up
-                if (y - 1 > 0) {
-                    current.addNeighbor(fieldViews.get(y * (MAP_SIZE_Y - 1) + x).getFieldToDraw());
+                if (y - 1 >= 0) {
+                    current.addNeighbor(fieldViews.get((y - 1) * MAP_SIZE_X + x).getFieldToDraw());
                 }
 
                 //down
                 if (y + 1 < MAP_SIZE_Y) {
-                    current.addNeighbor(fieldViews.get(y * (MAP_SIZE_Y + 1) + x).getFieldToDraw());
+                    current.addNeighbor(fieldViews.get((y + 1) * MAP_SIZE_X + x).getFieldToDraw());
                 }
 
                 //left
-                if (x - 1 > 0) {
-                    current.addNeighbor(fieldViews.get(y * MAP_SIZE_Y +x - 1).getFieldToDraw());
+                if (x - 1 >= 0) {
+                    current.addNeighbor(fieldViews.get(y * MAP_SIZE_X + x - 1).getFieldToDraw());
                 }
 
-                //up
+                //right
                 if (x + 1 < MAP_SIZE_X) {
-                    current.addNeighbor(fieldViews.get(y * MAP_SIZE_Y+x+ 1).getFieldToDraw());
+                    current.addNeighbor(fieldViews.get(y * MAP_SIZE_X + x + 1).getFieldToDraw());
                 }
             }
         }
