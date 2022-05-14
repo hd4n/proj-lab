@@ -48,7 +48,7 @@ public abstract class FieldView implements Drawable{
         }
 
         if(fieldToDraw.getEquipment()!=null){
-            g.drawImage(fieldToDraw.getEquipment().getImg(),(int)centerOfMass.x,(int)centerOfMass.y,40,40, null);
+            g.drawImage(fieldToDraw.getEquipment().getImg(),(int)centerOfMass.x-20,(int)centerOfMass.y-20,40,40, null);
         }
 
     }
