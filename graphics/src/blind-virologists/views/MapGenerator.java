@@ -75,14 +75,18 @@ public class MapGenerator {
         generateAllPolygons();
 
         Random r = new Random();
+        int a = 0;
+        int b = 0;
         for (int i = 0; i < MAP_SIZE_Y; i++) {
             for (int j = 0; j < MAP_SIZE_X; j++) {
                 Polygon polygon;
-                if ((i+j)%2 == 0){
-                    polygon = lowerLayer.get((i+j)/2);
+                if ((i*MAP_SIZE_Y+j)%2 == 0){
+                    polygon = lowerLayer.get(a);
+                    a++;
                 }
                 else{
-                    polygon = lowerLayer.get((i+j-1)/2);
+                    polygon = upperLayer.get(b);
+                    b++;
                 }
 
                 int nextTileType = r.nextInt(5);
@@ -173,17 +177,13 @@ public class MapGenerator {
      * @param g a cel Graphics2D
      */
     public void drawPolygons(Graphics2D g) {
-        g.setColor(Color.GREEN);
 
-        for (var p : lowerLayer) {
-            g.drawPolygon(p);
-            g.fillPolygon(p);
+
+        for (int i = 0; i < fieldViews.size(); i +=2){
+            fieldViews.get(i).draw(g);
         }
-
-        g.setColor(Color.BLUE);
-        for (var p : upperLayer) {
-            g.drawPolygon(p);
-            g.fillPolygon(p);
+        for (int i = 1; i < fieldViews.size(); i +=2){
+            fieldViews.get(i).draw(g);
         }
 
         var originalStroke = g.getStroke();
@@ -191,6 +191,8 @@ public class MapGenerator {
         g.setStroke(new BasicStroke(25));
         g.drawRect(MapGenerator.BASE_OFFSET_X + 5, MapGenerator.BASE_OFFSET_Y, MapGenerator.MAP_WIDTH_PX, MapGenerator.MAP_HEIGHT_PX);
         g.setStroke(originalStroke);
+
+
     }
 
     public Polygon create() {

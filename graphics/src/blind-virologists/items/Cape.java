@@ -3,6 +3,10 @@ package items;
 import citizens.Citizen;
 import effects.*;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * A köpenyt megvalósító osztály.
  *
@@ -14,9 +18,19 @@ public class Cape extends Equipment {
      * A fuggveny letrehoz egy Protection effect-et és visszaadja azt.
      */
     public Cape(){
+        try {
+            this.img= ImageIO.read(new File("graphics/assets/equipment/cape.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         e = new Protection(10);
     }
     public Cape(String _ID){
+        try {
+            this.img= ImageIO.read(new File("graphics/assets/equipment/cape.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         e = new Protection(10);
         setID(_ID);
     }

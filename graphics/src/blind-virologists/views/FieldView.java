@@ -4,6 +4,7 @@ import map.Field;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
+import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 
 public abstract class FieldView implements Drawable{
@@ -47,7 +48,7 @@ public abstract class FieldView implements Drawable{
         }
 
         if(fieldToDraw.getEquipment()!=null){
-            g.drawImage(fieldToDraw.getEquipment().getImg(),null, (int)centerOfMass.x,(int)centerOfMass.y);
+            g.drawImage(fieldToDraw.getEquipment().getImg(),(int)centerOfMass.x,(int)centerOfMass.y,40,40, null);
         }
 
     }
