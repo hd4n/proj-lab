@@ -1,6 +1,8 @@
 package citizens;
 
 import effects.*;
+import items.Equipment;
+import items.Material;
 import map.Field;
 
 import java.util.*;
@@ -96,6 +98,10 @@ public abstract class Citizen implements Visitor {
         }
         return true;
     }
+
+    public abstract ArrayList<Material> stealMaterial();
+
+    public abstract ArrayList<Equipment> stealEquipment();
 
     public void interact() {
         currentField.accept(this);
