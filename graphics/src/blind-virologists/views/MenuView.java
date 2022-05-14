@@ -3,6 +3,7 @@ package views;
 import citizens.Virologist;
 import items.*;
 import map.City;
+import map.Field;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,10 +30,11 @@ public class MenuView{
     private JDialog dialogCraft, dialogUseAgent, dialogSteal, dialogEquip, dialogUnequip, dialogDrop;
     private final int buttonWidth = 150;
     private final int buttonHeight = 100;
-    private final int panelWidth = 230;
+    private final int panelWidth = 150;
     private final int panelHeight = 150;
-    private int aminoacid = 0, nucleotide = 0;
-    private final Virologist actualVirologist = new Virologist();
+    private int aminoacid = 0, nucleotide = 0, next = 0;
+    private Polygon clickPolygon;
+    private Virologist actualVirologist = new Virologist();
     //A map merete: 990, 550 -> 9, 5 db
 
     /**
@@ -199,8 +201,8 @@ public class MenuView{
         buttonNext.setBackground(Color.lightGray);
         buttonNext.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
         buttonNext.addActionListener(actionEvent -> {
-            //TODO kovetkezo jatekos
-            //actualVirologist = city.getPlayers()
+            actualVirologist.setDirection(fieldToPolygon(clickPolygon));
+            next();
             city.nextRound();
             repaintWindow();
         });
@@ -227,18 +229,19 @@ public class MenuView{
      * Letrehozza es beallitja a code megjelenitot.
      */
     public void makePanelCode(){
-        panelCodes = new JPanel(new FlowLayout());
+        panelCodes = new JPanel();
+        panelCodes.setLayout(new BoxLayout(panelCodes, BoxLayout.Y_AXIS));
         panelCodes.setVisible(true);
         panelCodes.setBackground(Color.lightGray);
         panelCodes.setPreferredSize(new Dimension(panelWidth, panelHeight));
         JLabel l = new JLabel("Codes");
         l.setBackground(Color.gray);
         l.setOpaque(true);
-        panelCodes.add(l, BorderLayout.CENTER);
+        panelCodes.add(l);
         try{
         for (int i = 0; i < actualVirologist.getCodes().size(); i++) {
             JLabel jl = new JLabel(actualVirologist.getCodes().get(i).toString());
-            panelCodes.add(jl, BorderLayout.CENTER);
+            panelCodes.add(jl);
         }
         } catch (Exception e) {
             e.printStackTrace();
@@ -250,18 +253,19 @@ public class MenuView{
      * Letrehozza es beallitja az agens megjelenitot.
      */
     public void makePanelAgents() {
-        panelAgents = new JPanel(new FlowLayout());
+        panelAgents = new JPanel();
+        panelAgents.setLayout(new BoxLayout(panelAgents, BoxLayout.Y_AXIS));
         panelAgents.setVisible(true);
         panelAgents.setBackground(Color.lightGray);
         panelAgents.setPreferredSize(new Dimension(panelWidth, panelHeight));
         JLabel l = new JLabel("Agents");
         l.setBackground(Color.gray);
         l.setOpaque(true);
-        panelAgents.add(l, BorderLayout.CENTER);
+        panelAgents.add(l);
         try {
             for (int i = 0; i < actualVirologist.getAgents().size(); i++) {
                 JLabel jl = new JLabel(actualVirologist.getAgents().get(i).toString());
-                panelAgents.add(jl, BorderLayout.CENTER);
+                panelAgents.add(jl);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -273,19 +277,20 @@ public class MenuView{
      * Letrehozza es beallitja az equipment megjelenitot.
      */
     public void makePanelEquipments(){
-        panelEquipment = new JPanel(new FlowLayout());
+        panelEquipment = new JPanel();
+        panelEquipment.setLayout(new BoxLayout(panelEquipment, BoxLayout.Y_AXIS));
         panelEquipment.setVisible(true);
         panelEquipment.setBackground(Color.lightGray);
         panelEquipment.setPreferredSize(new Dimension(panelWidth, panelHeight));
         JLabel l = new JLabel("Equipment");
         l.setBackground(Color.gray);
         l.setOpaque(true);
-        panelEquipment.add(l, BorderLayout.CENTER);
+        panelEquipment.add(l);
 
         try {
             for (int i = 0; i < actualVirologist.getEquipments().size(); i++) {
                 JLabel jl = new JLabel(actualVirologist.getEquipments().get(i).toString());
-                panelAgents.add(jl, BorderLayout.CENTER);
+                panelAgents.add(jl);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -326,37 +331,14 @@ public class MenuView{
         panelMap = new JPanel(){
             @Override
             protected void paintComponent(Graphics g) {
-                //super.paintComponent(g);
                 if (generateMapBool) {
                     mapGenerator.drawPolygons((Graphics2D) g);
                 }
             }
         };
-
-        panelMap.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                for (var p : mapGenerator.getUpperLayer()) {
-                    if (p.contains(e.getPoint())) {
-
-                        //todo
-                        return;
-                    }
-                }
-
-                for (var p : mapGenerator.getLowerLayer()) {
-                    if (p.contains(e.getPoint())) {
-
-                        //todo
-                        return;
-                    }
-                }
-            }
-        });
-
         panelMap.setVisible(true);
         panelMap.setBackground(Color.black);
+        click();
         window.add(panelMap, BorderLayout.CENTER);
     }
 
@@ -367,6 +349,15 @@ public class MenuView{
         setMaterials();
         labelNucleotide.setText(String.valueOf(nucleotide));
         labelAminoacid.setText(String.valueOf(aminoacid));
+
+        window.remove(panelButton);
+        window.remove(panelProperty);
+        window.remove(panelMap);
+
+        makePanelButton();
+        makePanelProperty();
+        makePanelMap();
+
         panelButton.revalidate();
         panelButton.repaint();
         panelProperty.revalidate();
@@ -707,6 +698,88 @@ public class MenuView{
     public void generate(){
         mapGenerator = new MapGenerator();
         mapGenerator.generateMap();
+
         generateMapBool = true;
+        next();
+        testVirologist();//TODO ki kell majd venni, csak teszteleshez van
+    }
+
+    /**
+     * Beallitja az aktualis virologust a kovetkezore.
+     */
+    public void next(){
+
+        //TODO ki kell venni a kommentet
+        /*
+        actualVirologist = (Virologist) city.getPlayers().get(next);
+        next++;
+        if (city.getPlayers().size() -1 == next ){
+            next = 0;
+        }*/
+    }
+
+    public void click(){
+        panelMap.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                for (var p : mapGenerator.getUpperLayer()) {
+                    if (p.contains(e.getPoint())) {
+
+                        //todo
+                        clickPolygon = p;
+                        //System.out.println(clickPolygon + " - " + e.getPoint());
+                        return;
+                    }
+                }
+
+                for (var p : mapGenerator.getLowerLayer()) {
+                    if (p.contains(e.getPoint())) {
+
+                        //todo
+                        clickPolygon = p;
+                        //System.out.println(clickPolygon + " - " + e.getPoint());
+                        return;
+                    }
+                }
+            }
+        });
+    }
+
+    public Field fieldToPolygon(Polygon p){
+        for (int i = 0; i < mapGenerator.getFieldViews().size(); i++){
+            //if (mapGenerator.getFieldViews().get(i).getPolygon = clickPolygon) {
+            //    return mapGenerator.getFieldViews().get(i).getField;
+            //}
+        }
+
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+    /**
+     * teszteleshez letrehoz egy virologust
+     */
+    public void testVirologist(){
+        Virologist v = new Virologist();
+        v.addEquipment(new Bag());
+        v.addEquipment(new Cape());
+        v.addEquipment(new Gloves());
+
+        v.addMaterial(new Nucleotide());
+        v.addMaterial(new Nucleotide());
+        v.addMaterial(new Nucleotide());
+        v.addMaterial(new Aminoacid());
+        v.addMaterial(new Aminoacid());
+        actualVirologist = v;
+
     }
 }

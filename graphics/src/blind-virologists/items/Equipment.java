@@ -26,7 +26,7 @@ public abstract class Equipment {
     }
 
     public Equipment() {
-        this.img = new BufferedImage(0,0,0);
+        //this.img = new BufferedImage(0,0,0); //TODO testzeleshez kellett csak kivenni
         this.e = null;
     }
 
