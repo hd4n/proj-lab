@@ -552,7 +552,7 @@ public class MenuView{
         dialogUnequip.add(new JScrollPane(listUnequip), BorderLayout.CENTER);
         listUnequip.addListSelectionListener(
                 e -> {
-                    actualVirologist.equip(actualVirologist.getActiveEquipments().get(listUnequip.getSelectedIndex()));
+                    actualVirologist.unequip(actualVirologist.getActiveEquipments().get(listUnequip.getSelectedIndex()));
                     dialogUnequip.dispose();
                     repaintWindow();
                 }
