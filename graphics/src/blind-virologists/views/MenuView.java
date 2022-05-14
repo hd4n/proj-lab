@@ -630,6 +630,7 @@ public class MenuView{
         generateMapBool = true;
 
         next();
+        city.nextRound(window);
     }
 
     /**
@@ -656,6 +657,7 @@ public class MenuView{
                 super.mouseClicked(e);
                 for (var p : mapGenerator.getUpperLayer()) {
                     if (p.contains(e.getPoint())) {
+                        System.out.println("click");
                         if (isMove){
                             for (int j = 0; j < actualVirologist.getCurrentField().getNeighbors().size(); j++) {
                                 if (fieldToPolygon(p) == actualVirologist.getCurrentField().getNeighbors().get(j)){
@@ -677,11 +679,13 @@ public class MenuView{
 
                 for (var p : mapGenerator.getLowerLayer()) {
                     if (p.contains(e.getPoint())) {
-
+                        System.out.println("click");
                         if (isMove){
                             for (int j = 0; j < actualVirologist.getCurrentField().getNeighbors().size(); j++) {
                                 if (fieldToPolygon(p) == actualVirologist.getCurrentField().getNeighbors().get(j)){
-                                    actualVirologist.setDirection(fieldToPolygon(p));
+                                    startField = fieldToPolygon(p);
+                                    actualVirologist.setDirection(startField);
+                                    System.out.println("move");
                                 }
                             }
                         } else {
