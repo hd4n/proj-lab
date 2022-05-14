@@ -36,6 +36,7 @@ public class MenuView{
     private int aminoacid = 0;
     private int nucleotide = 0;
     private int next = 0;
+    private int counter = 0;
     private Polygon clickPolygon;
     private boolean isMove = true;
     private Field startField;
@@ -209,7 +210,11 @@ public class MenuView{
         buttonNext.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
         buttonNext.addActionListener(actionEvent -> {
             next();
-            city.nextRound(window);
+            counter++;
+            if(counter == city.getPlayers().size()) {
+                city.nextRound(window);
+                counter = 0;
+            }
             repaintWindow();
 
         });
@@ -637,12 +642,14 @@ public class MenuView{
      * Beallitja az aktualis virologust a kovetkezore.
      */
     public void next(){
-        actualVirologist.setColor(Color.orange);
+        for (int i = 0; i < city.getPlayers().size(); i++){
+            city.getPlayers().get(i).setColor(Color.orange);
+        }
         actualVirologist = (Virologist) city.getPlayers().get(next);
         actualVirologist.setColor(Color.black);
         startField = actualVirologist.getCurrentField();
         next++;
-        if (city.getPlayers().size() -1 == next ){
+        if (city.getPlayers().size() == next ){
             next = 0;
         }
     }
