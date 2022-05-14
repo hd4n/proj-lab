@@ -5,6 +5,8 @@ import citizens.Virologist;
 import effects.Effect;
 import items.*;
 
+import javax.swing.*;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -204,27 +206,36 @@ public class City {
 
     /**
      * Elinditja a jatekot
+     * @param window az ablak, ahol fut a jatek.
      */
-    public void startGame() {
+    public void startGame(JFrame window) {
         generateMap();
-        nextRound();
+        nextRound(window);
     }
 
     /**
      * Befejezi a jatekot
+     * @param window az ablak, ahol fut a jatek.
+     *
+     * @author Eros Pal
      */
-    public void endGame() {
-        System.out.println("City: Veget ert a jatek");
+    public void endGame(JFrame window) {
+        Icon icon = new ImageIcon("graphics/assets/menu/cup.png");
+        JOptionPane optionPane = new JOptionPane("Victory!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, icon);
+        JDialog jDilaog = optionPane.createDialog("Game over");
+        jDilaog.setVisible(true);
+        window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
     }
 
     /**
      * Uj kor kezdodik, veget er a jatek vagy frissulnek a virologusok allapotai
+     * @param window az ablak, ahol fut a jatek
      */
-    public void nextRound() {
+    public void nextRound(JFrame window) {
         for (Citizen v : players) {
             v.nextRound();
             if (((Virologist) v).getCodes().size() == codeCount) {
-                endGame();
+                endGame(window);
             }
         }
     }
