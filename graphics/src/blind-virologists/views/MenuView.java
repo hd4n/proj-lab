@@ -302,7 +302,7 @@ public class MenuView{
         try {
             for (int i = 0; i < actualVirologist.getEquipments().size(); i++) {
                 JLabel jl = new JLabel(actualVirologist.getEquipments().get(i).toString());
-                panelAgents.add(jl);
+                panelEquipment.add(jl);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -437,7 +437,7 @@ public class MenuView{
                         Code craftCode = actualVirologist.getCodes().get(listCraft.getSelectedIndex());
                         actualVirologist.craft(craftCode);
                     }
-                    dialogCraft.dispatchEvent(new WindowEvent(dialogCraft, WindowEvent.WINDOW_CLOSING));
+                    dialogCraft.dispose();
                     repaintWindow();
                     isMove = true;
                 }
@@ -525,7 +525,7 @@ public class MenuView{
         listEquip.addListSelectionListener(
                 e -> {
                     actualVirologist.equip(actualVirologist.getEquipments().get(listEquip.getSelectedIndex()));
-                    dialogEquip.dispatchEvent(new WindowEvent(dialogEquip, WindowEvent.WINDOW_CLOSING));
+                    dialogEquip.dispose();
                     repaintWindow();
                 }
         );
@@ -553,7 +553,7 @@ public class MenuView{
         listUnequip.addListSelectionListener(
                 e -> {
                     actualVirologist.equip(actualVirologist.getActiveEquipments().get(listUnequip.getSelectedIndex()));
-                    dialogUnequip.dispatchEvent(new WindowEvent(dialogUnequip, WindowEvent.WINDOW_CLOSING));
+                    dialogUnequip.dispose();
                     repaintWindow();
                 }
         );
@@ -581,7 +581,7 @@ public class MenuView{
         listDrop.addListSelectionListener(
                 e -> {
                     actualVirologist.drop(actualVirologist.getEquipments().get(listDrop.getSelectedIndex()));
-                    dialogDrop.dispatchEvent(new WindowEvent(dialogDrop, WindowEvent.WINDOW_CLOSING));
+                    dialogDrop.dispose();
                     repaintWindow();
                 }
         );
