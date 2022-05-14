@@ -208,7 +208,7 @@ public class MenuView{
         buttonNext.setPreferredSize(new Dimension(buttonWidth, buttonHeight));
         buttonNext.addActionListener(actionEvent -> {
             next();
-            city.nextRound();
+            city.nextRound(window);
             repaintWindow();
         });
         panelButton.add(buttonNext);
@@ -616,17 +616,6 @@ public class MenuView{
     }
 
     /**
-     * Ha veget er a jatek.
-     */
-    public void end(){
-        JOptionPane optionPane = new JOptionPane("Game over", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);
-        JDialog jDilaog = optionPane.createDialog("Victory!");
-        jDilaog.setVisible(true);
-        window.setVisible(false);
-        //TODO kilep az egesz
-    }
-
-    /**
      * Legeneralja a palyat.
      */
     public void generate(){
@@ -634,8 +623,8 @@ public class MenuView{
         mapGenerator.generateMap();
 
         generateMapBool = true;
+        //city =
         next();
-        testVirologist();//TODO ki kell majd venni, csak teszteleshez van
     }
 
     /**
@@ -715,33 +704,5 @@ public class MenuView{
             }
         }
         return null;
-    }
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * teszteleshez letrehoz egy virologust
-     */
-    public void testVirologist(){
-        Virologist v = new Virologist();
-        v.addEquipment(new Bag());
-        v.addEquipment(new Cape());
-        v.addEquipment(new Gloves());
-
-        v.addMaterial(new Nucleotide());
-        v.addMaterial(new Nucleotide());
-        v.addMaterial(new Nucleotide());
-        v.addMaterial(new Aminoacid());
-        v.addMaterial(new Aminoacid());
-        actualVirologist = v;
-
     }
 }
