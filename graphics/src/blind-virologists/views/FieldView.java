@@ -43,7 +43,7 @@ public abstract class FieldView implements Drawable{
 
 
         if (this.fieldToDraw.getCitizen()!=null){
-            g.setColor(Color.black);
+            g.setColor(fieldToDraw.getCitizen().getColor());
             g.fillOval((int) centerOfMass.x, (int) centerOfMass.y, 30,30);
         }
 
