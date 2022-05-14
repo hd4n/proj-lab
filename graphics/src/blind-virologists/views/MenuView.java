@@ -419,7 +419,7 @@ public class MenuView{
 
         String[] list = new String[actualVirologist.getCodes().size()];
         for (int i = 0; i < actualVirologist.getCodes().size(); i++){
-            list[i] = actualVirologist.getCodes().get(i).getAgent().getEffect().toString();
+            list[i] = actualVirologist.getCodes().get(i).getAgent().getEffect().toString()+" - amino: "+actualVirologist.getCodes().get(i).getAminoCost()+", nucleo: "+actualVirologist.getCodes().get(i).getNucleoCost();
         }
 
         JList<String> listCraft = new JList<>(list);
@@ -646,7 +646,7 @@ public class MenuView{
             city.getPlayers().get(i).setColor(Color.orange);
         }
         actualVirologist = (Virologist) city.getPlayers().get(next);
-        actualVirologist.setColor(Color.black);
+        actualVirologist.setColor(Color.gray);
         startField = actualVirologist.getCurrentField();
         next++;
         if (city.getPlayers().size() == next ){
