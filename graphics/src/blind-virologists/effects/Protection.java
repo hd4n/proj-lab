@@ -75,4 +75,9 @@ public class Protection extends Effect {
             affectedCitizen.setResistance(82.3);
         }
     }
+
+    @Override
+    public String toString(){
+        return "Protection";
+    }
 }

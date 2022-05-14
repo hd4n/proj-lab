@@ -79,4 +79,9 @@ public class Dance extends Effect {
             affectedCitizen.setDirection(randomNeighborsField);
         }
     }
+
+    @Override
+    public String toString(){
+        return "Dance";
+    }
 }

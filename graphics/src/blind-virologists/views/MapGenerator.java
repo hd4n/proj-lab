@@ -1,6 +1,6 @@
 package views;
 
-import map.Empty;
+import map.*;
 
 import javax.swing.text.FieldView;
 import java.awt.*;
@@ -19,7 +19,7 @@ import java.util.Random;
 
 public class MapGenerator {
 
-    public class Coordinates {
+    public static class Coordinates {
         public int x, y;
 
         public Coordinates(int x, int y) {
@@ -31,8 +31,8 @@ public class MapGenerator {
     /**
      * alap palya eltolas
      */
-    public static final int BASE_OFFSET_X = 5;
-    public static final int BASE_OFFSET_Y = 35;
+    public static final int BASE_OFFSET_X = 30;
+    public static final int BASE_OFFSET_Y = 11;
 
     /**
      * uj csucspontok maximalis eltolasa
@@ -60,40 +60,61 @@ public class MapGenerator {
     private ArrayList<Polygon> lowerLayer = new ArrayList<>();
     private ArrayList<Polygon> upperLayer = new ArrayList<>();
 
-    public void generateMap(Graphics2D g) {
-        //generate all tiles
-        Random r = new Random();
+    public ArrayList<Drawable> getFieldViews() {
+        return fieldViews;
+    }
 
-        ArrayList<FieldView> fieldViews = new ArrayList<>();
+    private ArrayList<Drawable> fieldViews = new ArrayList<>();
+
+    /**
+     * Generates the map,
+     * puts the created fields into fieldViews
+     */
+    public void generateMap() {
+        //generate all tiles
+        generateAllPolygons();
+
+        Random r = new Random();
         for (int i = 0; i < MAP_SIZE_Y; i++) {
             for (int j = 0; j < MAP_SIZE_X; j++) {
-                int[] xCoords = {j * TILE_SIZE_PX, (j + 1) * TILE_SIZE_PX, (j + 1) * TILE_SIZE_PX, j * TILE_SIZE_PX};
-                int[] yCoords = {i * TILE_SIZE_PX, i * TILE_SIZE_PX, (i + 1) * TILE_SIZE_PX, (i + 1) * TILE_SIZE_PX};
-                for (int k = 0; k < xCoords.length; k++) {
-                    xCoords[k] += BASE_OFFSET_X;
-                    yCoords[k] += BASE_OFFSET_Y;
+                Polygon polygon;
+                if ((i+j)%2 == 0){
+                    polygon = lowerLayer.get((i+j)/2);
+                }
+                else{
+                    polygon = lowerLayer.get((i+j-1)/2);
                 }
 
                 int nextTileType = r.nextInt(5);
                 switch (nextTileType) {
                     case 0://Empty
                         Empty empty = new Empty();
-                        //EmptyView emptyView = new EmptyView();
+                        EmptyView emptyView = new EmptyView(empty,polygon);
+                        fieldViews.add(emptyView);
                         break;
                     case 1://Shelter
+                        Shelter shelter = new Shelter();
+                        ShelterView shelterView = new ShelterView(shelter,polygon);
+                        fieldViews.add(shelterView);
                         break;
                     case 2://Warehouse
+                        Warehouse warehouse = new Warehouse();
+                        WarehouseView warehouseView = new WarehouseView(warehouse,polygon);
+                        fieldViews.add(warehouseView);
                         break;
                     case 3://Laboratory
+                        Laboratory laboratory = new Laboratory();
+                        LaboratoryView laboratoryView = new LaboratoryView(laboratory,polygon);
+                        fieldViews.add(laboratoryView);
                         break;
                     case 4://InfectedLaboratory
+                        InfectedLaboratory infectedLaboratory = new InfectedLaboratory();
+                        InfectedLaboratoryView infectedLaboratoryView = new InfectedLaboratoryView(infectedLaboratory,polygon);
+                        fieldViews.add(infectedLaboratoryView);
                         break;
                 }
             }
         }
-
-
-        //for... add vertices
 
     }
 
@@ -164,6 +185,12 @@ public class MapGenerator {
             g.drawPolygon(p);
             g.fillPolygon(p);
         }
+
+        var originalStroke = g.getStroke();
+        g.setColor(Color.WHITE);
+        g.setStroke(new BasicStroke(25));
+        g.drawRect(MapGenerator.BASE_OFFSET_X + 5, MapGenerator.BASE_OFFSET_Y, MapGenerator.MAP_WIDTH_PX, MapGenerator.MAP_HEIGHT_PX);
+        g.setStroke(originalStroke);
     }
 
     public Polygon create() {
@@ -247,7 +274,7 @@ public class MapGenerator {
      * @param p poligon
      * @return lista a koordinatakkal
      */
-    private ArrayList<Coordinates> getPolyCoordinates(Polygon p) {
+    public static ArrayList<Coordinates> getPolyCoordinates(Polygon p) {
         ArrayList<Coordinates> out = new ArrayList<>();
 
         int[] xPoints = p.xpoints;
@@ -266,7 +293,7 @@ public class MapGenerator {
      * @param coords bemeneti lista
      * @return tomb az x koordinatakbol
      */
-    private int[] getXCoordinates(ArrayList<Coordinates> coords) {
+    public static int[] getXCoordinates(ArrayList<Coordinates> coords) {
         ArrayList<Integer> outCoords = new ArrayList<>();
         for (int i = 0; i < coords.size(); i++) {
             outCoords.add(coords.get(i).x);
@@ -280,7 +307,7 @@ public class MapGenerator {
      * @param coords bemeneti lista
      * @return tomb az y koordinatakbol
      */
-    private int[] getYCoordinates(ArrayList<Coordinates> coords) {
+    public static int[] getYCoordinates(ArrayList<Coordinates> coords) {
         ArrayList<Integer> outCoords = new ArrayList<>();
         for (int i = 0; i < coords.size(); i++) {
             outCoords.add(coords.get(i).y);

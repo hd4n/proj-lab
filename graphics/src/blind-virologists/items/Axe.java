@@ -37,8 +37,9 @@ public class Axe extends Equipment{
         used = true;
         return null;
     }
+
     @Override
     public String toString(){
-        return super.toString();
+        return "Axe";
     }
 }

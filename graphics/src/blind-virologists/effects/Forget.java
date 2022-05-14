@@ -40,4 +40,9 @@ public class Forget extends Effect {
     public void applyEffect(Citizen affectedCitizen) {
         ((Virologist)affectedCitizen).clearCodes();
     }
+
+    @Override
+    public String toString(){
+        return "Forget";
+    }
 }

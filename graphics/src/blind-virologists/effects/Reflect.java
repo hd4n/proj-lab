@@ -84,13 +84,6 @@ public class Reflect extends Effect {
      */
     @Override
     public String toString() {
-        String out = super.toString();
-        out +="\n\tpa_";
-        if(parent == null){
-            out+="null";
-        }else{
-            out+=parent.getID();
-        }
-        return out;
+        return "Reflect";
     }
 }

@@ -1,20 +1,14 @@
 package views;
 
 import citizens.Virologist;
-import effects.Dance;
-import effects.Forget;
-import effects.Immunity;
 import items.*;
-import main.Main;
 import map.City;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -241,18 +235,21 @@ public class MenuView{
         l.setBackground(Color.gray);
         l.setOpaque(true);
         panelCodes.add(l, BorderLayout.CENTER);
-        //TODO kivenni ha jo a fuggveny
-        /*for (int i = 0; i < actualVirologist.getCodes().size(); i++) {
+        try{
+        for (int i = 0; i < actualVirologist.getCodes().size(); i++) {
             JLabel jl = new JLabel(actualVirologist.getCodes().get(i).toString());
             panelCodes.add(jl, BorderLayout.CENTER);
-        }*/
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         panelProperty.add(panelCodes);
     }
 
     /**
      * Letrehozza es beallitja az agens megjelenitot.
      */
-    public void makePanelAgents(){
+    public void makePanelAgents() {
         panelAgents = new JPanel(new FlowLayout());
         panelAgents.setVisible(true);
         panelAgents.setBackground(Color.lightGray);
@@ -261,11 +258,14 @@ public class MenuView{
         l.setBackground(Color.gray);
         l.setOpaque(true);
         panelAgents.add(l, BorderLayout.CENTER);
-        //TODO kivenni a komentet, ha mar jo
-        /*for (int i = 0; i < actualVirologist.getAgents().size(); i ++) {
-            JLabel jl = new JLabel(actualVirologist.getAgents().get(i).toString());
-            panelAgents.add(jl, BorderLayout.CENTER);
-        }*/
+        try {
+            for (int i = 0; i < actualVirologist.getAgents().size(); i++) {
+                JLabel jl = new JLabel(actualVirologist.getAgents().get(i).toString());
+                panelAgents.add(jl, BorderLayout.CENTER);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         panelProperty.add(panelAgents);
     }
 
@@ -282,11 +282,14 @@ public class MenuView{
         l.setOpaque(true);
         panelEquipment.add(l, BorderLayout.CENTER);
 
-        //TODO kivenni a komentet, ha mar jo
-        /*for (int i = 0; i < actualVirologist.getEquipments().size(); i ++) {
-            JLabel jl = new JLabel(actualVirologist.getEquipments().get(i).toString());
-            panelAgents.add(jl, BorderLayout.CENTER);
-        }*/
+        try {
+            for (int i = 0; i < actualVirologist.getEquipments().size(); i++) {
+                JLabel jl = new JLabel(actualVirologist.getEquipments().get(i).toString());
+                panelAgents.add(jl, BorderLayout.CENTER);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         panelProperty.add(panelEquipment);
     }
 
@@ -388,14 +391,17 @@ public class MenuView{
     public void setMaterials(){
         aminoacid = 0;
         nucleotide = 0;
-        //TODO ki kell szedni a kommentet
-/*        for(int i = 0; i < actualVirologist.getMaterials().size(); i++){
-            if (actualVirologist.getMaterials().get(i) instanceof Aminoacid){
-                aminoacid++;
-            }else{
-                nucleotide++;
+        try {
+            for (int i = 0; i < actualVirologist.getMaterials().size(); i++) {
+                if (Objects.equals(actualVirologist.getMaterials().get(i).toString(), "Aminoacid")) {
+                    aminoacid++;
+                } else {
+                    nucleotide++;
+                }
             }
-        }*/
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -410,18 +416,10 @@ public class MenuView{
 
         String[] list = new String[actualVirologist.getCodes().size()];
         for (int i = 0; i < actualVirologist.getCodes().size(); i++){
-            if (actualVirologist.getCodes().get(i).getAgent().getEffect() instanceof Dance){
-                list[i] = "Dance Agent";
-            }else if (actualVirologist.getCodes().get(i).getAgent().getEffect() instanceof Forget){
-                list[i] = "Forget Agent";
-            }else if (actualVirologist.getCodes().get(i).getAgent().getEffect() instanceof Immunity){
-                list[i] = "Immunity Agent";
-            }else{
-                list[i] = "Stun Agent";
-            }
+            list[i] = actualVirologist.getCodes().get(i).getAgent().getEffect().toString();
         }
 
-        JList listCraft = new JList(list);
+        JList<String> listCraft = new JList<>(list);
         listCraft.setVisibleRowCount(3);
         listCraft.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dialogCraft.add(new JScrollPane(listCraft), BorderLayout.CENTER);
@@ -466,15 +464,7 @@ public class MenuView{
         String[] listvirologist = new String[neighboursVirologist.size()];
 
         for (int i = 0; i < actualVirologist.getAgents().size(); i++){
-            if (actualVirologist.getAgents().get(i).getEffect() instanceof Dance){
-                listagents[i] = "Dance Agent";
-            }else if (actualVirologist.getAgents().get(i).getEffect() instanceof Forget){
-                listagents[i] = "Forget Agent";
-            }else if (actualVirologist.getAgents().get(i).getEffect() instanceof Immunity){
-                listagents[i] = "Immunity Agent";
-            }else{
-                listagents[i] = "Stun Agent";
-            }
+            listagents[i] = actualVirologist.getAgents().get(i).getEffect().toString();
         }
 
         for (int i = 0; i < neighboursVirologist.size(); i++){
@@ -482,8 +472,8 @@ public class MenuView{
         }
 
 
-        JList listAgents = new JList(listagents);
-        JList listVirologists = new JList(listvirologist);
+        JList<String> listAgents = new JList<>(listagents);
+        JList<String> listVirologists = new JList<>(listvirologist);
         listAgents.setVisibleRowCount(10);
         listVirologists.setVisibleRowCount(10);
         listAgents.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -558,7 +548,7 @@ public class MenuView{
             list[i] = stunnedVirologist.get(i).getID();
         }
 
-        JList listSteal = new JList(list);
+        JList<String> listSteal = new JList<>(list);
         listSteal.setVisibleRowCount(3);
         listSteal.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dialogSteal.add(new JScrollPane(listSteal), BorderLayout.CENTER);
@@ -590,18 +580,10 @@ public class MenuView{
 
         String[] list = new String[actualVirologist.getEquipments().size()];
         for (int i = 0; i < actualVirologist.getEquipments().size(); i++){
-            if (actualVirologist.getEquipments().get(i) instanceof Gloves){
-                list[i] = "Gloves";
-            }else if (actualVirologist.getEquipments().get(i) instanceof Bag){
-                list[i] = "Bag";
-            }else if (actualVirologist.getEquipments().get(i) instanceof Axe){
-                list[i] = "Axe";
-            }else{
-                list[i] = "Cape";
-            }
+            list[i] = actualVirologist.getEquipments().get(i).toString();
         }
 
-        JList listEquip = new JList(list);
+        JList<String> listEquip = new JList<>(list);
         listEquip.setVisibleRowCount(3);
         listEquip.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dialogEquip.add(new JScrollPane(listEquip), BorderLayout.CENTER);
@@ -626,18 +608,10 @@ public class MenuView{
 
         String[] list = new String[actualVirologist.getActiveEquipments().size()];
         for (int i = 0; i < actualVirologist.getActiveEquipments().size(); i++){
-            if (actualVirologist.getActiveEquipments().get(i) instanceof Gloves){
-                list[i] = "Gloves";
-            }else if (actualVirologist.getActiveEquipments().get(i) instanceof Bag){
-                list[i] = "Bag";
-            }else if (actualVirologist.getActiveEquipments().get(i) instanceof Axe){
-                list[i] = "Axe";
-            }else{
-                list[i] = "Cape";
-            }
+            list[i] = actualVirologist.getActiveEquipments().get(i).toString();
         }
 
-        JList listUnequip = new JList(list);
+        JList<String> listUnequip = new JList<>(list);
         listUnequip.setVisibleRowCount(3);
         listUnequip.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dialogUnequip.add(new JScrollPane(listUnequip), BorderLayout.CENTER);
@@ -662,18 +636,10 @@ public class MenuView{
 
         String[] list = new String[actualVirologist.getEquipments().size()];
         for (int i = 0; i < actualVirologist.getEquipments().size(); i++){
-            if (actualVirologist.getEquipments().get(i) instanceof Gloves){
-                list[i] = "Gloves";
-            }else if (actualVirologist.getEquipments().get(i) instanceof Bag){
-                list[i] = "Bag";
-            }else if (actualVirologist.getEquipments().get(i) instanceof Axe){
-                list[i] = "Axe";
-            }else{
-                list[i] = "Cape";
-            }
+            list[i] = actualVirologist.getEquipments().get(i).toString();
         }
 
-        JList listDrop = new JList(list);
+        JList<String> listDrop = new JList<>(list);
         listDrop.setVisibleRowCount(3);
         listDrop.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dialogDrop.add(new JScrollPane(listDrop), BorderLayout.CENTER);
@@ -704,7 +670,7 @@ public class MenuView{
         startButton.setBackground(Color.cyan);
         startButton.setPreferredSize(new Dimension(300, 300));
         startButton.addActionListener(actionEvent -> {
-            //TODO ide kell az inditas
+
             generate();
             gameWindow = new GameWindow();
 
@@ -740,7 +706,7 @@ public class MenuView{
      */
     public void generate(){
         mapGenerator = new MapGenerator();
-        mapGenerator.generateAllPolygons();
+        mapGenerator.generateMap();
         generateMapBool = true;
     }
 }

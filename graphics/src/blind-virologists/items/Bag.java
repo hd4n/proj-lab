@@ -23,8 +23,9 @@ public class Bag extends Equipment {
     public Effect use(Citizen target) {
         return e;
     }
+
     @Override
     public String toString(){
-        return super.toString();
+        return "Bag";
     }
 }
