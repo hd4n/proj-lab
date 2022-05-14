@@ -15,51 +15,26 @@ public abstract class FieldView implements Drawable{
         this.polygonToDraw = polygonToDraw;
     }
 
-    double area(Polygon p)
-    {
-        double total = 0;
-        for (int i = 0; i < p.npoints; i++) {
-            int j = (i + 1) % p.npoints;
-            total += (p.xpoints[i] * p.ypoints[j])
-                    - (p.xpoints[j] * p.ypoints[i]);
-        }
-        return total / 2;
-    }
 
     public Point2D.Double polygonCenterOfMass(Polygon polygon) {
-        int N = polygon.npoints;
-
-        double cx = 0, cy = 0;
-        double A = area(polygon);
-        Point2D.Double res = new Point2D.Double();
-        int i, j;
-        double sumDet = 0;
-
-        double factor = 0;
-        for (i = 0; i < N; i++) {
-            j = i + 1;
-            factor = (polygon.xpoints[i] * polygon.ypoints[j] - polygon.xpoints[j]
-                    * polygon.ypoints[i]);
-            cx += (polygon.xpoints[i] + polygon.xpoints[j]) * factor;
-            cy += (polygon.ypoints[i] + polygon.ypoints[j]) * factor;
-
-            sumDet += factor;
+        double sumX = 0;
+        double sumY = 0;
+        for (int i = 0; i < polygon.npoints; ++i) {
+            sumX += polygon.xpoints[i] ;
+            sumY += polygon.ypoints[i] ;
         }
-        factor = 1 / (3 * sumDet);
 
-        A*=6.0;
-        factor=1/A;
-        cx *= factor;
-        cy *= factor;
-        res.x = cx;
-        res.y = cy;
-        return res;
+        Point2D.Double center = new Point2D.Double();
+        center.x = (double) 1 / polygon.npoints * sumX; //M az osszes atom tomege
+        center.y = (double) 1 / polygon.npoints * sumY;
+        return center;
     }
+
 
 
     public void draw(Graphics2D g) {
-        g.drawPolygon(this.polygonToDraw);
-        g.fillPolygon(this.polygonToDraw);
+       g.drawPolygon(this.polygonToDraw);
+       g.fillPolygon(this.polygonToDraw);
 
 
 
@@ -67,12 +42,21 @@ public abstract class FieldView implements Drawable{
 
 
         if (this.fieldToDraw.getCitizen()!=null){
-            g.drawOval((int) centerOfMass.x, (int) centerOfMass.y, 100,100);
+            g.setColor(Color.black);
+            g.fillOval((int) centerOfMass.x, (int) centerOfMass.y, 30,30);
         }
 
         if(fieldToDraw.getEquipment()!=null){
             g.drawImage(fieldToDraw.getEquipment().getImg(),null, (int)centerOfMass.x,(int)centerOfMass.y);
         }
 
+    }
+
+    public Field getFieldToDraw() {
+        return fieldToDraw;
+    }
+
+    public Polygon getPolygonToDraw() {
+        return polygonToDraw;
     }
 }
