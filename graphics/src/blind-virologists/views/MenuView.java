@@ -413,7 +413,7 @@ public class MenuView{
             list[i] = actualVirologist.getCodes().get(i).getAgent().getEffect().toString();
         }
 
-        JList listCraft = new JList(list);
+        JList<String> listCraft = new JList<>(list);
         listCraft.setVisibleRowCount(3);
         listCraft.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dialogCraft.add(new JScrollPane(listCraft), BorderLayout.CENTER);
@@ -466,8 +466,8 @@ public class MenuView{
         }
 
 
-        JList listAgents = new JList(listagents);
-        JList listVirologists = new JList(listvirologist);
+        JList<String> listAgents = new JList<>(listagents);
+        JList<String> listVirologists = new JList<>(listvirologist);
         listAgents.setVisibleRowCount(10);
         listVirologists.setVisibleRowCount(10);
         listAgents.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -542,7 +542,7 @@ public class MenuView{
             list[i] = stunnedVirologist.get(i).getID();
         }
 
-        JList listSteal = new JList(list);
+        JList<String> listSteal = new JList<>(list);
         listSteal.setVisibleRowCount(3);
         listSteal.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dialogSteal.add(new JScrollPane(listSteal), BorderLayout.CENTER);
@@ -577,7 +577,7 @@ public class MenuView{
             list[i] = actualVirologist.getEquipments().get(i).toString();
         }
 
-        JList listEquip = new JList(list);
+        JList<String> listEquip = new JList<>(list);
         listEquip.setVisibleRowCount(3);
         listEquip.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dialogEquip.add(new JScrollPane(listEquip), BorderLayout.CENTER);
@@ -605,7 +605,7 @@ public class MenuView{
             list[i] = actualVirologist.getActiveEquipments().get(i).toString();
         }
 
-        JList listUnequip = new JList(list);
+        JList<String> listUnequip = new JList<>(list);
         listUnequip.setVisibleRowCount(3);
         listUnequip.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dialogUnequip.add(new JScrollPane(listUnequip), BorderLayout.CENTER);
@@ -633,7 +633,7 @@ public class MenuView{
             list[i] = actualVirologist.getEquipments().get(i).toString();
         }
 
-        JList listDrop = new JList(list);
+        JList<String> listDrop = new JList<>(list);
         listDrop.setVisibleRowCount(3);
         listDrop.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dialogDrop.add(new JScrollPane(listDrop), BorderLayout.CENTER);
