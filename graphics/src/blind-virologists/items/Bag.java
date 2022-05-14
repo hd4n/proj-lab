@@ -3,6 +3,10 @@ package items;
 import citizens.Citizen;
 import effects.*;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * A zsákot megvalósító osztály.
  *
@@ -14,9 +18,19 @@ public class Bag extends Equipment {
      * A fuggveny létrehoz egy IncreaseBag effect-et és visszaadja azt.
      */
     public Bag(){
+        try {
+            this.img= ImageIO.read(new File("graphics/assets/equipment/bag.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         e = new IncreaseBag(10);
     }
     public Bag(String _ID){
+        try {
+            this.img= ImageIO.read(new File("graphics/assets/equipment/bag.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         e = new IncreaseBag(10);
         setID(_ID);
     }

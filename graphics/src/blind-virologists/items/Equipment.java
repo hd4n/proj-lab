@@ -26,7 +26,6 @@ public abstract class Equipment {
     }
 
     public Equipment() {
-        this.img = new BufferedImage(0,0,0);
         this.e = null;
     }
 

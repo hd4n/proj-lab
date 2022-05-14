@@ -3,6 +3,11 @@ package items;
 import citizens.Citizen;
 import effects.*;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * A kesztyűt megvalósító osztály.
  *
@@ -14,9 +19,19 @@ public class Gloves extends Equipment {
      * A fuggveny létrehoz egy Reflect effect-et és visszaadja azt.
      */
     public Gloves(){
+        try {
+            this.img= ImageIO.read(new File("graphics/assets/equipment/gloves.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         e = new Reflect(10, this);
     }
     public Gloves(String _ID){
+        try {
+            this.img= ImageIO.read(new File("graphics/assets/equipment/gloves.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         e = new Reflect(10, this);
         setID(_ID);
     }

@@ -8,6 +8,9 @@ import map.Laboratory;
 import map.Shelter;
 import map.Warehouse;
 
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.security.spec.RSAOtherPrimeInfo;
 
 /**
@@ -22,9 +25,19 @@ public class Axe extends Equipment{
     private boolean used = false;
 
     public Axe(){
+        try {
+            this.img= ImageIO.read(new File("graphics/assets/equipment/axe.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         e = null;
     }
     public Axe(String _ID){
+        try {
+            this.img= ImageIO.read(new File("graphics/assets/equipment/axe.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         e = null;
         setID(_ID);
     }
