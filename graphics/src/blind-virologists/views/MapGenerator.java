@@ -65,6 +65,11 @@ public class MapGenerator {
     }
 
     private ArrayList<Drawable> fieldViews = new ArrayList<>();
+
+    /**
+     * Generates the map,
+     * puts the created fields into fieldViews
+     */
     public void generateMap() {
         //generate all tiles
         generateAllPolygons();
@@ -183,7 +188,7 @@ public class MapGenerator {
 
         var originalStroke = g.getStroke();
         g.setColor(Color.WHITE);
-        g.setStroke(new BasicStroke(20));
+        g.setStroke(new BasicStroke(25));
         g.drawRect(MapGenerator.BASE_OFFSET_X + 5, MapGenerator.BASE_OFFSET_Y, MapGenerator.MAP_WIDTH_PX, MapGenerator.MAP_HEIGHT_PX);
         g.setStroke(originalStroke);
     }
