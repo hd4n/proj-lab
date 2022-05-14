@@ -50,7 +50,7 @@ public abstract class Citizen implements Visitor {
      * Torli az osszes hatast, torli a lejart effecteket, majd beallitja az uj ertekeket
      */
     public void nextRound() {
-        move();
+
         stunned = false;
         resistance = 0;
         direction = currentField;
@@ -67,6 +67,8 @@ public abstract class Citizen implements Visitor {
         for (Effect item : torolni) {
             effects.remove(item);
         }
+
+        move();
     }
 
     /**
