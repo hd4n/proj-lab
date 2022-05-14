@@ -228,7 +228,37 @@ public class MapGenerator {
         fieldViews.get(fieldViews.size() - 1).getFieldToDraw().setCitizen(v1);
         city.addPlayer(v4);
 
+        setNeighbors();
+
         return city;
+    }
+
+    private void setNeighbors() {
+        for (int y = 0; y < MAP_SIZE_Y; y++) {
+            for (int x = 0; x < MAP_SIZE_X; x++) {
+                Field current = fieldViews.get(y * MAP_SIZE_Y + x).getFieldToDraw();
+
+                //up
+                if (y - 1 > 0) {
+                    current.addNeighbor(fieldViews.get(y * (MAP_SIZE_Y - 1) + x).getFieldToDraw());
+                }
+
+                //down
+                if (y + 1 < MAP_SIZE_Y) {
+                    current.addNeighbor(fieldViews.get(y * (MAP_SIZE_Y + 1) + x).getFieldToDraw());
+                }
+
+                //left
+                if (x - 1 > 0) {
+                    current.addNeighbor(fieldViews.get(y * MAP_SIZE_Y - 1).getFieldToDraw());
+                }
+
+                //up
+                if (x + 1 < MAP_SIZE_X) {
+                    current.addNeighbor(fieldViews.get(y * MAP_SIZE_Y + 1).getFieldToDraw());
+                }
+            }
+        }
     }
 
     /**
