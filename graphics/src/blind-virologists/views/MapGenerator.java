@@ -1,5 +1,8 @@
 package views;
 
+import citizens.Virologist;
+import effects.*;
+import items.*;
 import map.*;
 
 import java.awt.*;
@@ -69,56 +72,163 @@ public class MapGenerator {
      * Generates the map,
      * puts the created fields into fieldViews
      */
-    public void generateMap() {
+    public City generateMap() {
         //generate all tiles
         generateAllPolygons();
 
+        City city = new City();
+
         Random r = new Random();
-        int a = 0;
-        int b = 0;
+        int lowerIndex = 0;
+        int upperIndex = 0;
         for (int i = 0; i < MAP_SIZE_Y; i++) {
             for (int j = 0; j < MAP_SIZE_X; j++) {
                 Polygon polygon;
                 if ((i * MAP_SIZE_Y + j) % 2 == 0) {
-                    polygon = lowerLayer.get(a);
-                    a++;
+                    polygon = lowerLayer.get(lowerIndex);
+                    lowerIndex++;
                 } else {
-                    polygon = upperLayer.get(b);
-                    b++;
+                    polygon = upperLayer.get(upperIndex);
+                    upperIndex++;
                 }
 
+                //Emptyk nagyobb valoszinuseggel generalodnak
                 int nextTileType = r.nextInt(7);
                 switch (nextTileType) {
+
                     case 0://Shelter
-                        Shelter shelter = new Shelter();
+
+                        int equipmentType = r.nextInt(4);
+                        Equipment e = null;
+
+                        switch (equipmentType) {
+                            case 0:
+                                e = new Axe();
+                                break;
+                            case 1:
+                                e = new Bag();
+                                break;
+                            case 2:
+                                e = new Cape();
+                                break;
+                            case 3:
+                                e = new Gloves();
+                                break;
+                        }
+
+                        Shelter shelter = new Shelter(e, "");
                         ShelterView shelterView = new ShelterView(shelter, polygon);
                         fieldViews.add(shelterView);
+                        city.addField(shelter);
                         break;
+
                     case 1://Warehouse
-                        Warehouse warehouse = new Warehouse();
+
+                        int materialType = r.nextInt(2);
+                        Material m = null;
+
+                        if (materialType == 0) {
+                            m = new Nucleotide();
+                        } else {
+                            m = new Aminoacid();
+                        }
+
+                        Warehouse warehouse = new Warehouse(m, "");
                         WarehouseView warehouseView = new WarehouseView(warehouse, polygon);
                         fieldViews.add(warehouseView);
+                        city.addField(warehouse);
                         break;
+
                     case 2://Laboratory
-                        Laboratory laboratory = new Laboratory();
+
+                        int agentType = r.nextInt(2);
+                        int effectType = r.nextInt(3);
+                        int aminoCost = r.nextInt(3);
+                        int nucleoCost = r.nextInt(3);
+                        Agent a = null;
+                        Effect ef = null;
+                        if (agentType == 0) {
+                            switch (effectType) {
+                                case 0:
+                                    ef = new Dance();
+                                    break;
+                                case 1:
+                                    ef = new Stun();
+                                    break;
+                                case 2:
+                                    ef = new Forget();
+                            }
+                            a = new Virus(ef);
+                        } else {
+                            a = new Vaccine(new Protection());
+                        }
+                        Code c = new Code(a, nucleoCost, aminoCost);
+                        Laboratory laboratory = new Laboratory(c, "");
                         LaboratoryView laboratoryView = new LaboratoryView(laboratory, polygon);
                         fieldViews.add(laboratoryView);
+                        city.addField(laboratory);
+                        city.increaseCodeCount();
                         break;
+
                     case 3://InfectedLaboratory
-                        InfectedLaboratory infectedLaboratory = new InfectedLaboratory();
+
+                        agentType = r.nextInt(2);
+                        effectType = r.nextInt(3);
+                        aminoCost = r.nextInt(3);
+                        nucleoCost = r.nextInt(3);
+                        a = null;
+                        ef = null;
+                        if (agentType == 0) {
+                            switch (effectType) {
+                                case 0:
+                                    ef = new Dance();
+                                    break;
+                                case 1:
+                                    ef = new Stun();
+                                    break;
+                                case 2:
+                                    ef = new Forget();
+                            }
+                            a = new Virus(ef);
+                        } else {
+                            a = new Vaccine(new Protection());
+                        }
+                        c = new Code(a, nucleoCost, aminoCost);
+                        InfectedLaboratory infectedLaboratory = new InfectedLaboratory(c, "");
                         InfectedLaboratoryView infectedLaboratoryView = new InfectedLaboratoryView(infectedLaboratory, polygon);
                         fieldViews.add(infectedLaboratoryView);
+                        city.addField(infectedLaboratory);
+                        city.increaseCodeCount();
                         break;
 
                     default://Empty
+
                         Empty empty = new Empty();
                         EmptyView emptyView = new EmptyView(empty, polygon);
                         fieldViews.add(emptyView);
+                        city.addField(empty);
                         break;
                 }
             }
         }
 
+        Virologist v1 = new Virologist(fieldViews.get(0).getFieldToDraw());
+        fieldViews.get(0).getFieldToDraw().setCitizen(v1);
+        city.addPlayer(v1);
+
+        Virologist v2 = new Virologist(fieldViews.get(MAP_SIZE_X - 1).getFieldToDraw());
+        fieldViews.get(MAP_SIZE_X - 1).getFieldToDraw().setCitizen(v1);
+        city.addPlayer(v2);
+
+        Virologist v3 = new Virologist(fieldViews.get(MAP_SIZE_X * 4 - 1).getFieldToDraw());
+        fieldViews.get(MAP_SIZE_X * 4 - 1).getFieldToDraw().setCitizen(v1);
+        city.addPlayer(v3);
+
+        Virologist v4 = new Virologist(fieldViews.get(fieldViews.size() - 1).getFieldToDraw());
+        fieldViews.get(fieldViews.size() - 1).getFieldToDraw().setCitizen(v1);
+        city.addPlayer(v4);
+
+        return city;
     }
 
     /**
