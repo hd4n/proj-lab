@@ -31,8 +31,8 @@ public class MapGenerator {
     /**
      * alap palya eltolas
      */
-    public static final int BASE_OFFSET_X = 5;
-    public static final int BASE_OFFSET_Y = 35;
+    public static final int BASE_OFFSET_X = 30;
+    public static final int BASE_OFFSET_Y = 11;
 
     /**
      * uj csucspontok maximalis eltolasa

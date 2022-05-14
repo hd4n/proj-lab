@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -241,18 +242,21 @@ public class MenuView{
         l.setBackground(Color.gray);
         l.setOpaque(true);
         panelCodes.add(l, BorderLayout.CENTER);
-        //TODO kivenni ha jo a fuggveny
-        /*for (int i = 0; i < actualVirologist.getCodes().size(); i++) {
+        try{
+        for (int i = 0; i < actualVirologist.getCodes().size(); i++) {
             JLabel jl = new JLabel(actualVirologist.getCodes().get(i).toString());
             panelCodes.add(jl, BorderLayout.CENTER);
-        }*/
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         panelProperty.add(panelCodes);
     }
 
     /**
      * Letrehozza es beallitja az agens megjelenitot.
      */
-    public void makePanelAgents(){
+    public void makePanelAgents() {
         panelAgents = new JPanel(new FlowLayout());
         panelAgents.setVisible(true);
         panelAgents.setBackground(Color.lightGray);
@@ -261,11 +265,14 @@ public class MenuView{
         l.setBackground(Color.gray);
         l.setOpaque(true);
         panelAgents.add(l, BorderLayout.CENTER);
-        //TODO kivenni a komentet, ha mar jo
-        /*for (int i = 0; i < actualVirologist.getAgents().size(); i ++) {
-            JLabel jl = new JLabel(actualVirologist.getAgents().get(i).toString());
-            panelAgents.add(jl, BorderLayout.CENTER);
-        }*/
+        try {
+            for (int i = 0; i < actualVirologist.getAgents().size(); i++) {
+                JLabel jl = new JLabel(actualVirologist.getAgents().get(i).toString());
+                panelAgents.add(jl, BorderLayout.CENTER);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         panelProperty.add(panelAgents);
     }
 
@@ -282,11 +289,14 @@ public class MenuView{
         l.setOpaque(true);
         panelEquipment.add(l, BorderLayout.CENTER);
 
-        //TODO kivenni a komentet, ha mar jo
-        /*for (int i = 0; i < actualVirologist.getEquipments().size(); i ++) {
-            JLabel jl = new JLabel(actualVirologist.getEquipments().get(i).toString());
-            panelAgents.add(jl, BorderLayout.CENTER);
-        }*/
+        try {
+            for (int i = 0; i < actualVirologist.getEquipments().size(); i++) {
+                JLabel jl = new JLabel(actualVirologist.getEquipments().get(i).toString());
+                panelAgents.add(jl, BorderLayout.CENTER);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         panelProperty.add(panelEquipment);
     }
 
@@ -388,14 +398,17 @@ public class MenuView{
     public void setMaterials(){
         aminoacid = 0;
         nucleotide = 0;
-        //TODO ki kell szedni a kommentet
-/*        for(int i = 0; i < actualVirologist.getMaterials().size(); i++){
-            if (actualVirologist.getMaterials().get(i) instanceof Aminoacid){
-                aminoacid++;
-            }else{
-                nucleotide++;
+        try {
+            for (int i = 0; i < actualVirologist.getMaterials().size(); i++) {
+                if (Objects.equals(actualVirologist.getMaterials().get(i).toString(), "Aminoacid")) {
+                    aminoacid++;
+                } else {
+                    nucleotide++;
+                }
             }
-        }*/
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -664,7 +677,7 @@ public class MenuView{
         startButton.setBackground(Color.cyan);
         startButton.setPreferredSize(new Dimension(300, 300));
         startButton.addActionListener(actionEvent -> {
-            //TODO ide kell az inditas
+
             generate();
             gameWindow = new GameWindow();
 
@@ -700,7 +713,7 @@ public class MenuView{
      */
     public void generate(){
         mapGenerator = new MapGenerator();
-        mapGenerator.generateAllPolygons();
+        mapGenerator.generateMap();
         generateMapBool = true;
     }
 }
