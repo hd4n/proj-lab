@@ -484,9 +484,11 @@ public class MenuView{
 
         JButton jButton = new JButton("Steal!");
         jButton.addActionListener(e -> {
+            isMove = false;
             if (fieldToPolygon(clickPolygon).getCitizen().isStunned()) {
                 actualVirologist.addEquipment(fieldToPolygon(clickPolygon).getCitizen().stealEquipment());
                 actualVirologist.addMaterial(fieldToPolygon(clickPolygon).getCitizen().stealMaterial());
+                isMove = true;
             }
         });
 
@@ -605,6 +607,7 @@ public class MenuView{
             window.setTitle("The world of worldless virologists");
             window.setDefaultCloseOperation(EXIT_ON_CLOSE);
             window.setResizable(false);
+            actualVirologist = (Virologist) city.getPlayers().get(0);
             makePanelButton();
             makePanelProperty();
             makePanelMap();
@@ -620,10 +623,10 @@ public class MenuView{
      */
     public void generate(){
         mapGenerator = new MapGenerator();
-        mapGenerator.generateMap();
+        city = mapGenerator.generateMap();
 
         generateMapBool = true;
-        //city =
+
         next();
     }
 
@@ -642,7 +645,7 @@ public class MenuView{
     }
 
     /**
-     * klikkeles beallitja a poligont.
+     * Klikkeles beallitja a poligont.
      */
     public void click(){
         panelMap.addMouseListener(new MouseAdapter() {
@@ -651,11 +654,11 @@ public class MenuView{
                 super.mouseClicked(e);
                 for (var p : mapGenerator.getUpperLayer()) {
                     if (p.contains(e.getPoint())) {
-
                         if (isMove){
                             for (int j = 0; j < actualVirologist.getCurrentField().getNeighbors().size(); j++) {
                                 if (fieldToPolygon(p) == actualVirologist.getCurrentField().getNeighbors().get(j)){
                                     actualVirologist.setDirection(fieldToPolygon(p));
+                                    System.out.println("move");
                                 }
                             }
                         } else {
