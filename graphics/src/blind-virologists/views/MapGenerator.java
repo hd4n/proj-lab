@@ -217,15 +217,15 @@ public class MapGenerator {
         city.addPlayer(v1);
 
         Virologist v2 = new Virologist(fieldViews.get(MAP_SIZE_X - 1).getFieldToDraw());
-        fieldViews.get(MAP_SIZE_X - 1).getFieldToDraw().setCitizen(v1);
+        fieldViews.get(MAP_SIZE_X - 1).getFieldToDraw().setCitizen(v2);
         city.addPlayer(v2);
 
-        Virologist v3 = new Virologist(fieldViews.get(MAP_SIZE_X * 4 - 1).getFieldToDraw());
-        fieldViews.get(MAP_SIZE_X * 4).getFieldToDraw().setCitizen(v1);
+        Virologist v3 = new Virologist(fieldViews.get(MAP_SIZE_X * 4).getFieldToDraw());
+        fieldViews.get(MAP_SIZE_X * 4).getFieldToDraw().setCitizen(v3);
         city.addPlayer(v3);
 
         Virologist v4 = new Virologist(fieldViews.get(fieldViews.size() - 1).getFieldToDraw());
-        fieldViews.get(fieldViews.size() - 1).getFieldToDraw().setCitizen(v1);
+        fieldViews.get(fieldViews.size() - 1).getFieldToDraw().setCitizen(v4);
         city.addPlayer(v4);
 
         setNeighbors();
