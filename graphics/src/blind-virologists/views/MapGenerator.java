@@ -221,7 +221,7 @@ public class MapGenerator {
         city.addPlayer(v2);
 
         Virologist v3 = new Virologist(fieldViews.get(MAP_SIZE_X * 4 - 1).getFieldToDraw());
-        fieldViews.get(MAP_SIZE_X * 4 - 1).getFieldToDraw().setCitizen(v1);
+        fieldViews.get(MAP_SIZE_X * 4).getFieldToDraw().setCitizen(v1);
         city.addPlayer(v3);
 
         Virologist v4 = new Virologist(fieldViews.get(fieldViews.size() - 1).getFieldToDraw());
@@ -250,12 +250,12 @@ public class MapGenerator {
 
                 //left
                 if (x - 1 > 0) {
-                    current.addNeighbor(fieldViews.get(y * MAP_SIZE_Y - 1).getFieldToDraw());
+                    current.addNeighbor(fieldViews.get(y * MAP_SIZE_Y +x - 1).getFieldToDraw());
                 }
 
                 //up
                 if (x + 1 < MAP_SIZE_X) {
-                    current.addNeighbor(fieldViews.get(y * MAP_SIZE_Y + 1).getFieldToDraw());
+                    current.addNeighbor(fieldViews.get(y * MAP_SIZE_Y+x+ 1).getFieldToDraw());
                 }
             }
         }
