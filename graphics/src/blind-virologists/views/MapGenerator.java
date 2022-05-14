@@ -98,7 +98,7 @@ public class MapGenerator {
 
                     case 0://Shelter
 
-                        int equipmentType = r.nextInt(4);
+                        int equipmentType = r.nextInt(7);
                         Equipment e = null;
 
                         switch (equipmentType) {
@@ -106,12 +106,15 @@ public class MapGenerator {
                                 e = new Axe();
                                 break;
                             case 1:
+                            case 2:
                                 e = new Bag();
                                 break;
-                            case 2:
+                            case 3:
+                            case 4:
                                 e = new Cape();
                                 break;
-                            case 3:
+                            case 5:
+                            case 6:
                                 e = new Gloves();
                                 break;
                         }
