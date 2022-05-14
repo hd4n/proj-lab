@@ -1,11 +1,13 @@
 package citizens;
 
-import effects.*;
+import effects.Effect;
 import items.Equipment;
 import items.Material;
 import map.Field;
 
-import java.util.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A varosban lako player altal iranyitott karakter absztarkt osztalya
@@ -23,6 +25,8 @@ public abstract class Citizen implements Visitor {
     protected int maxMaterial = 10;
     protected int reflectCount = 0;
     protected String ID;
+
+    protected Color color = Color.ORANGE;
 
     public Citizen() {
     }
@@ -169,5 +173,13 @@ public abstract class Citizen implements Visitor {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

@@ -43,12 +43,12 @@ public abstract class FieldView implements Drawable{
 
 
         if (this.fieldToDraw.getCitizen()!=null){
-            g.setColor(Color.black);
+            g.setColor(fieldToDraw.getCitizen().getColor());
             g.fillOval((int) centerOfMass.x, (int) centerOfMass.y, 30,30);
         }
 
         if(fieldToDraw.getEquipment()!=null){
-            g.drawImage(fieldToDraw.getEquipment().getImg(),(int)centerOfMass.x,(int)centerOfMass.y,40,40, null);
+            g.drawImage(fieldToDraw.getEquipment().getImg(),(int)centerOfMass.x-20,(int)centerOfMass.y-20,40,40, null);
         }
 
     }
