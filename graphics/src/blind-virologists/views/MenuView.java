@@ -660,8 +660,8 @@ public class MenuView{
     public void click(){
         panelMap.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
                 for (var p : mapGenerator.getUpperLayer()) {
                     if (p.contains(e.getPoint())) {
                         System.out.println("click");
