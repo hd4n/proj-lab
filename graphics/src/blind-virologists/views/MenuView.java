@@ -619,10 +619,11 @@ public class MenuView{
      * Ha veget er a jatek.
      */
     public void end(){
-        JOptionPane optionPane = new JOptionPane("Game over", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION);
-        JDialog jDilaog = optionPane.createDialog("Victory!");
+        Icon icon = new ImageIcon("graphics/assets/menu/cup.png");
+        JOptionPane optionPane = new JOptionPane("Victory!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, icon);
+        JDialog jDilaog = optionPane.createDialog("Game over");
         jDilaog.setVisible(true);
-        window.setVisible(false);
+        window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
         //TODO kilep az egesz
     }
 
@@ -634,6 +635,7 @@ public class MenuView{
         mapGenerator.generateMap();
 
         generateMapBool = true;
+        //city =
         next();
         testVirologist();//TODO ki kell majd venni, csak teszteleshez van
     }
