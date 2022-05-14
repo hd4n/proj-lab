@@ -20,7 +20,7 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
  */
 public class MenuView{
     private static MapGenerator mapGenerator;
-    private City city; //TODO ez pontosan hogy lesz?
+    private City city;
     boolean generateMapBool = false;
     private JFrame window;
     private JPanel panelButton, panelProperty, panelMap, panelCodes, panelAgents, panelEquipment, panelMaterial;
@@ -35,9 +35,10 @@ public class MenuView{
     private final int panelHeight = 150;
     private int aminoacid = 0;
     private int nucleotide = 0;
-    private final int next = 0;
+    private int next = 0;
     private Polygon clickPolygon;
-    boolean isMove = true;
+    private boolean isMove = true;
+    private Field startField;
     private Virologist actualVirologist = new Virologist();
     //A map merete: 990, 550 -> 9, 5 db
 
@@ -210,6 +211,7 @@ public class MenuView{
             next();
             city.nextRound(window);
             repaintWindow();
+
         });
         panelButton.add(buttonNext);
     }
@@ -634,14 +636,14 @@ public class MenuView{
      * Beallitja az aktualis virologust a kovetkezore.
      */
     public void next(){
-
-        //TODO ki kell venni a kommentet
-        /*
+        actualVirologist.setColor(Color.orange);
         actualVirologist = (Virologist) city.getPlayers().get(next);
+        actualVirologist.setColor(Color.black);
+        startField = actualVirologist.getCurrentField();
         next++;
         if (city.getPlayers().size() -1 == next ){
             next = 0;
-        }*/
+        }
     }
 
     /**
@@ -657,7 +659,8 @@ public class MenuView{
                         if (isMove){
                             for (int j = 0; j < actualVirologist.getCurrentField().getNeighbors().size(); j++) {
                                 if (fieldToPolygon(p) == actualVirologist.getCurrentField().getNeighbors().get(j)){
-                                    actualVirologist.setDirection(fieldToPolygon(p));
+                                    startField = fieldToPolygon(p);
+                                    actualVirologist.setDirection(startField);
                                     System.out.println("move");
                                 }
                             }
