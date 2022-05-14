@@ -170,7 +170,6 @@ public class Virologist extends Citizen {
     }
 
     public void addEquipment(Equipment equipment) {
-        //todo <3
         if (equipment != null) {
             equipments.add(equipment);
         }
@@ -244,7 +243,6 @@ public class Virologist extends Citizen {
     }
 
     public void addMaterial(Material material) {
-        //todo <maxMaterial
         if (material != null) {
             materials.add(material);
         }
