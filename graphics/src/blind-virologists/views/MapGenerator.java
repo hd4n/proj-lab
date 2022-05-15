@@ -69,8 +69,7 @@ public class MapGenerator {
     private ArrayList<Drawable> fieldViews = new ArrayList<>();
 
     /**
-     * Generates the map,
-     * puts the created fields into fieldViews
+     * Legeneralja a palyat, a mezoket es hozzajuk tartozo view-kat
      */
     public City generateMap() {
         //generate all tiles
@@ -146,8 +145,8 @@ public class MapGenerator {
 
                         int agentType = r.nextInt(2);
                         int effectType = r.nextInt(3);
-                        int aminoCost = r.nextInt(3);
-                        int nucleoCost = r.nextInt(3);
+                        int aminoCost = r.nextInt(2);
+                        int nucleoCost = r.nextInt(2);
                         Agent a = null;
                         Effect ef = null;
                         if (agentType == 0) {
@@ -177,8 +176,8 @@ public class MapGenerator {
 
                         agentType = r.nextInt(2);
                         effectType = r.nextInt(3);
-                        aminoCost = r.nextInt(3);
-                        nucleoCost = r.nextInt(3);
+                        aminoCost = r.nextInt(2);
+                        nucleoCost = r.nextInt(2);
                         a = null;
                         ef = null;
                         if (agentType == 0) {

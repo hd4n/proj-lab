@@ -2,6 +2,7 @@ package views;
 
 import citizens.Virologist;
 import items.*;
+import main.Main;
 import map.City;
 import map.Field;
 
@@ -320,8 +321,8 @@ public class MenuView{
         panelMaterial.setPreferredSize(new Dimension(panelWidth, panelHeight));
 
         //Haromszogek:
-        JLabel yellowTriangleLabel = new JLabel(new ImageIcon("graphics/assets/menu/yellow_small_triangle.jpg"));
-        JLabel grayTriangleLabel = new JLabel(new ImageIcon("graphics/assets/menu/gray_small_triangle.jpg"));
+        JLabel yellowTriangleLabel = new JLabel(new ImageIcon(Main.wdPath+"/assets/menu/yellow_small_triangle.jpg"));
+        JLabel grayTriangleLabel = new JLabel(new ImageIcon(Main.wdPath+"/assets/menu/gray_small_triangle.jpg"));
         yellowTriangleLabel.setVisible(true);
         grayTriangleLabel.setVisible(true);
         panelMaterial.add(yellowTriangleLabel, BorderLayout.CENTER);
@@ -597,7 +598,7 @@ public class MenuView{
         frameBeginning.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frameBeginning.setResizable(false);
         JButton startButton = new JButton();
-        JLabel vaccineLabel = new JLabel(new ImageIcon("graphics/assets/menu/vaccine.png"));
+        JLabel vaccineLabel = new JLabel(new ImageIcon(Main.wdPath+"/assets/menu/vaccine.png"));
         JLabel startLabel = new JLabel("Start game!");
         startLabel.setFont(new Font("Verdana", Font.PLAIN, 60));
         startButton.add(vaccineLabel);

@@ -3,6 +3,7 @@ package items;
 import citizens.Citizen;
 import citizens.Virologist;
 import effects.Effect;
+import main.Main;
 import map.Empty;
 import map.Laboratory;
 import map.Shelter;
@@ -26,7 +27,7 @@ public class Axe extends Equipment{
 
     public Axe(){
         try {
-            this.img= ImageIO.read(new File("graphics/assets/equipment/axe.png"));
+            this.img= ImageIO.read(new File(Main.wdPath+"/assets/equipment/axe.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -34,7 +35,7 @@ public class Axe extends Equipment{
     }
     public Axe(String _ID){
         try {
-            this.img= ImageIO.read(new File("graphics/assets/equipment/axe.png"));
+            this.img= ImageIO.read(new File(Main.wdPath+"/assets/equipment/axe.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

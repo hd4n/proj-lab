@@ -4,6 +4,7 @@ import citizens.Citizen;
 import citizens.Virologist;
 import effects.Effect;
 import items.*;
+import main.Main;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;
@@ -220,7 +221,7 @@ public class City {
      * @author Eros Pal
      */
     public void endGame(JFrame window) {
-        Icon icon = new ImageIcon("graphics/assets/menu/cup.png");
+        Icon icon = new ImageIcon(Main.wdPath+"/assets/menu/cup.png");
         JOptionPane optionPane = new JOptionPane("Victory!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, icon);
         JDialog jDilaog = optionPane.createDialog("Game over");
         jDilaog.setVisible(true);
