@@ -28,4 +28,7 @@ public class Aminoacid extends Material {
             needed--;
         }
     }
+    public String toString(){
+        return "Aminoacid";
+    }
 }

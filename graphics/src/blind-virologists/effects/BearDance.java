@@ -80,13 +80,20 @@ public class BearDance extends Effect {
             ArrayList<Citizen> neighborsCitizen = new ArrayList<>();
             for (Field neighboursField : neighboursFields) {
                 if (neighboursField != null) {
-                    neighborsCitizen.add(neighboursField.getCitizen());
+                    if (neighboursField.getCitizen() != null) {
+                        neighborsCitizen.add(neighboursField.getCitizen());
+                    }
                 }
             }
             for (Citizen citizen : neighborsCitizen) {
-                new BearDance(citizen);
+                    new BearDance(citizen);
             }
             duration++;
         }
+    }
+
+    @Override
+    public String toString(){
+        return "Bear Dance";
     }
 }

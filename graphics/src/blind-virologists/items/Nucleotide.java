@@ -28,4 +28,7 @@ public class Nucleotide extends Material {
             needed--;
         }
     }
+    public String toString(){
+        return "Nucleotide";
+    }
 }

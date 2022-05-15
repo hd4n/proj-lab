@@ -1,9 +1,13 @@
 package citizens;
 
-import effects.*;
+import effects.Effect;
+import items.Equipment;
+import items.Material;
 import map.Field;
 
-import java.util.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A varosban lako player altal iranyitott karakter absztarkt osztalya
@@ -21,6 +25,8 @@ public abstract class Citizen implements Visitor {
     protected int maxMaterial = 10;
     protected int reflectCount = 0;
     protected String ID;
+
+    protected Color color = Color.ORANGE;
 
     public Citizen() {
     }
@@ -44,10 +50,10 @@ public abstract class Citizen implements Visitor {
      * Torli az osszes hatast, torli a lejart effecteket, majd beallitja az uj ertekeket
      */
     public void nextRound() {
-        move();
+
         stunned = false;
         resistance = 0;
-        direction = currentField;
+
         maxMaterial = 10;
 
         ArrayList<Effect> torolni = new ArrayList<>();
@@ -61,6 +67,9 @@ public abstract class Citizen implements Visitor {
         for (Effect item : torolni) {
             effects.remove(item);
         }
+
+        move();
+        direction = currentField;
     }
 
     /**
@@ -96,6 +105,10 @@ public abstract class Citizen implements Visitor {
         }
         return true;
     }
+
+    public abstract ArrayList<Material> stealMaterial();
+
+    public abstract ArrayList<Equipment> stealEquipment();
 
     public void interact() {
         currentField.accept(this);
@@ -163,5 +176,13 @@ public abstract class Citizen implements Visitor {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

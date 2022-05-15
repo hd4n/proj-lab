@@ -68,6 +68,7 @@ public class IncreaseBag extends Effect {
      */
     @Override
     public String toString() {
-        return super.toString();
+        return "Increase Bag";
     }
+
 }
