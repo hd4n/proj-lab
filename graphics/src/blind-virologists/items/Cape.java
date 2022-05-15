@@ -2,6 +2,7 @@ package items;
 
 import citizens.Citizen;
 import effects.*;
+import main.Main;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -19,7 +20,7 @@ public class Cape extends Equipment {
      */
     public Cape(){
         try {
-            this.img= ImageIO.read(new File("graphics/assets/equipment/cape.png"));
+            this.img= ImageIO.read(new File(Main.wdPath+"/assets/equipment/cape.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -27,7 +28,7 @@ public class Cape extends Equipment {
     }
     public Cape(String _ID){
         try {
-            this.img= ImageIO.read(new File("graphics/assets/equipment/cape.png"));
+            this.img= ImageIO.read(new File(Main.wdPath+"/assets/equipment/cape.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

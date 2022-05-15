@@ -2,6 +2,7 @@ package items;
 
 import citizens.Citizen;
 import effects.*;
+import main.Main;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -20,7 +21,7 @@ public class Gloves extends Equipment {
      */
     public Gloves(){
         try {
-            this.img= ImageIO.read(new File("graphics/assets/equipment/gloves.png"));
+            this.img= ImageIO.read(new File(Main.wdPath+"/assets/equipment/gloves.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -28,7 +29,7 @@ public class Gloves extends Equipment {
     }
     public Gloves(String _ID){
         try {
-            this.img= ImageIO.read(new File("graphics/assets/equipment/gloves.png"));
+            this.img= ImageIO.read(new File(Main.wdPath+"/assets/equipment/gloves.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
