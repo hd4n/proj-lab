@@ -225,7 +225,7 @@ public class City {
         JOptionPane optionPane = new JOptionPane("Victory!", JOptionPane.INFORMATION_MESSAGE, JOptionPane.DEFAULT_OPTION, icon);
         JDialog jDilaog = optionPane.createDialog("Game over");
         jDilaog.setVisible(true);
-        window.dispatchEvent(new WindowEvent(window, WindowEvent.WINDOW_CLOSING));
+        window.dispose();
     }
 
     /**
